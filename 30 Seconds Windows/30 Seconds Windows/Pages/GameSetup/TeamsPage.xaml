@@ -1,0 +1,86 @@
+﻿<Page
+    x:Class="_30_Seconds_Windows.Pages.GameSetup.TeamsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_30_Seconds_Windows.Pages.GameSetup"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="15,5">
+            <TextBlock x:Uid="TeamsPageTitleTextBlock" Style="{ThemeResource TitleTextBlockStyle}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
+            <StackPanel>
+                <TextBlock x:Uid="TeamsPageTeamsHeader" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="10,5"/>
+                <ListView 
+                    x:Name="TeamsListView"
+                    ItemsSource="{Binding CurrentGame.Teams}"
+                    IsItemClickEnabled="True"
+                    ItemClick="TeamsListView_ItemClick">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Grid Background="{StaticResource Section}" Margin="15,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="25" FontWeight="Bold"/>
+                                    <TextBlock  Margin="15,5,5,5" Text="{Binding NumberOfPlayersString}" Foreground="Black" VerticalAlignment="Bottom" FontSize="20" Grid.Column="1" />
+                                    <SymbolIcon Margin="5,5,15,5" Symbol="Next" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Uid="TeamsPageAddTeamButton"
+                        x:Name="TeamsPageAddTeamButton"
+                        Style="{StaticResource CustomButtonStyle}" 
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Click="TeamsPageAddTeamButton_Click">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <Grid Margin="-12,-2,-11,-5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    x:Uid="TeamsPageAddTeamButtonTextBlock"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource ButtonTextBlockStyle}"/>
+                                <SymbolIcon Symbol="Add" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
