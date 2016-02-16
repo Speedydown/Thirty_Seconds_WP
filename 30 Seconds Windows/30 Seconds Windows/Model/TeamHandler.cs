@@ -20,6 +20,12 @@ namespace _30_Seconds_Windows.Model
             Teams = GetItems<Team>().ToList();
         }
 
+        public void DeleteTeam(Team team)
+        {
+            DeleteItem(team);
+            Teams.Remove(team);
+        }
+
         public List<Team> GetTeamsByGame(Game Game)
         {
             return Teams.Where(t => t.GameID == Game.InternalID).ToList();
@@ -33,6 +39,26 @@ namespace _30_Seconds_Windows.Model
         public List<Team> GetTeamsFromDatabase()
         {
             return Teams.OrderBy(x => x.Name).ToList();
+        }
+
+        public bool SaveTeam(Team team)
+        {
+            try
+            {
+                if (!this.Teams.Contains(team))
+                {
+                    this.Teams.Add(team);
+                }
+
+                SaveItem(team);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                return false;
+            }
         }
 
         public bool SaveTeams(List<Team> Teams)

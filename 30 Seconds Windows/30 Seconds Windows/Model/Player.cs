@@ -43,5 +43,14 @@ namespace _30_Seconds_Windows.Model
 
         public string Name { get; set; }
         public DateTime? LastRound { get; set; }
+        public int GamesPlayed { get; set; }
+        [Ignore]
+        public string NumberOfTimesPlayedString
+        {
+            get
+            {
+                return string.Format("{0} {1}", GamesPlayed, Utils.Utils.ResourceLoader.GetString("text_TimesPlayed"));
+            }
+        }
     }
 }

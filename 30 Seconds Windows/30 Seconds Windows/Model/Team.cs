@@ -2,6 +2,7 @@
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -29,6 +30,8 @@ namespace _30_Seconds_Windows.Model
         }
 
         public string Name { get; set; }
+
+        [Ignore]
         public string NumberOfPlayersString
         {
             get
@@ -37,21 +40,37 @@ namespace _30_Seconds_Windows.Model
             }
         }
 
+        private ObservableCollection<Player> _Players;
         [Ignore]
-        public List<Player> Players { get; set; }
+        public ObservableCollection<Player> Players
+        {
+            get
+            {
+                if (_Players == null)
+                {
+                    if (InternalID != 0)
+                    {
+                        _Players = new ObservableCollection<Player>(PlayerHandler.instance.GetPlayersByTeam(this));
+                    }
+                    else
+                    {
+                        _Players = new ObservableCollection<Player>();
+                    }
+                }
+                return _Players;
+            }
+            set
+            {
+                _Players = value;
+            }
+        }
+
         public int Points { get; set; }
 
 
         public Team()
         {
-            if (InternalID != 0)
-            {
-                Players = PlayerHandler.instance.GetPlayersByTeam(this);
-            }
-            else
-            {
-                Players = new List<Player>();
-            }
+
         }
     }
 }

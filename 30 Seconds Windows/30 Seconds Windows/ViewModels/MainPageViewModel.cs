@@ -46,11 +46,15 @@ namespace _30_Seconds_Windows.ViewModels
 
         public void NewGameButton()
         {
-            GameHandler.instance.SetAllGamesToFinished();
+            Game CurrentGame = GameHandler.instance.GetCurrentGame();
 
-            Game NewGame = new Game();
+            if (CurrentGame == null || CurrentGame.TimeStarted != DateTime.MinValue)
+            {
+                GameHandler.instance.SetAllGamesToFinished();
+                Game NewGame = new Game();
 
-            GameHandler.instance.AddNewGame(NewGame);
+                GameHandler.instance.AddNewGame(NewGame);
+            }
 
             (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
         }

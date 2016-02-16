@@ -102,9 +102,13 @@
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\TeamHandler.cs" />
     <Compile Include="Model\Utils\Utils.cs" />
+    <Compile Include="Pages\GameSetup\PlayersPage.xaml.cs">
+      <DependentUpon>PlayersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GameSetup\TeamsPage.xaml.cs">
       <DependentUpon>TeamsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\GameSetup\PlayersPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\TeamsPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
@@ -156,6 +160,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Pages\GameSetup\PlayersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GameSetup\TeamsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

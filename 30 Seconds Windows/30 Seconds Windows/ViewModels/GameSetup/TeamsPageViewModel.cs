@@ -1,10 +1,16 @@
 ﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Model.Utils;
+using _30_Seconds_Windows.Pages.GameSetup;
 using BaseLogic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace _30_Seconds_Windows.ViewModels.GameSetup
 {
@@ -25,8 +31,8 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             }
         }
 
-        private List<Team> _ExistingTeams;
-        public List<Team> ExistingTeams
+        private ObservableCollection<Team> _ExistingTeams;
+        public ObservableCollection<Team> ExistingTeams
         {
             get { return _ExistingTeams; }
             set
@@ -49,7 +55,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             get
             {
-                return CurrentGame != null && CurrentGame.Teams.Count > 2 && CurrentGame.Teams.Where(t => t.Players.Count > 2).Count() > 2;
+                return CurrentGame != null && 
+                    CurrentGame.Teams.Count > 2 && 
+                    CurrentGame.Teams.Where(t => t.Players.Count > 2).Count() > 2 &&
+                    CurrentGame.Teams.Where(t => t.Players.Count < 2).Count() == 0;
             }
 
         }
@@ -72,9 +81,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             IsLoading = true;
             CurrentGame = GameHandler.instance.GetCurrentGame();
-            ExistingTeams = TeamHandler.instance.GetTeamsFromDatabase();
+            ExistingTeams = new ObservableCollection<Team>(TeamHandler.instance.GetTeamsFromDatabase());
+            ExistingTeams.CollectionChanged += Teams_CollectionChanged;
+            CurrentGame.Teams.CollectionChanged += Teams_CollectionChanged;
 
-            if (ExistingTeams.Count == 0)
+            if (ExistingTeams.Count == 0 && CurrentGame.Teams.Count == 0)
             {
                 List<Team> NewTeams = new List<Team>();
 
@@ -83,16 +94,103 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                     NewTeams.Add(new Team()
                     {
                         Name = "Team" + (i + 1),
-                        Players = new List<Player>(),
+                        Players = new ObservableCollection<Player>(),
                         Points = 0
                     });
                 }
 
                 TeamHandler.instance.SaveTeams(NewTeams);
-                ExistingTeams = NewTeams;
+                ExistingTeams = new ObservableCollection<Team>(NewTeams);
+            }
+
+            for (int i = 0; i < ExistingTeams.Count; i++)
+            {
+                if (CurrentGame.Teams.Where(team => ExistingTeams[i].InternalID == team.InternalID).Count() > 0)
+                {
+                    ExistingTeams.RemoveAt(i);
+                    i--;
+                }
             }
 
             IsLoading = false;
+        }
+
+        void Teams_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            NotifyPropertyChanged("ExistingTeamsVisible");
+            NotifyPropertyChanged("NoTeamsInGameMessageVisible");
+            NotifyPropertyChanged("PlayGameButtonEnabled");
+        }
+
+        public void AddTeamToGameButton(Team team)
+        {
+            CurrentGame.Teams.Add(team);
+            ExistingTeams.Remove(team);
+
+            team.GameID = CurrentGame.InternalID;
+            TeamHandler.instance.SaveTeam(team);
+        }
+
+        public void AddNewTeamToGameButton()
+        {
+            Team NewTeam = new Team() 
+            { 
+                GameID = CurrentGame.InternalID, 
+                Players = new ObservableCollection<Player>(), 
+                Points = 0, 
+                Name = "Team" + (TeamHandler.instance.GetTeamsFromDatabase().Max(t => t.InternalID) + 1)
+            };
+
+            CurrentGame.Teams.Add(NewTeam);
+            TeamHandler.instance.SaveTeam(NewTeam);
+        }
+
+        public async Task DeleteTeamButton(Team TeamToDelete)
+        {
+            if (TeamToDelete.GameID != CurrentGame.InternalID)
+            {
+                ////Create warning dialog:
+                var messageDialog = new MessageDialog(string.Format(Utils.ResourceLoader.GetString("text_DeleteTeamQuestion_Body"), TeamToDelete.Name), Utils.ResourceLoader.GetString("text_DeleteTeamQuestion_Title"));
+
+                messageDialog.Commands.Add(
+                    new UICommand(
+                        Utils.ResourceLoader.GetString("text_Delete"),
+                        null,
+                        0));
+                messageDialog.Commands.Add(
+                     new UICommand(
+                        Utils.ResourceLoader.GetString("text_Cancel"),
+                        null,
+                        1));
+
+                // Set the command that will be invoked by default
+                messageDialog.DefaultCommandIndex = 0;
+
+                // Set the command to be invoked when escape is pressed
+                messageDialog.CancelCommandIndex = 1;
+
+                IUICommand Command = await messageDialog.ShowAsync();
+
+                if ((int)Command.Id == 0)
+                {
+                    TeamHandler.instance.DeleteTeam(TeamToDelete);
+                    ExistingTeams.Remove(TeamToDelete);
+                }
+            }
+            else
+            {
+                CurrentGame.Teams.Remove(TeamToDelete);
+                ExistingTeams.Add(TeamToDelete);
+
+                TeamToDelete.GameID = 0;
+                TeamHandler.instance.SaveTeam(TeamToDelete);
+            }
+        }
+
+        public void EditTeamButton(Team team)
+        {
+            PlayersPageViewModel.instance.CurrentTeam = team;
+            (Window.Current.Content as Frame).Navigate(typeof(PlayersPage));
         }
     }
 }

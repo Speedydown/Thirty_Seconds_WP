@@ -32,7 +32,7 @@ namespace _30_Seconds_Windows.Model
                 InsertItem(game);
                 Games.Add(game);
 
-                TeamHandler.instance.SaveTeams(game.Teams);
+                TeamHandler.instance.SaveTeams(game.Teams.ToList());
 
                 return true;
             }
