@@ -8,6 +8,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Name="TeamsDataTemplate">
+            <StackPanel>
+                <Grid Background="{StaticResource Section}" Margin="15,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock  Margin="15,5,5,5" Text="{Binding NumberOfPlayersString}" Foreground="Black" VerticalAlignment="Bottom" FontSize="20" Grid.Column="1" />
+                    <SymbolIcon Margin="5,5,15,5" Symbol="Forward" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
@@ -26,61 +44,100 @@
             <TextBlock x:Uid="TeamsPageTitleTextBlock" Style="{ThemeResource TitleTextBlockStyle}"/>
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
-            <StackPanel>
-                <TextBlock x:Uid="TeamsPageTeamsHeader" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="10,5"/>
-                <ListView 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer ZoomMode="Disabled" VerticalScrollMode="Auto" Margin="0,0,0,-15">
+                <StackPanel>
+                    <TextBlock x:Uid="TeamsPageTeamsHeader" HorizontalAlignment="Left" TextAlignment="Left" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="15,5"/>
+                    <ListView 
                     x:Name="TeamsListView"
                     ItemsSource="{Binding CurrentGame.Teams}"
                     IsItemClickEnabled="True"
+                    ItemTemplate="{StaticResource TeamsDataTemplate}"
                     ItemClick="TeamsListView_ItemClick">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Grid Background="{StaticResource Section}" Margin="15,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="25" FontWeight="Bold"/>
-                                    <TextBlock  Margin="15,5,5,5" Text="{Binding NumberOfPlayersString}" Foreground="Black" VerticalAlignment="Bottom" FontSize="20" Grid.Column="1" />
-                                    <SymbolIcon Margin="5,5,15,5" Symbol="Next" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
-                                </Grid>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button x:Uid="TeamsPageAddTeamButton"
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Grid Background="{StaticResource Section}" Margin="15,5" Visibility="{Binding NoTeamsInGameMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Uid="TeamsPageNoTeamsInGameTextBlock"  Margin="15,5,5,5" Foreground="Black" FontSize="25" FontWeight="Bold"/>
+                        <SymbolIcon Margin="5,5,15,5" Symbol="Important" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
+                    </Grid>
+                    <Button x:Uid="TeamsPageAddTeamButton"
                         x:Name="TeamsPageAddTeamButton"
                         Style="{StaticResource CustomButtonStyle}" 
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         Click="TeamsPageAddTeamButton_Click">
-                    <Button.ContentTemplate>
-                        <DataTemplate>
-                            <Grid Margin="-12,-2,-11,-5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock 
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <Grid Margin="-12,-2,-11,-5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock 
                                     x:Uid="TeamsPageAddTeamButtonTextBlock"
                                     Grid.ColumnSpan="2"
                                     Style="{StaticResource ButtonTextBlockStyle}"/>
-                                <SymbolIcon Symbol="Add" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </Button.ContentTemplate>
-                </Button>
-            </StackPanel>
+                                    <SymbolIcon Symbol="Add" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+
+                    <TextBlock x:Uid="TeamsPagePreviousTeamsHeader" HorizontalAlignment="Left" Visibility="{Binding ExistingTeamsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" TextAlignment="Left" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="15, 5"/>
+                    <ListView 
+                    x:Name="PreviousTeamsListView"
+                    Visibility="{Binding ExistingTeamsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    ItemsSource="{Binding ExistingTeams}"
+                    IsItemClickEnabled="True"
+                    ItemTemplate="{StaticResource TeamsDataTemplate}"
+                    ItemClick="PreviousTeamsListView_ItemClick">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+            <Button x:Uid="TeamsPageStartGameButton"
+                    Grid.Row="1"
+                        x:Name="TeamsPageStartGameButton"
+                        Style="{StaticResource CustomButtonStyle}" 
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                    IsEnabled="{Binding PlayGameButtonEnabled}"
+                        Click="TeamsPageStartGameButton_Click">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <Grid Margin="-12,-2,-11,-5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                    x:Uid="TeamsPageStartGameButtonTextBlock"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource ButtonTextBlockStyle}"/>
+                            <SymbolIcon Symbol="Play" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
         </Grid>
     </Grid>
 </Page>

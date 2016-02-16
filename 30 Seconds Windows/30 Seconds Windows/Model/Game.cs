@@ -15,5 +15,17 @@ namespace _30_Seconds_Windows.Model
 
         [Ignore]
         public List<Team> Teams { get; set; }
+
+        public Game()
+        {
+            if (InternalID != 0)
+            {
+                Teams = TeamHandler.instance.GetTeamsByGame(this);
+            }
+            else
+            {
+                Teams = new List<Team>();
+            }
+        }
     }
 }

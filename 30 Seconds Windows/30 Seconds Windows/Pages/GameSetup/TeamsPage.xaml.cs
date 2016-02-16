@@ -89,5 +89,15 @@ namespace _30_Seconds_Windows.Pages.GameSetup
         {
 
         }
+
+        private void PreviousTeamsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void TeamsPageStartGameButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

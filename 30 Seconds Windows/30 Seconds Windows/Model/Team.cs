@@ -37,8 +37,21 @@ namespace _30_Seconds_Windows.Model
             }
         }
 
+        [Ignore]
         public List<Player> Players { get; set; }
         public int Points { get; set; }
 
+
+        public Team()
+        {
+            if (InternalID != 0)
+            {
+                Players = PlayerHandler.instance.GetPlayersByTeam(this);
+            }
+            else
+            {
+                Players = new List<Player>();
+            }
+        }
     }
 }

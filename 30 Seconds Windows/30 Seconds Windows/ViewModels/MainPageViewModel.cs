@@ -49,18 +49,6 @@ namespace _30_Seconds_Windows.ViewModels
             GameHandler.instance.SetAllGamesToFinished();
 
             Game NewGame = new Game();
-            NewGame.Teams = new List<Team>();
-            NewGame.Finished = false;
-
-            for (int i = 0; i < 2; i++)
-            {
-                NewGame.Teams.Add(new Team()
-                {
-                    Name = "Team" + (NewGame.Teams.Count + 1),
-                    Players = new List<Player>(),
-                    Points = 0
-                });
-            }
 
             GameHandler.instance.AddNewGame(NewGame);
 

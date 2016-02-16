@@ -20,14 +20,19 @@ namespace _30_Seconds_Windows.Model
             Teams = GetItems<Team>().ToList();
         }
 
-        public Team[] GetTeamsByGame(Game Game)
+        public List<Team> GetTeamsByGame(Game Game)
         {
-            return Teams.Where(t => t.GameID == Game.InternalID).ToArray();
+            return Teams.Where(t => t.GameID == Game.InternalID).ToList();
         }
 
         public Team GetTeamByID(int TeamID)
         {
             return Teams.Single(t => t.InternalID == TeamID);
+        }
+
+        public List<Team> GetTeamsFromDatabase()
+        {
+            return Teams.OrderBy(x => x.Name).ToList();
         }
 
         public bool SaveTeams(List<Team> Teams)

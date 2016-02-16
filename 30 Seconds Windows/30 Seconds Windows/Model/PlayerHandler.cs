@@ -20,9 +20,9 @@ namespace _30_Seconds_Windows.Model
             Players = GetItems<Player>().ToList();
         }
 
-        public Player[] GetPlayersByTeam(Team Team)
+        public List<Player> GetPlayersByTeam(Team Team)
         {
-            return Players.Where(p => p.TeamID == Team.InternalID).ToArray();
+            return Players.Where(p => p.TeamID == Team.InternalID).ToList();
         }
 
         public bool SaveTeams(Player[] Players)
