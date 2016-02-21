@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="_30_Seconds_Windows.Pages.GameSetup.SplashPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_30_Seconds_Windows.Pages.GameSetup"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource Background}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressRing Height="150" Width="150" IsActive="True" Background="{StaticResource Background}" Foreground="{StaticResource LimeGreen}"/>
+                <TextBlock x:Uid="SplashPageLoadingText" FontSize="30" TextAlignment="Center" Foreground="{StaticResource LimeGreen}" TextWrapping="WrapWholeWords" Margin="15,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

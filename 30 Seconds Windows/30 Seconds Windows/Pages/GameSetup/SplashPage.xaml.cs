@@ -1,16 +1,14 @@
 ﻿using _30_Seconds_Windows.Common;
-using _30_Seconds_Windows.Model;
-using _30_Seconds_Windows.Model.Utils;
 using _30_Seconds_Windows.ViewModels.GameSetup;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
-using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,12 +20,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace _30_Seconds_Windows.Pages.GameSetup
 {
-    public sealed partial class TeamsPage : Page
+    public sealed partial class SplashPage : Page
     {
+        public SplashPageViewModel ViewModel { get; private set; }
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public TeamsPage()
+        public SplashPage()
         {
             this.InitializeComponent();
 
@@ -48,8 +47,9 @@ namespace _30_Seconds_Windows.Pages.GameSetup
 
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            DataContext = TeamsPageViewModel.instance;
-            await TeamsPageViewModel.instance.LoadData();
+            ViewModel = SplashPageViewModel.instance;
+            DataContext = ViewModel;
+            await Task.Run(() =>ViewModel.LoadData());
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -82,33 +82,5 @@ namespace _30_Seconds_Windows.Pages.GameSetup
         }
 
         #endregion
-
-        private void TeamsPageAddTeamButton_Click(object sender, RoutedEventArgs e)
-        {
-            TeamsPageViewModel.instance.AddNewTeamToGameButton();
-        }
-
-        private void TeamsListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            TeamsPageViewModel.instance.EditTeamButton(e.ClickedItem as Team);
-        }
-
-        private void PreviousTeamsListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            TeamsPageViewModel.instance.AddTeamToGameButton(e.ClickedItem as Team);
-        }
-
-        private async void TeamsPageStartGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            await TeamsPageViewModel.instance.StartGameButton();
-        }
-
-        private async void TeamGrid_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
-            {
-                await TeamsPageViewModel.instance.DeleteTeamButton((sender as Grid).DataContext as Team);
-            }
-        }
     }
 }

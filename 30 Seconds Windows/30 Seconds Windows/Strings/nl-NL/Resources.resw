@@ -153,6 +153,9 @@
   <data name="PlayersPageAddPlayerButtonTextBlock.Text" xml:space="preserve">
     <value>Nieuwe speler toevoegen</value>
   </data>
+  <data name="PlayersPageEditTeamNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Teamnaam</value>
+  </data>
   <data name="PlayersPageNoPlayersInTeamTextBlock.Text" xml:space="preserve">
     <value>Geen spelers toegevoegd</value>
   </data>
@@ -168,13 +171,91 @@
   <data name="text_Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
+  <data name="text_DeletePlayerQuestion_Body" xml:space="preserve">
+    <value>Wil je de speler "{0}" verwijderen?</value>
+  </data>
+  <data name="text_DeletePlayerQuestion_Title" xml:space="preserve">
+    <value>Speler verwijderen?</value>
+  </data>
   <data name="text_DeleteTeamQuestion_Body" xml:space="preserve">
     <value>Wil je het team "{0}" verwijderen?</value>
   </data>
   <data name="text_DeleteTeamQuestion_Title" xml:space="preserve">
-    <value>Verwijderen?</value>
+    <value>Team verwijderen?</value>
   </data>
   <data name="text_TimesPlayed" xml:space="preserve">
-    <value>spellen gespeeld</value>
+    <value>Spellen gespeeld</value>
+  </data>
+  <data name="PlayerPageEditPlayerNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Spelernaam</value>
+  </data>
+  <data name="PlayerPageTeamStatsHeader.Text" xml:space="preserve">
+    <value>Statestieken</value>
+  </data>
+  <data name="PlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Speler bewerken</value>
+  </data>
+  <data name="PlayersPageDeletePlayerHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: Speler verwijderen? Hou de knop langer vast</value>
+  </data>
+  <data name="PlayersPageTeamMembersHeader.Text" xml:space="preserve">
+    <value>Teamleden</value>
+  </data>
+  <data name="TeamsPageDeleteTeamHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: houd een team vast om dit team te verwijderen</value>
+  </data>
+  <data name="text_QuestionsAnswered" xml:space="preserve">
+    <value>Woorden beantwoord</value>
+  </data>
+  <data name="text_QuestionsCorrect" xml:space="preserve">
+    <value>Woorden goed beantwoord</value>
+  </data>
+  <data name="text_TimesWon" xml:space="preserve">
+    <value>Spellen gewonnen</value>
+  </data>
+  <data name="SplashPageLoadingText.Text" xml:space="preserve">
+    <value>Bezig met het ophalen van nieuwe woorden...</value>
+  </data>
+  <data name="NextPlayerPageNextRoundPivotHeader.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="NextPlayerPagePassPhoneToText" xml:space="preserve">
+    <value>Geef mij door aan {0}</value>
+  </data>
+  <data name="NextPlayerPageScorePivotHeader.Text" xml:space="preserve">
+    <value>Huidige stand</value>
+  </data>
+  <data name="NextPlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Volgende speler</value>
+  </data>
+  <data name="VersusIntroPageTeamHeader.Text" xml:space="preserve">
+    <value>Teams</value>
+  </data>
+  <data name="NextPlayerPageContinueButtonTextBlock.Text" xml:space="preserve">
+    <value>Doorgaan</value>
+  </data>
+  <data name="NextPlayerPageRoundTextBox.Text" xml:space="preserve">
+    <value>Ronde:</value>
+  </data>
+  <data name="NextPlayerPageScoreTextBox.Text" xml:space="preserve">
+    <value>Score:</value>
+  </data>
+  <data name="CancelGame_Header" xml:space="preserve">
+    <value>Stoppen met het spel</value>
+  </data>
+  <data name="CancelGame_Text" xml:space="preserve">
+    <value>Weet je zeker dat je terug wil naar het hoofdmenu?</value>
+  </data>
+  <data name="NextPlayerPageQuestionsCorrectTextBox.Text" xml:space="preserve">
+    <value>Goede antwoorden</value>
+  </data>
+  <data name="PlayerReadyPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="text_MainMenu" xml:space="preserve">
+    <value>Hoofdmenu</value>
+  </data>
+  <data name="PlayerReadyPageStartButtonTextBlock.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
 </root>

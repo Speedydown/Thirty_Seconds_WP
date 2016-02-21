@@ -13,12 +13,10 @@
             <StackPanel>
                 <Grid x:Name="PlayerGrid" Background="{StaticResource Section}" Margin="15,5" Holding="PlayerGrid_Holding">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="25" FontWeight="Bold"/>
-                    <TextBlock  Margin="15,5,5,5" Text="{Binding NumberOfTimesPlayedString}" Foreground="Black" VerticalAlignment="Bottom" FontSize="20" Grid.Column="1" />
+                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="24" FontWeight="Bold"/>
                     <SymbolIcon Margin="5,5,15,5" Symbol="Forward" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
                 </Grid>
             </StackPanel>
@@ -46,7 +44,8 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
             <ScrollViewer ZoomMode="Disabled" VerticalScrollMode="Auto" Margin="0,0,0,-15">
                 <StackPanel>
-                    <TextBlock Text="{Binding CurrentTeam.Name}" HorizontalAlignment="Left" TextAlignment="Left" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="15,5"/>
+                    <TextBox x:Uid="PlayersPageEditTeamNameTextbox" x:Name="PlayersPageEditTeamNameTextbox" Margin="15,5" Text="{Binding CurrentTeam.Name, Mode=TwoWay}"/>
+                    <TextBlock x:Uid="PlayersPageTeamMembersHeader" HorizontalAlignment="Left" TextAlignment="Left" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="15,5"/>
                     <ListView 
                     x:Name="PlayersListView"
                     ItemsSource="{Binding CurrentTeam.Players}"
@@ -59,7 +58,7 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <Grid Background="{StaticResource Section}" Margin="15,5" Visibility="{Binding NoTeamsInGameMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Background="{StaticResource Section}" Margin="15,5" Visibility="{Binding NoPlayersInTeamMessageVisiable, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
@@ -68,6 +67,7 @@
                         <TextBlock x:Uid="PlayersPageNoPlayersInTeamTextBlock"  Margin="15,5,5,5" Foreground="Black" FontSize="25" FontWeight="Bold"/>
                         <SymbolIcon Margin="5,5,15,5" Symbol="Important" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
                     </Grid>
+                    <TextBlock x:Uid="PlayersPageDeletePlayerHintTextBlock" Visibility="{Binding NoPlayersInTeamMessageVisiable, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" Foreground="Black" FontSize="16" TextWrapping="WrapWholeWords" Margin="15,0"/>
                     <Button x:Uid="PlayersPageAddPlayerButton"
                         x:Name="PlayersPageAddPlayerButton"
                         Style="{StaticResource CustomButtonStyle}" 

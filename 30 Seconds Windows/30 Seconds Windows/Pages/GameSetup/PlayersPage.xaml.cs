@@ -1,4 +1,5 @@
 ﻿using _30_Seconds_Windows.Common;
+using _30_Seconds_Windows.Model;
 using _30_Seconds_Windows.ViewModels.GameSetup;
 using System;
 using System.Collections.Generic;
@@ -49,8 +50,9 @@ namespace _30_Seconds_Windows.Pages.GameSetup
             await PlayersPageViewModel.instance.LoadData();
         }
 
-        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        private async void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+            await PlayersPageViewModel.instance.SaveTeam();
         }
 
         #region NavigationHelper registration
@@ -80,9 +82,12 @@ namespace _30_Seconds_Windows.Pages.GameSetup
 
         #endregion
 
-        private void PlayerGrid_Holding(object sender, HoldingRoutedEventArgs e)
+        private async void PlayerGrid_Holding(object sender, HoldingRoutedEventArgs e)
         {
-
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
+            {
+                await PlayersPageViewModel.instance.DeletePlayerButton((sender as Grid).DataContext as Player);
+            }
         }
 
         private void PlayersPageAddPlayerButton_Click(object sender, RoutedEventArgs e)
@@ -92,12 +97,13 @@ namespace _30_Seconds_Windows.Pages.GameSetup
 
         private void PreviousPlayersListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            PlayersPageViewModel.instance.AddExistingPlayerButton(e.ClickedItem as Player);
+            PlayersListView.Focus(FocusState.Pointer);
         }
 
         private void PlayersListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            PlayersPageViewModel.instance.EditPlayerButton(e.ClickedItem as Player);
         }
     }
 }

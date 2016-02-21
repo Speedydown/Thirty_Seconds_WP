@@ -18,8 +18,8 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
     {
         public static readonly TeamsPageViewModel instance = new TeamsPageViewModel();
 
-        private Game _CurrentGame;
-        public Game CurrentGame
+        private Model.Game _CurrentGame;
+        public Model.Game CurrentGame
         {
             get { return _CurrentGame; }
             set
@@ -56,8 +56,8 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             get
             {
                 return CurrentGame != null && 
-                    CurrentGame.Teams.Count > 2 && 
-                    CurrentGame.Teams.Where(t => t.Players.Count > 2).Count() > 2 &&
+                    CurrentGame.Teams.Count > 1 && 
+                    CurrentGame.Teams.Where(t => t.Players.Count > 1).Count() > 1 &&
                     CurrentGame.Teams.Where(t => t.Players.Count < 2).Count() == 0;
             }
 
@@ -143,6 +143,13 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 
             CurrentGame.Teams.Add(NewTeam);
             TeamHandler.instance.SaveTeam(NewTeam);
+        }
+
+        public async Task StartGameButton()
+        {
+            CurrentGame.TimeStarted = DateTime.Now;
+            GameHandler.instance.SaveCurrentGame();
+            (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
         }
 
         public async Task DeleteTeamButton(Team TeamToDelete)

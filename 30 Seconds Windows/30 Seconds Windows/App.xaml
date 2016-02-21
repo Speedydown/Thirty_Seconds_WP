@@ -14,6 +14,7 @@
         <SolidColorBrush x:Key="Orange" Color="#F78800"/>
         <Color x:Key="OrangeColor">#F78800</Color>
         <Color x:Key="LimeGreenColor">#00ADA3</Color>
+        <Color x:Key="DisabledColor">#787878</Color>
         <SolidColorBrush x:Key="Text" Color="#4F4F4F"/>
         <SolidColorBrush x:Key="DisabledText" Color="#787878"/>
         <SolidColorBrush x:Key="Background" Color="#EAF2F2"/>
@@ -183,7 +184,7 @@
             </Grid>
         </ControlTemplate>
 
-        <!--TextboxStyte-->
+        <!--TextblockStyle-->
         <Style x:Key="ButtonTextBlockStyle" x:Name="ButtonTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="24"/>
@@ -198,6 +199,64 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+
+        <!--TextboxStyle-->
+        <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="{StaticResource LimeGreenColor}" />
+        <SolidColorBrush x:Key="TextBoxPlaceholderTextThemeBrush" Color="{StaticResource OrangeColor}" />
+        <SolidColorBrush x:Key="TextBoxForegroundThemeBrush" Color="{StaticResource OrangeColor}" />
+        <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="Transparent" />
+        <SolidColorBrush x:Key="TextBoxDisabledBackgroundThemeBrush" Color="Transparent" />
+        <SolidColorBrush x:Key="TextBoxDisabledBorderThemeBrush" Color="{StaticResource DisabledColor}" />
+        <SolidColorBrush x:Key="TextBoxDisabledForegroundThemeBrush" Color="{StaticResource DisabledColor}" />
+        <SolidColorBrush x:Key="TextBoxDisabledPlaceHolderTextThemeBrush" Color="{StaticResource DisabledColor}"/>
+
+
+        <!--Pivot-->
+        <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="#00958C" />
+        <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="#787878" />
+        <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
+
+        <Style x:Uid="TSPivotStyle" x:Key="TSPivotStyle" TargetType="Pivot">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value=""/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Grid/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Pivot">
+                        <Grid x:Name="RootElement" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Height="10" Background="White"/>
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                                <PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                    <PivotHeaderPanel x:Name="Header"  Background="White">
+                                        <PivotHeaderPanel.RenderTransform>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                        </PivotHeaderPanel.RenderTransform>
+                                    </PivotHeaderPanel>
+                                    <ItemsPresenter x:Name="PivotItemPresenter">
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </PivotPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
     </Application.Resources>
 </Application>

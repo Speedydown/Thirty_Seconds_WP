@@ -1,4 +1,5 @@
-﻿using BaseLogic.DataHandler;
+﻿using _30_Seconds_Windows.Model.Utils;
+using BaseLogic.DataHandler;
 using BaseLogic.ExceptionHandler;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 return false;
             }
         }
@@ -52,6 +53,20 @@ namespace _30_Seconds_Windows.Model
             catch
             {
                 return null;
+            }
+        }
+
+        public bool SaveCurrentGame()
+        {
+            try
+            {
+                SaveItem(GetCurrentGame());
+                return true;
+            }
+            catch (Exception e)
+            {
+                new AppException(e);
+                return false;
             }
         }
 
@@ -83,7 +98,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() =>ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
             }
         }
     }

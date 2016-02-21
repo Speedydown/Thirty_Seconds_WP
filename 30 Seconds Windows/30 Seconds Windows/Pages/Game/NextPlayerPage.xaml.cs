@@ -1,7 +1,5 @@
 ﻿using _30_Seconds_Windows.Common;
-using _30_Seconds_Windows.Model;
-using _30_Seconds_Windows.Model.Utils;
-using _30_Seconds_Windows.ViewModels.GameSetup;
+using _30_Seconds_Windows.ViewModels.Game;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +8,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
-using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,16 +17,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace _30_Seconds_Windows.Pages.GameSetup
+namespace _30_Seconds_Windows.Pages.Game
 {
-    public sealed partial class TeamsPage : Page
+    public sealed partial class NextPlayerPage : Page
     {
+        public NextPlayerPageViewModel ViewModel { get; private set; }
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public TeamsPage()
+        public NextPlayerPage()
         {
             this.InitializeComponent();
+
+            Frame myFrame = (Frame)Window.Current.Content;
+            myFrame.ContentTransitions = null;
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
@@ -48,12 +49,14 @@ namespace _30_Seconds_Windows.Pages.GameSetup
 
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            DataContext = TeamsPageViewModel.instance;
-            await TeamsPageViewModel.instance.LoadData();
+            ViewModel = NextPlayerPageViewModel.instance;
+            DataContext = ViewModel;
+            await ViewModel.Load();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+            ViewModel.NavigatedFrom();
         }
 
         #region NavigationHelper registration
@@ -83,32 +86,14 @@ namespace _30_Seconds_Windows.Pages.GameSetup
 
         #endregion
 
-        private void TeamsPageAddTeamButton_Click(object sender, RoutedEventArgs e)
+        private void NextRoundPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TeamsPageViewModel.instance.AddNewTeamToGameButton();
+
         }
 
-        private void TeamsListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void NextPlayerPageContinueButton_Click(object sender, RoutedEventArgs e)
         {
-            TeamsPageViewModel.instance.EditTeamButton(e.ClickedItem as Team);
-        }
-
-        private void PreviousTeamsListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            TeamsPageViewModel.instance.AddTeamToGameButton(e.ClickedItem as Team);
-        }
-
-        private async void TeamsPageStartGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            await TeamsPageViewModel.instance.StartGameButton();
-        }
-
-        private async void TeamGrid_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
-            {
-                await TeamsPageViewModel.instance.DeleteTeamButton((sender as Grid).DataContext as Team);
-            }
+            await ViewModel.ContinueButton();
         }
     }
 }

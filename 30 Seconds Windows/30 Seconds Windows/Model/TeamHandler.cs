@@ -1,4 +1,5 @@
-﻿using BaseLogic.DataHandler;
+﻿using _30_Seconds_Windows.Model.Utils;
+using BaseLogic.DataHandler;
 using BaseLogic.ExceptionHandler;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace _30_Seconds_Windows.Model
 
         private List<Team> Teams = null;
 
-        private TeamHandler() : base()
+        private TeamHandler()
+            : base()
         {
             CreateItemTable<Team>();
             Teams = GetItems<Team>().ToList();
@@ -28,7 +30,7 @@ namespace _30_Seconds_Windows.Model
 
         public List<Team> GetTeamsByGame(Game Game)
         {
-            return Teams.Where(t => t.GameID == Game.InternalID).ToList();
+            return Teams.Where(t => t.GameID == Game.InternalID).OrderBy(t => t.Name).ToList();
         }
 
         public Team GetTeamByID(int TeamID)
@@ -56,7 +58,30 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
+                return false;
+            }
+        }
+
+        public bool SetAllTeamsCurrentPlayerIDToNull()
+        {
+            try
+            {
+                Team[] MatchingTeams = Teams.Where(t => t.CurrentPlayerID != null || t.Round != 0 || t.Points != 0).ToArray();
+
+                foreach (Team t in MatchingTeams)
+                {
+                    t.CurrentPlayerID = null;
+                    t.Round = 0;
+                    t.Points = 0;
+                }
+
+                SaveItems(MatchingTeams);
+
+                return true;
+            }
+            catch
+            {
                 return false;
             }
         }
@@ -65,14 +90,23 @@ namespace _30_Seconds_Windows.Model
         {
             try
             {
-                this.Teams.AddRange(Teams);
-                SaveItems(Teams);
+                bool Result = true;
 
-                return true;
+                foreach (Team t in Teams)
+                {
+                    bool SaveResult = SaveTeam(t);
+
+                    if (!SaveResult)
+                    {
+                        Result = !Result ? SaveResult : false;
+                    }
+                }
+
+                return Result;
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 return false;
             }
         }

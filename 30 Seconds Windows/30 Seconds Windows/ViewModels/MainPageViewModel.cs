@@ -1,4 +1,5 @@
 ﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Pages.Game;
 using _30_Seconds_Windows.Pages.GameSetup;
 using BaseLogic;
 using System;
@@ -29,29 +30,30 @@ namespace _30_Seconds_Windows.ViewModels
 
         private MainPageViewModel() : base()
         {
-
+            
         }
 
         public async Task LoadData()
         {
             IsLoading = true;
-            HasCurrentGame = GameHandler.instance.GetCurrentGame() != null;
+            HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
             IsLoading = false;
         }
 
         public async Task CurrentGameButton()
         {
-
+            (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
         }
 
         public void NewGameButton()
         {
-            Game CurrentGame = GameHandler.instance.GetCurrentGame();
+            Model.Game CurrentGame = GameHandler.instance.GetCurrentGame();
 
             if (CurrentGame == null || CurrentGame.TimeStarted != DateTime.MinValue)
             {
                 GameHandler.instance.SetAllGamesToFinished();
-                Game NewGame = new Game();
+                TeamHandler.instance.SetAllTeamsCurrentPlayerIDToNull();
+                Model.Game NewGame = new Model.Game();
 
                 GameHandler.instance.AddNewGame(NewGame);
             }

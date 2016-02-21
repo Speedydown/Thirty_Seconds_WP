@@ -44,12 +44,44 @@ namespace _30_Seconds_Windows.Model
         public string Name { get; set; }
         public DateTime? LastRound { get; set; }
         public int GamesPlayed { get; set; }
+        public int GamesWon { get; set; }
+        public int QuestionsAnswered { get; set; }
+        public int QuestionsCorrect { get; set; }
+        public int QuestionsCorrectThisGame { get; set; }
+        public int PointsThisGame { get; set; } //TODO punten resetten bij nieuw spel
         [Ignore]
         public string NumberOfTimesPlayedString
         {
             get
             {
                 return string.Format("{0} {1}", GamesPlayed, Utils.Utils.ResourceLoader.GetString("text_TimesPlayed"));
+            }
+        }
+
+        [Ignore]
+        public string NumberTimesWonString
+        {
+            get
+            {
+                return string.Format("{0} {1}", GamesWon, Utils.Utils.ResourceLoader.GetString("text_TimesWon"));
+            }
+        }
+
+        [Ignore]
+        public string QuestionsAnsweredString
+        {
+            get
+            {
+                return string.Format("{0} {1}", GamesWon, Utils.Utils.ResourceLoader.GetString("text_QuestionsAnswered"));
+            }
+        }
+
+        [Ignore]
+        public string QuestionsCorrectString
+        {
+            get
+            {
+                return string.Format("{0} {1}", GamesWon, Utils.Utils.ResourceLoader.GetString("text_QuestionsCorrect"));
             }
         }
     }

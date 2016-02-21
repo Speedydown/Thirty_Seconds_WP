@@ -13,11 +13,11 @@
             <StackPanel>
                 <Grid x:Name="TeamGrid" Background="{StaticResource Section}" Margin="15,5" Holding="TeamGrid_Holding">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock  Margin="15,5,5,5" Text="{Binding Name}" Foreground="Black" FontSize="24" FontWeight="Bold"/>
                     <TextBlock  Margin="15,5,5,5" Text="{Binding NumberOfPlayersString}" Foreground="Black" VerticalAlignment="Bottom" FontSize="20" Grid.Column="1" />
                     <SymbolIcon Margin="5,5,15,5" Symbol="Forward" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
                 </Grid>
@@ -73,6 +73,7 @@
                         <TextBlock x:Uid="TeamsPageNoTeamsInGameTextBlock"  Margin="15,5,5,5" Foreground="Black" FontSize="25" FontWeight="Bold"/>
                         <SymbolIcon Margin="5,5,15,5" Symbol="Important" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"/>
                     </Grid>
+                    <TextBlock x:Uid="TeamsPageDeleteTeamHintTextBlock" Foreground="Black" FontSize="16" Visibility="{Binding NoTeamsInGameMessageVisible, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" TextWrapping="WrapWholeWords" Margin="15,0"/>
                     <Button x:Uid="TeamsPageAddTeamButton"
                         x:Name="TeamsPageAddTeamButton"
                         Style="{StaticResource CustomButtonStyle}" 
@@ -96,7 +97,6 @@
                             </DataTemplate>
                         </Button.ContentTemplate>
                     </Button>
-
                     <TextBlock x:Uid="TeamsPagePreviousTeamsHeader" HorizontalAlignment="Left" Visibility="{Binding ExistingTeamsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" TextAlignment="Left" Style="{StaticResource PageSubHeaderTextBlockStyle}" Margin="15, 5"/>
                     <ListView 
                     x:Name="PreviousTeamsListView"

@@ -13,6 +13,8 @@ namespace _30_Seconds_Windows.Model
     public class Team : DataObject
     {
         public int GameID { get; set; }
+        public int? CurrentPlayerID { get; set; }
+        public int Round { get; set; }
 
         private Game _Game = null;
         [Ignore]

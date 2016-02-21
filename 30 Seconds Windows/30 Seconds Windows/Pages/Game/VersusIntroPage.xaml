@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="_30_Seconds_Windows.Pages.Game.VersusIntroPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_30_Seconds_Windows.Pages.Game"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TwoPlayer">
+            <Grid VerticalAlignment="Stretch" Margin="0,150">
+
+                <Grid Margin="15,0" VerticalAlignment="Top">
+                    <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                        <Grid>
+                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
+                        </Grid>
+                    </Border>
+                    <Image VerticalAlignment="Bottom" Margin="-210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer1.png" Height="150" Canvas.ZIndex="1"/>
+                </Grid>
+                <Image Source="ms-appx:///Assets/Images/vs.png"/>
+
+                <Grid Margin="15,0" VerticalAlignment="Bottom">
+                    <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                        <Grid>
+                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
+                        </Grid>
+                    </Border>
+                    <Image VerticalAlignment="Bottom" Margin="210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer3.png" Height="150" Canvas.ZIndex="1"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ThreePlayer">
+            <Grid VerticalAlignment="Stretch" Margin="0,35,0,35">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="15,0" VerticalAlignment="Bottom">
+                    <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                        <Grid>
+                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
+                        </Grid>
+                    </Border>
+                    <Image VerticalAlignment="Bottom" Margin="-210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer1.png" Height="150" Canvas.ZIndex="1"/>
+                </Grid>
+                <Image Source="ms-appx:///Assets/Images/vs.png" VerticalAlignment="Stretch" Margin="0,-50,0,-150" Grid.Row="1"/>
+
+                <Grid Grid.Row="2" Margin="15,0" VerticalAlignment="Bottom">
+                    <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                        <Grid>
+                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
+                        </Grid>
+                    </Border>
+                    <Image VerticalAlignment="Bottom" Margin="210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer3.png" Height="150" Canvas.ZIndex="1"/>
+                </Grid>
+                <Image Source="ms-appx:///Assets/Images/vs.png" VerticalAlignment="Stretch" Margin="0,-50,0,-150" Grid.Row="3"/>
+                <Grid Grid.Row="4" Margin="15,0" VerticalAlignment="Bottom">
+                    <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                        <Grid>
+                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team3.Name}" />
+                        </Grid>
+                    </Border>
+                    <Image VerticalAlignment="Bottom" Margin="0,-80,0, -24" Source="ms-appx:///Assets/Images/Beer2.png" Height="150" Canvas.ZIndex="1"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FourPlayer">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                <TextBlock x:Uid="VersusIntroPageTeamHeader" Margin="15,15,15,0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="45" Foreground="White"/>
+                <Image VerticalAlignment="Bottom" Margin="210,-80,0, -80" Source="ms-appx:///Assets/Images/Beer3.png" Height="150" Canvas.ZIndex="1"/>
+                <ListView IsHitTestVisible="False" VerticalAlignment="Center" ItemsSource="{Binding CurrentGame.Teams}" SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="15,5"  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
+                                <Grid>
+                                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Name}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot" Margin="{Binding AnimationMargin}">
+        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContentTemplate="{StaticResource TwoPlayer}" Visibility="{Binding TwoPlayer, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContentTemplate="{StaticResource ThreePlayer}" Visibility="{Binding ThreePlayer, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ContentTemplate="{StaticResource FourPlayer}" Visibility="{Binding FourPlayer, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </Grid>
+</Page>

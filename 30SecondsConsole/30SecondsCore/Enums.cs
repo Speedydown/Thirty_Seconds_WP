@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace _30SecondsCore
 {
-    public enum Languages { World, Nederlands, English, Deutch }
-    public enum Categories { Brand, geography, Celebrity, Political, Animals  }
+    public enum Languages { Neutral = 0, Dutch = 1, English = 2, German = 3 }
+    //public enum Categories { Brand, geography, Celebrity, Political, Animals  }
 }

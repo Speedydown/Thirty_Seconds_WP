@@ -14,6 +14,8 @@ namespace _30_Seconds_Windows.Model
         public DateTime TimeStarted { get; set; }
         public bool Finished { get; set; }
 
+        public int? CurrentTeamID { get; set; }
+
         private ObservableCollection<Team> _Teams;
         [Ignore]
         public ObservableCollection<Team> Teams

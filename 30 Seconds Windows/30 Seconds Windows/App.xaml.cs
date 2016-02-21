@@ -1,10 +1,13 @@
-﻿using _30_Seconds_Windows.Model.Utils;
+﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Model.Utils;
 using _30_Seconds_Windows.Pages;
+using BaseLogic.ClientIDHandler;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -18,8 +21,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
-
 namespace _30_Seconds_Windows
 {
     /// <summary>
@@ -27,6 +28,8 @@ namespace _30_Seconds_Windows
     /// </summary>
     public sealed partial class App : Application
     {
+        public Task UpdateTask { get; private set; }
+        public Task ClientIDTask { get; private set; }
         private TransitionCollection transitions;
 
         /// <summary>
@@ -47,12 +50,11 @@ namespace _30_Seconds_Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
+            //Get CLientID
+            ClientIDTask = Task.Run(async () => await ClientIDHandler.instance.PostAppStats(ClientIDHandler.AppName._30Seconds));
+
+            //Update Internal Database
+            UpdateTask = Task.Run( async () => await SettingsHandler.instance.Update());
 
             Frame rootFrame = Window.Current.Content as Frame;
 

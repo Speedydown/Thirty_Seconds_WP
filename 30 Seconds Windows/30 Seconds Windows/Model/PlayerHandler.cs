@@ -1,4 +1,5 @@
-﻿using BaseLogic.DataHandler;
+﻿using _30_Seconds_Windows.Model.Utils;
+using BaseLogic.DataHandler;
 using BaseLogic.ExceptionHandler;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,17 @@ namespace _30_Seconds_Windows.Model
         {
             CreateItemTable<Player>();
             Players = GetItems<Player>().ToList();
+        }
+
+        public void DeletePlayer(Player player)
+        {
+            DeleteItem(player);
+            Players.Remove(player);
+        }
+
+        public Player GetPlayerByID(int ID)
+        {
+            return Players.SingleOrDefault(p => p.InternalID == ID);
         }
 
         public List<Player> GetPlayersByTeam(Team Team)
@@ -45,7 +57,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 return false;
             }
         }
@@ -54,14 +66,23 @@ namespace _30_Seconds_Windows.Model
         {
             try
             {
-                this.Players.AddRange(Players);
-                SaveItems(Players);
+                bool Result = true;
 
-                return true;
+                foreach (Player p in Players)
+                {
+                    bool SaveResult = SavePlayer(p);
+
+                    if (!SaveResult)
+                    {
+                        Result = !Result ? SaveResult : false;
+                    }
+                }
+
+                return Result;
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), 10));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 return false;
             }
         }

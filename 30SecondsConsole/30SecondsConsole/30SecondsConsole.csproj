@@ -43,11 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSVReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WZWV\WZWVDLL\WZWVDLL\WZWVDLL.csproj">
+      <Project>{c7e65711-d2d4-4cd4-9895-6f852d214c6b}</Project>
+      <Name>WZWVDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\30SecondsCore\30SecondsCore.csproj">
+      <Project>{06852435-92e3-4098-b7a1-a1a357a09e40}</Project>
+      <Name>30SecondsCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
