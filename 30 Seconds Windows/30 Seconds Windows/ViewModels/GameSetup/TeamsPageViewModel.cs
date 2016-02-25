@@ -1,5 +1,6 @@
 ﻿using _30_Seconds_Windows.Model;
 using _30_Seconds_Windows.Model.Utils;
+using _30_Seconds_Windows.Pages.Game;
 using _30_Seconds_Windows.Pages.GameSetup;
 using BaseLogic;
 using System;
@@ -128,6 +129,14 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             ExistingTeams.Remove(team);
 
             team.GameID = CurrentGame.InternalID;
+
+            foreach (Player p in team.Players)
+            {
+                p.GameID = CurrentGame.InternalID;
+            }
+
+            PlayerHandler.instance.SavePlayers(team.Players.ToArray());
+
             TeamHandler.instance.SaveTeam(team);
         }
 
@@ -149,7 +158,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             CurrentGame.TimeStarted = DateTime.Now;
             GameHandler.instance.SaveCurrentGame();
-            (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
+            (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
         }
 
         public async Task DeleteTeamButton(Team TeamToDelete)

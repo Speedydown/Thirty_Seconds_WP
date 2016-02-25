@@ -61,7 +61,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             get
             {
-                return CurrentGame.Teams.OrderBy(t => t.Points).ToArray();
+                return CurrentGame.Teams.OrderByDescending(t => t.Points).ToArray();
             }
         }
 
@@ -74,6 +74,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public async Task Load()
         {
             IsLoading = true;
+            NavigatedTo();
             CurrentGame = GameHandler.instance.GetCurrentGame();
             GetNextTeam();
             GetNextPlayer();

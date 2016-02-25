@@ -1,5 +1,5 @@
 ﻿using _30_Seconds_Windows.Common;
-using _30_Seconds_Windows.ViewModels.Game;
+using _30_Seconds_Windows.ViewModels.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,14 +17,14 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace _30_Seconds_Windows.Pages.Game
+namespace _30_Seconds_Windows.Pages.Settings
 {
-    public sealed partial class PlayerReadyPage : Page
+    public sealed partial class SettingsPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public PlayerReadyPage()
+        public SettingsPage()
         {
             this.InitializeComponent();
 
@@ -45,13 +45,12 @@ namespace _30_Seconds_Windows.Pages.Game
 
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            DataContext = PlayerReadyPageViewModel.instance;
-            await PlayerReadyPageViewModel.instance.Load();
+            DataContext = SettingsPageViewModel.instance;
+            await SettingsPageViewModel.instance.load();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            PlayerReadyPageViewModel.instance.NavigatedFrom();
         }
 
         #region NavigationHelper registration
@@ -80,10 +79,5 @@ namespace _30_Seconds_Windows.Pages.Game
         }
 
         #endregion
-
-        private async void PlayerReadyPageStartButton_Click(object sender, RoutedEventArgs e)
-        {
-            await PlayerReadyPageViewModel.instance.StartRoundButton();
-        }
     }
 }

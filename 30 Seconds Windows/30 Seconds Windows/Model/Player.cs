@@ -72,7 +72,7 @@ namespace _30_Seconds_Windows.Model
         {
             get
             {
-                return string.Format("{0} {1}", GamesWon, Utils.Utils.ResourceLoader.GetString("text_QuestionsAnswered"));
+                return string.Format("{0} {1}", QuestionsAnswered, Utils.Utils.ResourceLoader.GetString("text_QuestionsAnswered"));
             }
         }
 
@@ -81,7 +81,7 @@ namespace _30_Seconds_Windows.Model
         {
             get
             {
-                return string.Format("{0} {1}", GamesWon, Utils.Utils.ResourceLoader.GetString("text_QuestionsCorrect"));
+                return string.Format("{0} {1}", QuestionsCorrect, Utils.Utils.ResourceLoader.GetString("text_QuestionsCorrect"));
             }
         }
     }

@@ -16,10 +16,11 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="15,5">
-            <TextBlock x:Uid="PlayerReadyPageTitleTextBlock" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock Text="{Binding CurrentTeam.Name}" Style="{ThemeResource TitleTextBlockStyle}"/>
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
+            <TextBlock Text="{Binding CurrentPlayer.Name}" Margin="0,-50,0,0" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="40" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
             <Button x:Uid="PlayerReadyPageStartButton"
                         x:Name="PlayerReadyPageStartButton"
                         Style="{StaticResource CustomButtonStyle}" 

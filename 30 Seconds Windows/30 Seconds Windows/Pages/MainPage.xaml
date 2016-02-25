@@ -103,4 +103,12 @@
             </StackPanel>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar Foreground="White" Background="{StaticResource LimeGreen}">
+            <AppBarButton x:Uid="MainPageSettingsButton" x:Name="MainPageSettingsButton" Icon="Setting" Click="MainPageSettingsButton_Click"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="MainPagePrivacyPolicyButton" x:Name="MainPagePrivacyPolicyButton" Click="MainPagePrivacyPolicyButton_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

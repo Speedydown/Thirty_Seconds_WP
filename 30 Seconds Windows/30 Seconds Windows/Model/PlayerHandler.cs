@@ -42,6 +42,20 @@ namespace _30_Seconds_Windows.Model
             return Players.OrderBy(p => p.Name).ToList();
         }
 
+        public void SetAllPlayesToStartState()
+        {
+            Player[] Players = this.Players.Where(p => p.PointsThisGame > 0 || p.QuestionsCorrectThisGame > 0 || p.LastRound != null).ToArray();
+
+            foreach (Player p in Players)
+            {
+                p.PointsThisGame = 0;
+                p.QuestionsCorrectThisGame = 0;
+                p.LastRound = null;
+            }
+
+            SavePlayers(Players);
+        }
+
         public bool SavePlayer(Player player)
         {
             try

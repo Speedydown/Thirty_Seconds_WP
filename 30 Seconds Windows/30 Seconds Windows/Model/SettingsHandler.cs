@@ -26,6 +26,9 @@ namespace _30_Seconds_Windows.Model
             if (CurrentSettings == null)
             {
                 CurrentSettings = new Settings();
+
+                //Default points
+                CurrentSettings.RequiredPoints = 30;
             }
         }
 

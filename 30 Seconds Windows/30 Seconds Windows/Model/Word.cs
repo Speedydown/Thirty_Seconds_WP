@@ -1,4 +1,5 @@
 ﻿using BaseLogic.DataHandler;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,17 @@ namespace _30_Seconds_Windows.Model
         public int LastPlayedByPlayerID { get; set; }
         public bool Deleted { get; set; }
 
+        private bool _CurrentGameCorrect;
+        [Ignore]
+        public bool CurrentGameCorrect
+        {
+            get { return _CurrentGameCorrect; }
+            set { _CurrentGameCorrect = value;
+            NotifyPropertyChanged();
+            }
+        }
+
+        [Ignore]
         public Player LastPlayedByPlayer
         {
             get
@@ -30,11 +42,6 @@ namespace _30_Seconds_Windows.Model
 
         public int NumberOfTimesTimesPlayed { get; set; }
         public int NumberOfTimesCorrect { get; set; }
-
-        public Word()
-        {
-
-        }
 
         public override string ToString()
         {

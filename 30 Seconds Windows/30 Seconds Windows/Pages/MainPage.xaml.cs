@@ -84,9 +84,9 @@ namespace _30_Seconds_Windows.Pages
 
         #endregion
 
-        private async void MainPageCurrentGameButton_Click(object sender, RoutedEventArgs e)
+        private void MainPageCurrentGameButton_Click(object sender, RoutedEventArgs e)
         {
-            await ViewModel.CurrentGameButton();
+            ViewModel.CurrentGameButton();
         }
 
         private void MainPageNewGameButton_Click(object sender, RoutedEventArgs e)
@@ -94,9 +94,19 @@ namespace _30_Seconds_Windows.Pages
             ViewModel.NewGameButton();
         }
 
-        private async void MainPageRulesButton_Click(object sender, RoutedEventArgs e)
+        private void MainPageRulesButton_Click(object sender, RoutedEventArgs e)
         {
-            await ViewModel.Rules();
+            ViewModel.RulesButton();
+        }
+
+        private void MainPageSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SettingsButton();
+        }
+
+        private void MainPagePrivacyPolicyButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PrivacyPolicyButton();
         }
     }
 }

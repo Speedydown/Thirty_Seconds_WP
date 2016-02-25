@@ -13,5 +13,6 @@ namespace _30_Seconds_Windows.Model
         public DateTime WordLastUpdated { get; set; }
         public DateTime SettingsLastUpdated { get; set; }
         public int CurrentLanguageID { get; set; }
+        public int RequiredPoints { get; set; }
     }
 }

@@ -190,7 +190,7 @@
     <value>Spelernaam</value>
   </data>
   <data name="PlayerPageTeamStatsHeader.Text" xml:space="preserve">
-    <value>Statestieken</value>
+    <value>Statistieken</value>
   </data>
   <data name="PlayerPageTitleTextBlock.Text" xml:space="preserve">
     <value>Speler bewerken</value>
@@ -257,5 +257,23 @@
   </data>
   <data name="PlayerReadyPageStartButtonTextBlock.Text" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="RoundPageNextRoundButtonTextBlock.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="MainPagePrivacyPolicyButton.Label" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="MainPageSettingsButton.Label" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="RoundPageFillInAnswersTextBlock.Text" xml:space="preserve">
+    <value>Vul de juiste antwoorden in:</value>
+  </data>
+  <data name="RoundPageTimeUpTextBlock.Text" xml:space="preserve">
+    <value>De tijd is op!</value>
   </data>
 </root>

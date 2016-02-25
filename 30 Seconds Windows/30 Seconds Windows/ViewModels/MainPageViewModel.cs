@@ -1,6 +1,8 @@
 ﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Pages;
 using _30_Seconds_Windows.Pages.Game;
 using _30_Seconds_Windows.Pages.GameSetup;
+using _30_Seconds_Windows.Pages.Settings;
 using BaseLogic;
 using System;
 using System.Collections.Generic;
@@ -40,30 +42,29 @@ namespace _30_Seconds_Windows.ViewModels
             IsLoading = false;
         }
 
-        public async Task CurrentGameButton()
+        public void CurrentGameButton()
         {
             (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
         }
 
         public void NewGameButton()
         {
-            Model.Game CurrentGame = GameHandler.instance.GetCurrentGame();
-
-            if (CurrentGame == null || CurrentGame.TimeStarted != DateTime.MinValue)
-            {
-                GameHandler.instance.SetAllGamesToFinished();
-                TeamHandler.instance.SetAllTeamsCurrentPlayerIDToNull();
-                Model.Game NewGame = new Model.Game();
-
-                GameHandler.instance.AddNewGame(NewGame);
-            }
-
-            (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
+            (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
         }
 
-        public async Task Rules()
+        public void RulesButton()
         {
+            (Window.Current.Content as Frame).Navigate(typeof(RulesPage));
+        }
 
+        public void SettingsButton()
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(SettingsPage));
+        }
+
+        public void PrivacyPolicyButton()
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(Privacy_Policy));
         }
     }
 }

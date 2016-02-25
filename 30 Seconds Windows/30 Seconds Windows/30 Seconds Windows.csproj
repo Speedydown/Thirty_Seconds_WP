@@ -109,6 +109,15 @@
     <Compile Include="Model\Utils\Utils.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\WordHandler.cs" />
+    <Compile Include="Pages\GameAnimations\FiveStarAnimationPage.xaml.cs">
+      <DependentUpon>FiveStarAnimationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameAnimations\VictoryAnimationPage.xaml.cs">
+      <DependentUpon>VictoryAnimationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GameAnimations\ZeroStarAnimationPage.xaml.cs">
+      <DependentUpon>ZeroStarAnimationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GameSetup\PlayerPage.xaml.cs">
       <DependentUpon>PlayerPage.xaml</DependentUpon>
     </Compile>
@@ -127,9 +136,24 @@
     <Compile Include="Pages\Game\PlayerReadyPage.xaml.cs">
       <DependentUpon>PlayerReadyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Game\RoundPage.xaml.cs">
+      <DependentUpon>RoundPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Game\VersusIntroPage.xaml.cs">
       <DependentUpon>VersusIntroPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Privacy Policy.xaml.cs">
+      <DependentUpon>Privacy Policy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RulesPage.xaml.cs">
+      <DependentUpon>RulesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GameAnimations\FiveStarAnimationPageViewModel.cs" />
+    <Compile Include="ViewModels\GameAnimations\VictoryAnimationPageViewModel.cs" />
+    <Compile Include="ViewModels\GameAnimations\ZeroStarAnimationPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\SplashPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\PlayerPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\PlayersPageViewModel.cs" />
@@ -137,12 +161,14 @@
     <Compile Include="ViewModels\Game\GameViewModel.cs" />
     <Compile Include="ViewModels\Game\NextPlayerPageViewModel.cs" />
     <Compile Include="ViewModels\Game\PlayerReadyPageViewModel.cs" />
+    <Compile Include="ViewModels\Game\RoundPageViewModel.cs" />
     <Compile Include="ViewModels\Game\VersusIntroPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Settings\SettingsPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -196,6 +222,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Pages\GameAnimations\FiveStarAnimationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GameAnimations\VictoryAnimationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GameAnimations\ZeroStarAnimationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GameSetup\PlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,11 +258,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Game\RoundPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Game\VersusIntroPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Privacy Policy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

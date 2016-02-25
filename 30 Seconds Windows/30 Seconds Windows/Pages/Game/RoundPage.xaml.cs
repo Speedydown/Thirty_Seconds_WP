@@ -1,4 +1,5 @@
 ﻿using _30_Seconds_Windows.Common;
+using _30_Seconds_Windows.Model;
 using _30_Seconds_Windows.ViewModels.Game;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace _30_Seconds_Windows.Pages.Game
 {
-    public sealed partial class PlayerReadyPage : Page
+    public sealed partial class RoundPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public PlayerReadyPage()
+        public RoundPage()
         {
             this.InitializeComponent();
 
@@ -45,13 +46,13 @@ namespace _30_Seconds_Windows.Pages.Game
 
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            DataContext = PlayerReadyPageViewModel.instance;
-            await PlayerReadyPageViewModel.instance.Load();
+            DataContext = RoundPageViewModel.instance;
+            await RoundPageViewModel.instance.Load();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            PlayerReadyPageViewModel.instance.NavigatedFrom();
+            RoundPageViewModel.instance.NavigatedFrom();
         }
 
         #region NavigationHelper registration
@@ -81,9 +82,15 @@ namespace _30_Seconds_Windows.Pages.Game
 
         #endregion
 
-        private async void PlayerReadyPageStartButton_Click(object sender, RoutedEventArgs e)
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            await PlayerReadyPageViewModel.instance.StartRoundButton();
+            Word CurrentWord = e.ClickedItem as Word;
+            CurrentWord.CurrentGameCorrect = !CurrentWord.CurrentGameCorrect;
+        }
+
+        private void RoundPageNextRoundButton_Click(object sender, RoutedEventArgs e)
+        {
+            RoundPageViewModel.instance.NextRoundButton();
         }
     }
 }

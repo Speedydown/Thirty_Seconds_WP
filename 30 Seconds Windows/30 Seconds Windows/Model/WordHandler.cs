@@ -17,13 +17,15 @@ namespace _30_Seconds_Windows.Model
 
         //Properties
         public Random Randomizer { get; set; }
+        public Word[] CurrentWords { get; private set; }
 
         private WordHandler() : base()
         {
             CreateItemTable<Word>();
+            Randomizer = new Random();
         }
 
-        public async Task<Word[]> Get5Words()
+        public async Task<Word[]> Get5Words(int CurrentPlayerID)
         {
             List<Word> words = GetItems<Word>()
                 .Where(w => !w.Guessed && 
@@ -35,7 +37,7 @@ namespace _30_Seconds_Windows.Model
                 if (GetItems<Word>().Where(w => (w.LanguageID == SettingsHandler.instance.CurrentSettings.CurrentLanguageID || w.LanguageID == 0)).Take(5).Count() == 5)
                 {
                     ResetAllWords();
-                    return await Get5Words();
+                    return await Get5Words(CurrentPlayerID);
                 }
                 else
                 {
@@ -47,7 +49,7 @@ namespace _30_Seconds_Windows.Model
             else if (words.Count < 10)
             {
                 Task t = Task.Run(() => ResetAllWords());
-                return await Get5Words();
+                return await Get5Words(CurrentPlayerID);
             }
 
             List<Word> CurrentWords = new List<Word>();
@@ -60,14 +62,26 @@ namespace _30_Seconds_Windows.Model
                 CurrentWord.NumberOfTimesTimesPlayed++;
                 CurrentWord.Guessed = true;
                 CurrentWord.LastPlayed = DateTime.Now;
-
-                SaveItem(CurrentWord);
+                CurrentWord.LastPlayedByPlayerID = CurrentPlayerID;
+                CurrentWord.CurrentGameCorrect = false;
 
                 CurrentWords.Add(CurrentWord);
                 words.Remove(CurrentWord);
             }
 
-            return CurrentWords.ToArray();
+            SaveItems(CurrentWords);
+
+            this.CurrentWords = CurrentWords.ToArray();
+
+            return this.CurrentWords;
+        }
+
+        public void SaveWords(Word[] Words)
+        {
+            if (Words != null)
+            {
+                SaveItems(Words);
+            }
         }
 
         private void ResetAllWords()
@@ -88,6 +102,11 @@ namespace _30_Seconds_Windows.Model
             try
             {
                 Word[] Words = JsonConvert.DeserializeObject<Word[]>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/GetWordsByLanguage/" + SettingsHandler.instance.CurrentSettings.CurrentLanguageID));
+
+                foreach (Word w in Words)
+                {
+                    w.Retrieved = DateTime.Now;
+                }
 
                 if (Words.Count() > 0)
                 {
