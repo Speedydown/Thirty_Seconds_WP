@@ -11,7 +11,7 @@ namespace _30SecondsCore.Model
     {
         private static readonly Field NameField = new Field("Name", typeof(string), 100);
         private static readonly Field CategoryIDField = new Field("CategoryID", typeof(int), 1);
-        private static readonly Field LanguageIDField = new Field("LanguageID", typeof(int), 100);
+        private static readonly Field WordPackIDField = new Field("WordPackID", typeof(int), 100);
 
         public static readonly WordHandler instance = new WordHandler();
 
@@ -20,7 +20,7 @@ namespace _30SecondsCore.Model
             {
                 NameField,
                 CategoryIDField,
-                LanguageIDField
+                WordPackIDField
             }, typeof(Word))
         {
         }
@@ -50,7 +50,7 @@ namespace _30SecondsCore.Model
             }
         }
 
-        public Word GetWordByNameCategoryAndLanguage(string Name, int CategoryID, int LanguageID)
+        public Word GetWordByNameCategoryAndWordPackID(string Name, int CategoryID, int WordPackID)
         {
             Filter[] Filters = new Filter[]
             {
@@ -58,19 +58,19 @@ namespace _30SecondsCore.Model
                     {
                         NameField, 
                         CategoryIDField,
-                        LanguageIDField
+                        WordPackIDField
                     },
                     new string[]
                     {
                         "Name",
                         "CategoryID",
-                        "LanguageID"
+                        "WordPackID"
                     },
                     new object[]
                     {
                         Name,
                         CategoryID,
-                        LanguageID
+                        WordPackID
                     })
             };
 
@@ -79,30 +79,27 @@ namespace _30SecondsCore.Model
 
             if (word == null)
             {
-                word = new Word(0, Name, CategoryID, LanguageID);
+                word = new Word(0, Name, CategoryID, WordPackID);
             }
 
             return word;
         }
 
-        public Word[] GetWordsByLanguage(int LanguageID)
+        public Word[] GetWordsByWordPack(int WordPackID)
         {
             Filter[] Filters = new Filter[]
             {
                 new Filter(FilterType.Or, new Field[]
                     {
-                        LanguageIDField,
-                        LanguageIDField
+                        WordPackIDField,
                     },
                     new string[]
                     {
-                        "Language1",
-                        "language2"
+                        "WordPackID",
                     },
                     new object[]
                     {
-                        0,
-                        LanguageID
+                        WordPackID
                     })
             };
 

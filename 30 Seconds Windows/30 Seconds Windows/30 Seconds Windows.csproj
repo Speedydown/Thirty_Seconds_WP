@@ -99,6 +99,8 @@
     <Compile Include="Model\CategoryHandler.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\GameHandler.cs" />
+    <Compile Include="Model\Language.cs" />
+    <Compile Include="Model\LanguageHandler.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayerHandler.cs" />
     <Compile Include="Model\Settings.cs" />
@@ -109,6 +111,8 @@
     <Compile Include="Model\Utils\Utils.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\WordHandler.cs" />
+    <Compile Include="Model\WordPack.cs" />
+    <Compile Include="Model\WordPackHandler.cs" />
     <Compile Include="Pages\GameAnimations\FiveStarAnimationPage.xaml.cs">
       <DependentUpon>FiveStarAnimationPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +155,9 @@
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings\SettingsWordPackspage.xaml.cs">
+      <DependentUpon>SettingsWordPackspage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\GameAnimations\FiveStarAnimationPageViewModel.cs" />
     <Compile Include="ViewModels\GameAnimations\VictoryAnimationPageViewModel.cs" />
     <Compile Include="ViewModels\GameAnimations\ZeroStarAnimationPageViewModel.cs" />
@@ -169,6 +176,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Settings\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsWordPacksPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -279,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Settings\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings\SettingsWordPackspage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

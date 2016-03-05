@@ -12,6 +12,7 @@ namespace _30SecondsCore.Model
         private static readonly Field CategoryLastUpdatedField = new Field("CategoryLastUpdated", typeof(DateTime), 1);
         private static readonly Field WordLastUpdatedField = new Field("WordLastUpdated", typeof(DateTime), 1);
         private static readonly Field SettingsLastUpdatedField = new Field("SettingsLastUpdated", typeof(DateTime), 1);
+        private static readonly Field WordPackLastUpdatedField = new Field("WordPackLastUpdated", typeof(DateTime), 1);
 
         public static readonly SettingsHandler instance = new SettingsHandler();
 
@@ -21,14 +22,15 @@ namespace _30SecondsCore.Model
             {
                 CategoryLastUpdatedField,
                 WordLastUpdatedField,
-                SettingsLastUpdatedField
+                SettingsLastUpdatedField,
+                WordPackLastUpdatedField
             }, typeof(Settings))
         {
             CurrentSettings = base.GetObjectList(0, OrderBy.ASC, IDField).Cast<Settings>().FirstOrDefault();
 
             if (CurrentSettings == null)
             {
-                CurrentSettings = new Settings(0, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
+                CurrentSettings = new Settings(0, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
 
                 if (CurrentSettings.ID == 0)
                 {

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -38,6 +39,7 @@ namespace _30_Seconds_Windows.ViewModels
         public async Task LoadData()
         {
             IsLoading = true;
+            await StatusBar.GetForCurrentView().HideAsync();
             HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
             IsLoading = false;
         }
@@ -49,7 +51,16 @@ namespace _30_Seconds_Windows.ViewModels
 
         public void NewGameButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
+            if (SettingsHandler.instance.UpdateTask != null && !SettingsHandler.instance.UpdateTask.IsCompleted)
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
+            }
+            else
+            {
+                GameHandler.instance.StartNewGame();
+
+                (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
+            }
         }
 
         public void RulesButton()

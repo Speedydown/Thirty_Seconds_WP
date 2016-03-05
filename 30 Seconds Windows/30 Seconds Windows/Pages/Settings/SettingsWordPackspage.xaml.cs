@@ -1,6 +1,4 @@
 ﻿using _30_Seconds_Windows.Common;
-using _30_Seconds_Windows.Model;
-using _30_Seconds_Windows.ViewModels.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,12 +18,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace _30_Seconds_Windows.Pages.Settings
 {
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsWordPackspage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public SettingsPage()
+        public SettingsWordPackspage()
         {
             this.InitializeComponent();
 
@@ -44,15 +42,20 @@ namespace _30_Seconds_Windows.Pages.Settings
             get { return this.defaultViewModel; }
         }
 
-        private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            DataContext = SettingsPageViewModel.instance;
-            await SettingsPageViewModel.instance.load();
         }
 
+        /// <summary>
+        /// Preserves state associated with this page in case the application is suspended or the
+        /// page is discarded from the navigation cache.  Values must conform to the serialization
+        /// requirements of <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
+        /// <param name="e">Event data that provides an empty dictionary to be populated with
+        /// serializable state.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            SettingsPageViewModel.instance.NavigateFrom(SettingsPageLanguageComboBox.SelectedItem as Language, SettingsPagePointsComboBox.SelectedIndex);
         }
 
         #region NavigationHelper registration
@@ -81,15 +84,5 @@ namespace _30_Seconds_Windows.Pages.Settings
         }
 
         #endregion
-
-        private void SettingsPageWordPacksButton_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsPageViewModel.instance.WordPacksButton();
-        }
-
-        private void SettingsPageRemoveAdsButton_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsPageViewModel.instance.RemoveAdsButton();
-        }
     }
 }

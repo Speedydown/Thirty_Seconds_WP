@@ -276,4 +276,16 @@
   <data name="RoundPageTimeUpTextBlock.Text" xml:space="preserve">
     <value>De tijd is op!</value>
   </data>
+  <data name="SettingsPageWordPacksButtonTextBlock.Text" xml:space="preserve">
+    <value>Woordpakketten</value>
+  </data>
+  <data name="SettingsPageLanguageComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPageRemoveAdsButtonTextBlock.Text" xml:space="preserve">
+    <value>Advertenties verwijderen</value>
+  </data>
+  <data name="SettingsPagePointsComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
 </root>

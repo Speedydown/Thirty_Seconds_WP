@@ -12,13 +12,15 @@ namespace _30SecondsCore.Model
         public DateTime CategoryLastUpdated { get; set; }
         public DateTime WordLastUpdated { get; set; }
         public DateTime SettingsLastUpdated { get; set; }
+        public DateTime WordPackLastUpdated { get; set; }
 
-        public Settings(int ID, DateTime CategoryLastUpdated, DateTime WordLastUpdated, DateTime SettingsLastUpdated)
+        public Settings(int ID, DateTime CategoryLastUpdated, DateTime WordLastUpdated, DateTime SettingsLastUpdated, DateTime WordPackLastUpdated)
             : base(ID)
         {
             this.CategoryLastUpdated = CategoryLastUpdated;
             this.WordLastUpdated = WordLastUpdated;
             this.SettingsLastUpdated = SettingsLastUpdated;
+            this.WordPackLastUpdated = WordPackLastUpdated;
         }
     }
 }

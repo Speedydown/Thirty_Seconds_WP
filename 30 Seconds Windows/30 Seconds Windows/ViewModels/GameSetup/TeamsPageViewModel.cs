@@ -142,12 +142,14 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 
         public void AddNewTeamToGameButton()
         {
+            int TeamCount = TeamHandler.instance.GetTeamsFromDatabase().Count > 0 ? (TeamHandler.instance.GetTeamsFromDatabase().Max(t => t.InternalID) + 1) : 1;
+
             Team NewTeam = new Team() 
             { 
                 GameID = CurrentGame.InternalID, 
                 Players = new ObservableCollection<Player>(), 
-                Points = 0, 
-                Name = "Team" + (TeamHandler.instance.GetTeamsFromDatabase().Max(t => t.InternalID) + 1)
+                Points = 0,
+                Name = "Team" + TeamCount
             };
 
             CurrentGame.Teams.Add(NewTeam);

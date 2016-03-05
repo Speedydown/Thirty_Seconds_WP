@@ -17,8 +17,10 @@ namespace _30_Seconds_Windows.Model
         public static readonly SettingsHandler instance = new SettingsHandler();
 
         public Settings CurrentSettings { get; set; }
+        public Task UpdateTask { get; set; }
 
-        private SettingsHandler() : base()
+        private SettingsHandler()
+            : base()
         {
             CreateItemTable<Settings>();
             CurrentSettings = GetItems<Settings>().FirstOrDefault();
@@ -28,7 +30,8 @@ namespace _30_Seconds_Windows.Model
                 CurrentSettings = new Settings();
 
                 //Default points
-                CurrentSettings.RequiredPoints = 30;
+                CurrentSettings.RequiredPoints = Constants.RequiredPoints;
+                CurrentSettings.CurrentLanguageID = Constants.DefaultLanguageID;
             }
         }
 
@@ -46,26 +49,52 @@ namespace _30_Seconds_Windows.Model
             }
         }
 
-        public async Task Update()
+        public void Update(bool ForceWordUpdate = false)
         {
-            if (CurrentSettings.SettingsLastUpdated < DateTime.Now.AddDays(-7))
+            UpdateTask = Task.Run(async () =>
             {
-                CurrentSettings.SettingsLastUpdated = DateTime.Now;
-                Settings settingsFromServer = JsonConvert.DeserializeObject<Settings>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/getupdatesettings"));
-
-                if (settingsFromServer.WordLastUpdated > CurrentSettings.WordLastUpdated)
+                if (ForceWordUpdate)
                 {
-                    CurrentSettings.WordLastUpdated = DateTime.Now;
-                    Task UpdateTask = Task.Run(() => WordHandler.instance.Update());
-                }
-                
-                if (settingsFromServer.CategoryLastUpdated > CurrentSettings.CategoryLastUpdated)
-                {
-                    CurrentSettings.CategoryLastUpdated = DateTime.Now;
-                    Task UpdateTask = Task.Run(() => CategoryHandler.instance.Update());
+                    CurrentSettings.SettingsLastUpdated = DateTime.MinValue;
+                    CurrentSettings.WordLastUpdated = DateTime.MinValue;
                 }
 
-                SaveSettings();
+                if (CurrentSettings.SettingsLastUpdated < DateTime.Now.AddDays(-7))
+                {
+                    List<Task> UpdateTasks = new List<Task>();
+
+                    CurrentSettings.SettingsLastUpdated = DateTime.Now;
+                    Settings settingsFromServer = JsonConvert.DeserializeObject<Settings>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/getupdatesettings"));
+
+                    if (settingsFromServer.WordPackLastUpdated > CurrentSettings.WordPackLastUpdated)
+                    {
+                        await WordPackHandler.instance.Update();
+                    }
+
+                    if (settingsFromServer.WordLastUpdated > CurrentSettings.WordLastUpdated)
+                    {
+                        CurrentSettings.WordLastUpdated = DateTime.Now;
+                        UpdateTasks.Add(Task.Run(() => WordHandler.instance.Update()));
+                    }
+
+                    if (settingsFromServer.CategoryLastUpdated > CurrentSettings.CategoryLastUpdated)
+                    {
+                        CurrentSettings.CategoryLastUpdated = DateTime.Now;
+                        UpdateTasks.Add(Task.Run(() => CategoryHandler.instance.Update()));
+                    }
+
+                    SaveSettings();
+
+                    Task.WaitAll(UpdateTasks.ToArray());
+                }
+            });
+        }
+
+        public async Task WaitForUpdate()
+        {
+            if (UpdateTask != null && !UpdateTask.IsCompleted)
+            {
+                await UpdateTask;
             }
         }
     }

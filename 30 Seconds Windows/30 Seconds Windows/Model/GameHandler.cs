@@ -44,6 +44,21 @@ namespace _30_Seconds_Windows.Model
             }
         }
 
+        public void StartNewGame()
+        {
+            Model.Game CurrentGame = GameHandler.instance.GetCurrentGame();
+
+            if (CurrentGame == null || CurrentGame.TimeStarted != DateTime.MinValue)
+            {
+                GameHandler.instance.SetAllGamesToFinished();
+                TeamHandler.instance.SetAllTeamsCurrentPlayerIDToNull();
+                PlayerHandler.instance.SetAllPlayesToStartState();
+                Model.Game NewGame = new Model.Game();
+
+                GameHandler.instance.AddNewGame(NewGame);
+            }
+        }
+
         public Game GetGameByGameID(int GameID)
         {
             try

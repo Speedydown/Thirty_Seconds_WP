@@ -10,20 +10,21 @@ namespace _30SecondsCore.Model
     public class Word : DataObject
     {
         public string Name { get; set; }
+        public int WordPackID { get; set; }
         public int CategoryID { get; set; }
-        public int LanguageID { get; set; }
 
-        public Word(int ID, string Name, Category category, Languages Language)
-            : this(ID, Name, category.ID, (int)Language)
+        public Word(int ID, string Name, Category category, WordPack wordPack)
+            : this(ID, Name, category.ID, wordPack.ID)
         {
 
         }
 
-        public Word(int ID, string Name, int CategoryID, int LanguageID) : base(ID)
+        public Word(int ID, string Name, int CategoryID, int WordPackID)
+            : base(ID)
         {
             this.Name = Name;
             this.CategoryID = CategoryID;
-            this.LanguageID = LanguageID;
+            this.WordPackID = WordPackID;
 
             if (ID == 0 && Name.Length > 3)
             {

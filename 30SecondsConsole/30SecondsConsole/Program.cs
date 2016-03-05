@@ -14,7 +14,9 @@ namespace _30SecondsConsole
         {
             AppConfig.Instance.EnableLogging = false;
 
-            var Words = WordHandler.instance.GetWordsByLanguage(1);
+            var wordpacks = WordPackHandler.instance.GetWordPacks();
+
+            var Words = WordHandler.instance.GetWordsByWordPack(1);
 
             foreach (Word w in Words)
             {
@@ -27,7 +29,7 @@ namespace _30SecondsConsole
 
         public static void ReadCSV()
         {
-            int LanguageID = 0;
+            int WordPackID = 1;
 
             for (int i = 0; i < 20; i++)
             {
@@ -41,7 +43,7 @@ namespace _30SecondsConsole
 
                 foreach (string s in Words)
                 {
-                    Word word = WordHandler.instance.GetWordByNameCategoryAndLanguage(s, category.ID, LanguageID);
+                    Word word = WordHandler.instance.GetWordByNameCategoryAndWordPackID(s, category.ID, WordPackID);
                 }
             }
         }

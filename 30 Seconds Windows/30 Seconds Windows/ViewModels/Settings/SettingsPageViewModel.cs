@@ -1,4 +1,5 @@
-﻿using BaseLogic;
+﻿using _30_Seconds_Windows.Model;
+using BaseLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,38 @@ namespace _30_Seconds_Windows.ViewModels.Settings
     {
         public static readonly SettingsPageViewModel instance = new SettingsPageViewModel();
 
+        public Language CurrentLanguage
+        {
+            get
+            {
+                return LanguageHandler.instance.CurrentLanguage;
+            }
+        }
+
+        public Language[] Languages
+        {
+            get
+            {
+                return LanguageHandler.instance.Languages;
+            }
+        }
+
+        public int CurrentPointsIndex
+        {
+            get
+            {
+                return PossiblePoints.ToList().IndexOf(SettingsHandler.instance.CurrentSettings.RequiredPoints);
+            }
+        }
+
+        public int[] PossiblePoints
+        {
+            get
+            {
+                return new int[] { 20, 30, 40, 50, 60 };
+            }
+        }
+
         private SettingsPageViewModel() : base()
         {
 
@@ -19,8 +52,40 @@ namespace _30_Seconds_Windows.ViewModels.Settings
         public async Task load()
         {
             IsLoading = true;
+            if (SettingsHandler.instance.UpdateTask != null)
+            {
+                await SettingsHandler.instance.UpdateTask;
+                LanguageHandler.instance.ResetLanguages();
+            }
 
+            NotifyPropertyChanged("Languages");
+            NotifyPropertyChanged("CurrentLanguage");
             IsLoading = false;
         }
+
+        public void WordPacksButton()
+        {
+
+        }
+
+        public void RemoveAdsButton()
+        {
+
+        }
+
+        public void NavigateFrom(Language SelectedLanguage, int PointsIndex)
+        {
+            if (SelectedLanguage != null && SelectedLanguage != CurrentLanguage)
+            {
+                LanguageHandler.instance.ChangeLanguage(SelectedLanguage.LanguageID);
+            }
+
+            if (PointsIndex != CurrentPointsIndex)
+            {
+                SettingsHandler.instance.CurrentSettings.RequiredPoints = PossiblePoints[PointsIndex];
+                SettingsHandler.instance.SaveSettings();
+            }
+        }
+
     }
 }

@@ -52,7 +52,12 @@
     <Compile Include="Model\SettingsHandler.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\WordHandler.cs" />
+    <Compile Include="Model\WordPack.cs" />
+    <Compile Include="Model\WordPackHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

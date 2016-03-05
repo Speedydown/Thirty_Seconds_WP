@@ -27,8 +27,69 @@
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="15">
-                
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0, 15">
+                <ComboBox x:Uid="SettingsPageLanguageComboBox" 
+                          Style="{StaticResource TSDropdownStyle}"
+                          x:Name="SettingsPageLanguageComboBox"
+                          HorizontalAlignment="Stretch" ItemsSource="{Binding Languages}" SelectedItem="{Binding CurrentLanguage}"
+                          Margin="15,0"
+                          DisplayMemberPath="Name"/>
+
+                <ComboBox x:Uid="SettingsPagePointsComboBox" 
+                          Style="{StaticResource TSDropdownStyle}"
+                          x:Name="SettingsPagePointsComboBox"
+                          HorizontalAlignment="Stretch" 
+                          Margin="15,0"
+                          ItemsSource="{Binding PossiblePoints}" SelectedIndex="{Binding CurrentPointsIndex}"/>
+
+                <Button x:Uid="SettingsPageWordPacksButton"
+                        x:Name="SettingsPageWordPacksButton"
+                        Template="{StaticResource LimeGreenButton}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Click="SettingsPageWordPacksButton_Click">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <Grid Margin="-12,-2,-11,-5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    x:Uid="SettingsPageWordPacksButtonTextBlock"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource ButtonTextBlockStyle}"/>
+                                <SymbolIcon Symbol="Forward" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+                <Button x:Uid="SettingsPageRemoveAdsButton"
+                        x:Name="SettingsPageRemoveAdsButton"
+                        Template="{StaticResource LimeGreenButton}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Click="SettingsPageRemoveAdsButton_Click">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <Grid Margin="-12,-2,-11,-5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    x:Uid="SettingsPageRemoveAdsButtonTextBlock"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource ButtonTextBlockStyle}"/>
+                                <SymbolIcon Symbol="Forward" Margin="15" VerticalAlignment="Center" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

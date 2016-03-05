@@ -14,7 +14,7 @@ namespace _30_Seconds_Windows.Model
     {
         public string Name { get; set; }
         public int CategoryID { get; set; }
-        public int LanguageID { get; set; }
+        public int WordPackID { get; set; }
         public bool Guessed { get; set; }
         public DateTime Retrieved { get; set; }
         public DateTime LastPlayed { get; set; }

@@ -28,13 +28,13 @@ namespace _30_Seconds_Windows.Model
         public async Task<Word[]> Get5Words(int CurrentPlayerID)
         {
             List<Word> words = GetItems<Word>()
-                .Where(w => !w.Guessed && 
-                (w.LanguageID == SettingsHandler.instance.CurrentSettings.CurrentLanguageID || w.LanguageID == 0))
-                .OrderBy(w => w.NumberOfTimesTimesPlayed).ThenBy(w => w.LastPlayed).ThenBy(w => w.Name).Take(100).ToList();
+                .Where(w => !w.Guessed)
+                .OrderBy(w => w.NumberOfTimesTimesPlayed).ThenBy(w => w.LastPlayed).ThenBy(w => w.Name).ToList();
 
             if (words.Count == 0)
             {
-                if (GetItems<Word>().Where(w => (w.LanguageID == SettingsHandler.instance.CurrentSettings.CurrentLanguageID || w.LanguageID == 0)).Take(5).Count() == 5)
+                //Check if table has words
+                if (GetItems<Word>().Take(5).Count() == 5)
                 {
                     ResetAllWords();
                     return await Get5Words(CurrentPlayerID);
@@ -86,8 +86,7 @@ namespace _30_Seconds_Windows.Model
 
         private void ResetAllWords()
         {
-            var words = GetItems<Word>()
-                .Where(w => w.LanguageID == SettingsHandler.instance.CurrentSettings.CurrentLanguageID || w.LanguageID == 0);
+            var words = GetItems<Word>();
 
             foreach (Word w in words)
             {
@@ -101,17 +100,21 @@ namespace _30_Seconds_Windows.Model
         {
             try
             {
-                Word[] Words = JsonConvert.DeserializeObject<Word[]>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/GetWordsByLanguage/" + SettingsHandler.instance.CurrentSettings.CurrentLanguageID));
+                ClearTable<Word>();
 
-                foreach (Word w in Words)
+                foreach (WordPack wp in WordPackHandler.instance.GetEnabledWordPacks())
                 {
-                    w.Retrieved = DateTime.Now;
-                }
+                    Word[] Words = JsonConvert.DeserializeObject<Word[]>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/GetWordsByWordPackID/" + wp.ID));
 
-                if (Words.Count() > 0)
-                {
-                    ClearTable<Word>();
-                    SaveItems(Words);
+                    foreach (Word w in Words)
+                    {
+                        w.Retrieved = DateTime.Now;
+                    }
+
+                    if (Words.Count() > 0)
+                    {
+                        SaveItems(Words);
+                    }
                 }
             }
             catch (Exception e)
