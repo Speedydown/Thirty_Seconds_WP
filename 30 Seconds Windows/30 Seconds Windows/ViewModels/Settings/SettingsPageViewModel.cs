@@ -15,6 +15,18 @@ namespace _30_Seconds_Windows.ViewModels.Settings
     {
         public static readonly SettingsPageViewModel instance = new SettingsPageViewModel();
 
+        private bool _RemoveAdsButtonVisible;
+        public bool RemoveAdsButtonVisible
+        {
+            get { return _RemoveAdsButtonVisible; }
+            set
+            {
+                _RemoveAdsButtonVisible = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         public Language CurrentLanguage
         {
             get
@@ -55,6 +67,8 @@ namespace _30_Seconds_Windows.ViewModels.Settings
         public async Task load()
         {
             IsLoading = true;
+            RemoveAdsButtonVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
+
             if (SettingsHandler.instance.UpdateTask != null)
             {
                 await SettingsHandler.instance.UpdateTask;
@@ -71,9 +85,12 @@ namespace _30_Seconds_Windows.ViewModels.Settings
             (Window.Current.Content as Frame).Navigate(typeof(SettingsWordPackspage));
         }
 
-        public void RemoveAdsButton()
+        public async Task RemoveAdsButton()
         {
-
+            if (!IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName))
+            {
+                RemoveAdsButtonVisible = !(await IAPHandler.instance.BuyProduct(IAPHandler.RemoveAdsFeatureName));
+            }
         }
 
         public void NavigateFrom(Language SelectedLanguage, int PointsIndex)
