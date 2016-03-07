@@ -26,7 +26,7 @@ namespace _30SecondsCore.Model
             this.CategoryID = CategoryID;
             this.WordPackID = WordPackID;
 
-            if (ID == 0 && Name.Length > 3)
+            if (ID == 0)
             {
                 WordHandler.instance.SaveWord(this);
             }

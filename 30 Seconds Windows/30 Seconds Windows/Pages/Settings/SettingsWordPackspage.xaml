@@ -22,14 +22,42 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        <StackPanel Grid.Row="0" Margin="15,5">
+            <TextBlock x:Uid="SettingsWordPackspageTitleTextBlock" Style="{ThemeResource TitleTextBlockStyle}"/>
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+        <Grid Background="{StaticResource Background}"  Grid.Row="1">
+            <StackPanel VerticalAlignment="Top" Margin="0,15">
+                <Grid Margin="15,0"  Background="{StaticResource Orange}" >
+                    <TextBlock x:Uid="SettingsWordPackspageAvailablePacksTextBlock" Grid.ColumnSpan="4" FontSize="30" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" Margin="15,0" Foreground="{StaticResource Background}" />
+                </Grid>
+                <ListView IsItemClickEnabled="True"  VerticalAlignment="Center" ItemsSource="{Binding WordPacks}" SelectionMode="None" ItemClick="ListView_ItemClick">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="15,0,15,1"  Background="{StaticResource Section}" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Background="{StaticResource LimeGreen}" Visibility="{Binding Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2">
 
+                                    </Grid>
+                                    <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" Visibility="{Binding Enabled, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" TextAlignment="Left" FontSize="25" Margin="15,5" Foreground="Black" Text="{Binding Name}" />
+                                    <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" Visibility="{Binding Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" TextAlignment="Left" FontSize="25" Margin="15,5" Foreground="White" Text="{Binding Name}" />
+                                    <SymbolIcon Symbol="Accept" Grid.Column="1" Margin="15,0" Foreground="White" Visibility="{Binding Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <SymbolIcon Symbol="Forward" Grid.Column="1" Margin="15,0" Foreground="black" Visibility="{Binding Enabled, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

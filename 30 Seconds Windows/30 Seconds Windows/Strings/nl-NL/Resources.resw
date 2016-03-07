@@ -288,4 +288,10 @@
   <data name="SettingsPagePointsComboBox.PlaceholderText" xml:space="preserve">
     <value />
   </data>
+  <data name="SettingsWordPackspageAvailablePacksTextBlock.Text" xml:space="preserve">
+    <value>Beschikbare pakketten</value>
+  </data>
+  <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
+    <value>Woordpakketten</value>
+  </data>
 </root>

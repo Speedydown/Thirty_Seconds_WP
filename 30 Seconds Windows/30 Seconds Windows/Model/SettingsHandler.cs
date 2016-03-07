@@ -68,6 +68,7 @@ namespace _30_Seconds_Windows.Model
 
                     if (settingsFromServer.WordPackLastUpdated > CurrentSettings.WordPackLastUpdated)
                     {
+                        CurrentSettings.WordPackLastUpdated = DateTime.Now;
                         await WordPackHandler.instance.Update();
                     }
 

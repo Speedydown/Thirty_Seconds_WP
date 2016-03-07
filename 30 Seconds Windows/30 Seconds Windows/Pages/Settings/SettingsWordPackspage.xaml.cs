@@ -1,4 +1,6 @@
 ﻿using _30_Seconds_Windows.Common;
+using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.ViewModels.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,18 +44,12 @@ namespace _30_Seconds_Windows.Pages.Settings
             get { return this.defaultViewModel; }
         }
 
-        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async  void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            DataContext = SettingsWordPacksPageViewModel.instance;
+            await SettingsWordPacksPageViewModel.instance.Load();
         }
 
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
-        /// <param name="e">Event data that provides an empty dictionary to be populated with
-        /// serializable state.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
@@ -84,5 +80,12 @@ namespace _30_Seconds_Windows.Pages.Settings
         }
 
         #endregion
+         
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SettingsWordPacksPageViewModel.instance.WordPacksChanged = true;
+            WordPack wp = (e.ClickedItem as  WordPack);
+            wp.Enabled = !wp.Enabled;
+        }
     }
 }

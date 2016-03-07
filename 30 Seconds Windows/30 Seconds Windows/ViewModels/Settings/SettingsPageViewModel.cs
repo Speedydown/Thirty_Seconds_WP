@@ -1,10 +1,13 @@
 ﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Pages.Settings;
 using BaseLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace _30_Seconds_Windows.ViewModels.Settings
 {
@@ -65,7 +68,7 @@ namespace _30_Seconds_Windows.ViewModels.Settings
 
         public void WordPacksButton()
         {
-
+            (Window.Current.Content as Frame).Navigate(typeof(SettingsWordPackspage));
         }
 
         public void RemoveAdsButton()

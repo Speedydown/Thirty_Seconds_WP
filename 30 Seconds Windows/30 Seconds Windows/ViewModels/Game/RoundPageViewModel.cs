@@ -132,7 +132,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             TeamHandler.instance.SaveTeam(CurrentTeam);
 
-            //GameWon condition
+            //GameWon condition TODO -> zorgen dat iedereen gelijkle ronden speelt
             if (CurrentTeam.Points > SettingsHandler.instance.CurrentSettings.RequiredPoints)
             {
                 Task FinishGameTask = Task.Run(() =>

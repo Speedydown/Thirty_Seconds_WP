@@ -39,6 +39,19 @@ namespace _30_Seconds_Windows.Model
             return GetWordsPacksByLanguageID(SettingsHandler.instance.CurrentSettings.CurrentLanguageID).Where(wp => wp.Enabled).ToArray();
         }
 
+        public WordPack[] GetWordPacks()
+        {
+            return GetWordsPacksByLanguageID(SettingsHandler.instance.CurrentSettings.CurrentLanguageID).ToArray();
+        }
+
+        public void SaveWordPacks(WordPack[] WordPacks)
+        {
+            if (WordPacks != null)
+            {
+                SaveItems(WordPacks);
+            }
+        }
+
         public async Task Update()
         {
             try
@@ -58,7 +71,7 @@ namespace _30_Seconds_Windows.Model
                     {
                         if (IsUpdate)
                         {
-                            if (EnabledWordPacks.Count(wp => wp.Enabled && wp.InternalID == w.InternalID) > 0)
+                            if (EnabledWordPacks.Count(wp => wp.Enabled && wp.ID == w.ID) > 0)
                             {
                                 w.Enabled = true;
                             }

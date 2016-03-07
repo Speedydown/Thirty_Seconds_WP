@@ -15,6 +15,13 @@ namespace _30SecondsCore.Model
         public DateTime Added { get; set; }
         public bool Expired { get; set; }
         public bool IsDefault { get; set; }
+        public int WordCount
+        {
+            get
+            {
+                return WordHandler.instance.GetWordsByWordPack(ID).Count();
+            }
+        }
 
         public WordPack(int ID, string Name, int LanguageID, bool Free, DateTime Added, bool Expired, bool IsDefault)
             : base(ID)

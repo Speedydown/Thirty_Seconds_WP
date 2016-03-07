@@ -14,9 +14,11 @@ namespace _30SecondsConsole
         {
             AppConfig.Instance.EnableLogging = false;
 
-            var wordpacks = WordPackHandler.instance.GetWordPacks();
+        //    ReadCSV();
 
-            var Words = WordHandler.instance.GetWordsByWordPack(1);
+            //var wordpacks = WordPackHandler.instance.GetWordPacks();
+
+            var Words = WordHandler.instance.GetWordsByWordPack(2);
 
             foreach (Word w in Words)
             {
@@ -29,11 +31,11 @@ namespace _30SecondsConsole
 
         public static void ReadCSV()
         {
-            int WordPackID = 1;
+            int WordPackID = 2;
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 1; i++)
             {
-                List<string> Words = CSVReader.ReadCSV("Algemeen.csv", i);
+                List<string> Words = CSVReader.ReadCSV("Automerken.csv", i);
 
                 string CategoryName = Words.FirstOrDefault();
                 Words.RemoveAt(0);
