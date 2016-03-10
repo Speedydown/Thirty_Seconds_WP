@@ -55,7 +55,12 @@
                 </ListView>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Margin="0,10" Visibility="{Binding RoundFinishedAnimationVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock x:Uid="RoundPageTimeUpTextBlock" VerticalAlignment="Top" Margin="15, -100,15,-100" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="25" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                <Image Source="ms-appx:///Assets/Images/HourGlass30.png" Margin="100,15" RenderTransformOrigin=".5,.5" >
+                    <Image.RenderTransform>
+                        <RotateTransform x:Name="AnimatedRotateTransform" Angle="{Binding HourglassAngle}" />
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock x:Uid="RoundPageTimeUpTextBlock" VerticalAlignment="Top" Margin="15, 0" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="25" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
             </StackPanel>
             <!--Button-->
             <Button x:Uid="RoundPageNextRoundButton"

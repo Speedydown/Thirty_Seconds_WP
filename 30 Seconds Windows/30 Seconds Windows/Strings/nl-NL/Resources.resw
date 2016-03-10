@@ -294,4 +294,36 @@
   <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
     <value>Woordpakketten</value>
   </data>
+  <data name="PrivacyPolicyHeader.Text" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyPolicySubHeader.Text" xml:space="preserve">
+    <value>Privacybeleid van 30000 Milliseconds</value>
+  </data>
+  <data name="PrivacyPolicyText1.Text" xml:space="preserve">
+    <value>Neem contact op met de Eigenaar om informatie te ontvangen over welke Persoonsgegevens, voor welke doelen en met welke partijen worden gedeeld.</value>
+  </data>
+  <data name="PrivacyPolicyText2.Text" xml:space="preserve">
+    <value>Soorten verzamelde Gegevens</value>
+  </data>
+  <data name="PrivacyPolicyText3.Text" xml:space="preserve">
+    <value>De eigenaar verstrekt geen lijst van types persoonsgegevens die worden verzameld.
+
+Overige verzamelde Persoonsgegevens kunnen in andere bepalingen van dit privacybeleid of in een specifieke uitleg in samenhang met de verzameling van de gegevens worden beschreven.
+De Persoonsgegevens kunnen door de Gebruiker zelf worden aangeleverd of automatisch worden verzameld door het gebruik van deze Applicatie.
+
+Gebruik van cookies - of andere tracking tools - door deze Applicatie of door de eigenaren van de diensten van derden die worden gebruikt door deze Applicatie, dienen, tenzij anderszins wordt aangegeven, om Gebruikers te identificeren en hun voorkeuren op te slaan, met uitsluitend als doel de door de Gebruiker gevraagde dienst te verlenen.
+
+Door het niet verstrekken van bepaalde Persoonsgegevens kan deze Applicatie de diensten mogelijk niet verlenen.
+
+De gebruiker neemt verantwoordelijkheid voor de Persoonsgegevens van derden die worden gepubliceerd of gedeeld door middel van deze Applicatie en verklaart het recht te hebben om deze te publiceren of uit te zenden, waarmee de Verantwoordelijke voor de verwerking van de Gegevens van alle aansprakelijkheid wordt ontheven.</value>
+  </data>
+  <data name="PrivacyPolicyText4.Text" xml:space="preserve">
+    <value>Wijze en plaats van de Gegevensverwerking</value>
+  </data>
+  <data name="PrivacyPolicyText5.Text" xml:space="preserve">
+    <value>De Verantwoordelijke voor de verwerking van de Gegevens verwerkt de Gegevens van de Gebruikers op een correcte wijze en neemt passende beveiligingsmaatregelen om onbevoegde toegang tot, bekendmaking, wijziging of vernietiging van de Gegevens zonder toestemming te voorkomen.
+
+De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-tools, waarbij organisatieprocedures en werkwijzen worden gevolgd die nauw aansluiten op de aangegeven doelen. Naast de Verantwoordelijke voor de verwerking van de Gegevens kunnen de gegevens in bepaalde gevallen ook toegankelijk zijn voor bepaalde met de verwerking belaste personen die zijn betrokken bij de exploitatie van de site (beheer, verkoop, marketing, juridisch, systeembeheer) of door de Eigenaar als Gegevensverwerkers aangestelde externe partijen (zoals externe technische serviceproviders, mailprogramma's, hostingproviders, IT-bedrijven, communicatiebureaus). De bijgewerkte lijst van deze partijen kan te allen tijde bij de Verantwoordelijke voor de verwerking van de Gegevens worden aangevraagd.</value>
+  </data>
 </root>

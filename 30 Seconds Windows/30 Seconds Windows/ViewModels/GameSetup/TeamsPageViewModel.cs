@@ -160,7 +160,20 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             CurrentGame.TimeStarted = DateTime.Now;
             GameHandler.instance.SaveCurrentGame();
+
+            List<Player> playersToSave = new List<Player>();
+
+            foreach (Team t in CurrentGame.Teams)
+            {
+                foreach (Player p in t.Players)
+                {
+                    playersToSave.Add(p);
+                    p.GamesPlayed++;
+                }
+            }
+
             (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
+            PlayerHandler.instance.SavePlayers(playersToSave.ToArray());
         }
 
         public async Task DeleteTeamButton(Team TeamToDelete)

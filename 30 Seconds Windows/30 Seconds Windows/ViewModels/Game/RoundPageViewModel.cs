@@ -1,6 +1,7 @@
 ﻿using _30_Seconds_Windows.Model;
 using _30_Seconds_Windows.Pages.Game;
 using _30_Seconds_Windows.Pages.GameAnimations;
+using _30_Seconds_Windows.ViewModels.GameAnimations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,7 +84,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 NotifyPropertyChanged("RoundFinishedAnimationVisible");
                 //TODO: Play end of round sound
             }
-            else if (RoundFinished && SecondsElapsed > 35)
+            else if (RoundFinished && SecondsElapsed > 33)
             {
                 EndOfRoundVisible = true;
                 NotifyPropertyChanged("EndOfRoundVisible");
@@ -96,7 +97,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             //Animate hourglass
             if (RoundFinishedAnimationVisible)
             {
-                HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 2 : HourglassAngle - 2;
+                HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 11 : HourglassAngle - 11;
 
                 if (HourglassAngle < -25)
                 {
@@ -132,20 +133,19 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             TeamHandler.instance.SaveTeam(CurrentTeam);
 
-            //GameWon condition TODO -> zorgen dat iedereen gelijkle ronden speelt
-            if (CurrentTeam.Points > SettingsHandler.instance.CurrentSettings.RequiredPoints)
+            if (CheckWinCondition())
             {
                 Task FinishGameTask = Task.Run(() =>
                 {
                     CurrentGame.Finished = true;
                     GameHandler.instance.SaveCurrentGame();
 
-                    foreach (Player p in CurrentTeam.Players)
+                    foreach (Player p in CurrentGame.Teams.OrderByDescending(t => t.Points).First().Players)
                     {
                         p.GamesWon++;
                     }
 
-                    PlayerHandler.instance.SavePlayers(CurrentTeam.Players.ToArray());
+                    PlayerHandler.instance.SavePlayers(CurrentGame.Teams.OrderByDescending(t => t.Points).First().Players.ToArray());
                 });
 
                 (Window.Current.Content as Frame).Navigate(typeof(VictoryAnimationPage));
@@ -156,6 +156,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             }
             else if (WordsCorrect == 5)
             {
+                FiveStarAnimationPageViewModel.instance.PlayedWords = CurrentWords;
                 (Window.Current.Content as Frame).Navigate(typeof(FiveStarAnimationPage));
             }
             else
@@ -164,6 +165,27 @@ namespace _30_Seconds_Windows.ViewModels.Game
             }
 
             await ClearBackstack(0);
+        }
+
+        private bool CheckWinCondition()
+        {
+            Team LeadTeam = CurrentGame.Teams.OrderByDescending(t => t.Points).First();
+
+            if (LeadTeam.Points >= SettingsHandler.instance.CurrentSettings.RequiredPoints)
+            {
+                if (!(CurrentGame.Teams.Count(t => t.Round < LeadTeam.Round &&
+                SettingsHandler.instance.CurrentSettings.RequiredPoints - t.Points < 7) > 0))
+                {
+                    if (CurrentGame.Teams.Count(t => t.Round == LeadTeam.Round && t.Points == LeadTeam.Points) > 1)
+                    {
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

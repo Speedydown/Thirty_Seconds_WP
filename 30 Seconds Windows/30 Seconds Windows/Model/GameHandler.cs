@@ -89,7 +89,12 @@ namespace _30_Seconds_Windows.Model
         {
             try
             {
-                return Games.Single(g => !g.Finished);
+                if (Games.Count(g => !g.Finished) > 0)
+                {
+                    return Games.Single(g => !g.Finished);
+                }
+
+                return null;
             }
             catch
             {

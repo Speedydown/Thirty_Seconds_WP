@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="NextRoundTemplate">
             <Grid  Margin="-17,-17,-17,10">
-                <TextBlock x:Uid="NextPlayerPagePassPhoneTextBlock" Margin="0,-50,0,0" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="40" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords" Text="{Binding PassTroughText}"/>
+                <TextBlock x:Uid="NextPlayerPagePassPhoneTextBlock" Margin="15,-50,15,0" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="40" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords" Text="{Binding PassTroughText}"/>
                 <Button x:Uid="NextPlayerPageContinueButton"
                         x:Name="NextPlayerPageContinueButton"
                         Style="{StaticResource CustomButtonStyle}" 

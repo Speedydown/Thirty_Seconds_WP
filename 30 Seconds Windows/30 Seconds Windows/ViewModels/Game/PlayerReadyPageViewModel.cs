@@ -40,7 +40,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task StartRoundButton()
         {
-            CurrentPlayer.GamesPlayed++;
             CurrentPlayer.LastRound = DateTime.Now;
             CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
 

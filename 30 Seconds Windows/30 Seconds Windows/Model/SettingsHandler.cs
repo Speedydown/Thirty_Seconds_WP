@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft;
 using Newtonsoft.Json;
+using Windows.ApplicationModel;
 
 namespace _30_Seconds_Windows.Model
 {
@@ -32,6 +33,10 @@ namespace _30_Seconds_Windows.Model
                 //Default points
                 CurrentSettings.RequiredPoints = Constants.RequiredPoints;
                 CurrentSettings.CurrentLanguageID = Constants.DefaultLanguageID;
+
+                var version = Package.Current.Id.Version;
+
+                CurrentSettings.CurrentAppVersion = string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Revision, version.Build);
             }
         }
 

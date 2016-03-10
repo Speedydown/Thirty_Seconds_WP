@@ -15,5 +15,6 @@ namespace _30_Seconds_Windows.Model
         public DateTime WordPackLastUpdated { get; set; }
         public int CurrentLanguageID { get; set; }
         public int RequiredPoints { get; set; }
+        public string CurrentAppVersion { get; set; }
     }
 }

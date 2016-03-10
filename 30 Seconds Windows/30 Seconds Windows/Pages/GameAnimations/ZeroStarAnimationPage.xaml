@@ -6,30 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{StaticResource Background}">
 
     <Grid x:Name="LayoutRoot">
-
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        <TextBlock Text="0" Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin=".6,.7" Margin="0,-200,0,0" Foreground="{StaticResource LimeGreen}" FontSize="500">
+            <TextBlock.RenderTransform>
+                <RotateTransform x:Name="AnimatedRotateTransform" Angle="{Binding AnimationAngle}" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
+            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource DisabledText}"/>
+            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource DisabledText}"/>
+            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource DisabledText}"/>
+            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource DisabledText}"/>
+            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource DisabledText}"/>
         </StackPanel>
-
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-
-        </Grid>
     </Grid>
 </Page>

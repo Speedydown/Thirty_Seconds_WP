@@ -6,30 +6,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{StaticResource Background}">
 
-    <Grid x:Name="LayoutRoot">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style.Setters>
+        </Style>
+    </Page.Resources>
 
+    <Grid Margin="7,0,2,0">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="TODO: Privacy policy" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
-
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-
-        </Grid>
+        <ScrollViewer VerticalScrollMode="Auto" ZoomMode="Disabled">
+            <StackPanel>
+                <TextBlock x:Uid="PrivacyPolicyHeader" Margin="0,0,0,10" Style="{StaticResource HeaderTextBlockStyle}" Foreground="Black"/>
+                <TextBlock x:Uid="PrivacyPolicySubHeader" TextWrapping="WrapWholeWords" FontSize="25" FontWeight="ExtraBold" />
+                <TextBlock x:Uid="PrivacyPolicyText1" FontSize="20" TextWrapping="WrapWholeWords" Margin="0,0,0,25"/>
+                <TextBlock x:Uid="PrivacyPolicyText2" FontSize="20" FontWeight="Bold"/>
+                <TextBlock x:Uid="PrivacyPolicyText3" FontSize="20" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Uid="PrivacyPolicyText4" FontSize="20" Margin="0,25,0,0" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Uid="PrivacyPolicyText5" FontSize="20" TextWrapping="WrapWholeWords"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
