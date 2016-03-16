@@ -210,8 +210,11 @@ namespace _30_Seconds_Windows.Common
         {
             if (this.GoBackCommand.CanExecute(null))
             {
-                e.Handled = true;
-                this.GoBackCommand.Execute(null);
+                if (!e.Handled)
+                {
+                    e.Handled = true;
+                    this.GoBackCommand.Execute(null);
+                }
             }
         }
 #else

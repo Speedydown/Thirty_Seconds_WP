@@ -294,6 +294,15 @@
   <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
     <value>Woordpakketten</value>
   </data>
+  <data name="NoWordsHeader" xml:space="preserve">
+    <value>Geen woorden</value>
+  </data>
+  <data name="NoWordsText" xml:space="preserve">
+    <value>Er konden geen woorden worden gedownload. Controleer de internet verbinding en probeer het opnieuw.</value>
+  </data>
+  <data name="PlayerReadyPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Klaar om te spelen?</value>
+  </data>
   <data name="PrivacyPolicyHeader.Text" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
@@ -325,5 +334,23 @@ De gebruiker neemt verantwoordelijkheid voor de Persoonsgegevens van derden die 
     <value>De Verantwoordelijke voor de verwerking van de Gegevens verwerkt de Gegevens van de Gebruikers op een correcte wijze en neemt passende beveiligingsmaatregelen om onbevoegde toegang tot, bekendmaking, wijziging of vernietiging van de Gegevens zonder toestemming te voorkomen.
 
 De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-tools, waarbij organisatieprocedures en werkwijzen worden gevolgd die nauw aansluiten op de aangegeven doelen. Naast de Verantwoordelijke voor de verwerking van de Gegevens kunnen de gegevens in bepaalde gevallen ook toegankelijk zijn voor bepaalde met de verwerking belaste personen die zijn betrokken bij de exploitatie van de site (beheer, verkoop, marketing, juridisch, systeembeheer) of door de Eigenaar als Gegevensverwerkers aangestelde externe partijen (zoals externe technische serviceproviders, mailprogramma's, hostingproviders, IT-bedrijven, communicatiebureaus). De bijgewerkte lijst van deze partijen kan te allen tijde bij de Verantwoordelijke voor de verwerking van de Gegevens worden aangevraagd.</value>
+  </data>
+  <data name="SettingsPageLanguageeComboBoxHeader.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="SettingsPagePoinsDropdownTextBlock.Text" xml:space="preserve">
+    <value>Benodigde punten</value>
+  </data>
+  <data name="test_Retry" xml:space="preserve">
+    <value>Opnieuw</value>
+  </data>
+  <data name="VictoryAnimiationPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Einde spel</value>
+  </data>
+  <data name="EndGamePageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Eind scores</value>
+  </data>
+  <data name="VictoryAnimationPageVictorTextBlock.Text" xml:space="preserve">
+    <value>Winnaar:</value>
   </data>
 </root>

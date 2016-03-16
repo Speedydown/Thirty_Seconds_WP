@@ -13,7 +13,7 @@ namespace _30SecondsConsole
         {
             List<string> Words = new List<string>();
 
-            using (StreamReader sr = new StreamReader(CSVPath))
+            using (StreamReader sr = new StreamReader(CSVPath, true))
             {
                 String line;
 
@@ -21,7 +21,14 @@ namespace _30SecondsConsole
                 {
                     string[] parts = line.Split(',');
 
-                    Words.Add(parts[Col]);
+                    try
+                    {
+                        Words.Add(parts[Col]);
+                    }
+                    catch
+                    {
+                        break;
+                    }
 
                 }
             }

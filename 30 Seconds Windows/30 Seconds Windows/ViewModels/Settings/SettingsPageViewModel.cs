@@ -39,7 +39,7 @@ namespace _30_Seconds_Windows.ViewModels.Settings
         {
             get
             {
-                return LanguageHandler.instance.Languages;
+                return LanguageHandler.instance.Languages.OrderByDescending(l => l.LanguageID == LanguageHandler.instance.CurrentLanguage.LanguageID).ToArray();
             }
         }
 
@@ -59,7 +59,8 @@ namespace _30_Seconds_Windows.ViewModels.Settings
             }
         }
 
-        private SettingsPageViewModel() : base()
+        private SettingsPageViewModel()
+            : base()
         {
 
         }

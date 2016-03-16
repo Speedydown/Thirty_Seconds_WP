@@ -1,7 +1,9 @@
 ﻿using _30_Seconds_Windows.Model;
 using _30_Seconds_Windows.Model.Utils;
 using _30_Seconds_Windows.Pages;
+using _30_Seconds_Windows.Pages.GameAnimations;
 using BaseLogic.ClientIDHandler;
+using BaseLogic.ExceptionHandler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,10 +34,33 @@ namespace _30_Seconds_Windows
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            await ExceptionHandler.instance.PostException(new AppException(e.Exception), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            bool FirstTime = false;
+
+            if (SettingsHandler.instance.CurrentSettings.SettingsLastUpdated == DateTime.MinValue)
+            {
+                string DefaultLanguage = Windows.Globalization.ApplicationLanguages.Languages[0];
+
+                if (DefaultLanguage == "nl-NL")
+                {
+                    SettingsHandler.instance.CurrentSettings.CurrentLanguageID = 1;
+                }
+                else
+                {
+                    SettingsHandler.instance.CurrentSettings.CurrentLanguageID = 2;
+                }
+            }
+
+
             //Get CLientID
             ClientIDTask = Task.Run(async () => await ClientIDHandler.instance.PostAppStats(ClientIDHandler.AppName._30Seconds));
 
@@ -59,7 +84,7 @@ namespace _30_Seconds_Windows
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    // TODO: Load state from previously suspended application
+
                 }
 
                 // Place the frame in the current Window
@@ -117,7 +142,6 @@ namespace _30_Seconds_Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
     }

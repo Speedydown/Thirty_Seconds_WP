@@ -159,7 +159,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         public async Task StartGameButton()
         {
             CurrentGame.TimeStarted = DateTime.Now;
-            GameHandler.instance.SaveCurrentGame();
+            GameHandler.instance.SaveGame(CurrentGame);
 
             List<Player> playersToSave = new List<Player>();
 

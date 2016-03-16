@@ -50,6 +50,11 @@ namespace _30SecondsCore.Model
 
         public Category GetCategoryByName(string Name)
         {
+            if (Name.Length == 0)
+            {
+                return null;
+            }
+
             Category category = GetObjectByFieldsAndSearchQuery(new Field[] { NameField }, Name, true, 0).Cast<Category>().FirstOrDefault();
 
             if (category == null)

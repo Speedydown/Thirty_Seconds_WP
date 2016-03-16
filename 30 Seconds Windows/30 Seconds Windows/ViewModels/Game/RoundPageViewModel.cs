@@ -77,14 +77,14 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 WarningSoundPlayed = true;
                 //TODO:  Play warning sound
             }
-            else if (!RoundFinished && SecondsElapsed > 30)
+            else if (!RoundFinished && SecondsElapsed > 29)
             {
                 RoundFinished = true;
                 RoundFinishedAnimationVisible = true;
                 NotifyPropertyChanged("RoundFinishedAnimationVisible");
                 //TODO: Play end of round sound
             }
-            else if (RoundFinished && SecondsElapsed > 33)
+            else if (RoundFinished && SecondsElapsed > 32)
             {
                 EndOfRoundVisible = true;
                 NotifyPropertyChanged("EndOfRoundVisible");
@@ -135,19 +135,24 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             if (CheckWinCondition())
             {
+                Team WinningTeam = CurrentGame.Teams.OrderByDescending(t => t.Points).First();
+
                 Task FinishGameTask = Task.Run(() =>
                 {
                     CurrentGame.Finished = true;
-                    GameHandler.instance.SaveCurrentGame();
+                    GameHandler.instance.SaveGame(CurrentGame);
 
-                    foreach (Player p in CurrentGame.Teams.OrderByDescending(t => t.Points).First().Players)
+                    foreach (Player p in WinningTeam.Players)
                     {
                         p.GamesWon++;
                     }
 
-                    PlayerHandler.instance.SavePlayers(CurrentGame.Teams.OrderByDescending(t => t.Points).First().Players.ToArray());
+                    PlayerHandler.instance.SavePlayers(WinningTeam.Players.ToArray());
                 });
 
+                //Current game does not exist in db anymore -> prepare data in viewmodels
+                EndGamePageViewModel.instance.CurrentGame = CurrentGame;
+                VictoryAnimationPageViewModel.instance.WinningTeam = WinningTeam;
                 (Window.Current.Content as Frame).Navigate(typeof(VictoryAnimationPage));
             }
             else if (WordsCorrect == 0)

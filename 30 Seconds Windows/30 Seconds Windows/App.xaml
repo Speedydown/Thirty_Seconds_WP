@@ -11,8 +11,8 @@
         <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">White</x:String>
         <SolidColorBrush x:Key="LimeGreen" Color="#00ADA3"/>
         <SolidColorBrush x:Key="LimeGreenDark" Color="#00958C"/>
-        <SolidColorBrush x:Key="Orange" Color="#F78800"/>
-        <Color x:Key="OrangeColor">#F78800</Color>
+        <SolidColorBrush x:Key="Orange" Color="#BF5FFF"/>
+        <Color x:Key="OrangeColor">#BF5FFF</Color>
         <Color x:Key="LimeGreenColor">#00ADA3</Color>
         <Color x:Key="DisabledColor">#787878</Color>
         <SolidColorBrush x:Key="Text" Color="#4F4F4F"/>

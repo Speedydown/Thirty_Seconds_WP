@@ -28,13 +28,14 @@
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0, 15">
+                <TextBlock x:Uid="SettingsPageLanguageeComboBoxHeader" FontSize="18" Foreground="{StaticResource LimeGreen}" Margin="15,0,15,-10"/>
                 <ComboBox x:Uid="SettingsPageLanguageComboBox" 
                           Style="{StaticResource TSDropdownStyle}"
                           x:Name="SettingsPageLanguageComboBox"
-                          HorizontalAlignment="Stretch" ItemsSource="{Binding Languages}" SelectedItem="{Binding CurrentLanguage}"
+                          HorizontalAlignment="Stretch" ItemsSource="{Binding Languages}"
                           Margin="15,0"
                           DisplayMemberPath="Name"/>
-
+                <TextBlock x:Uid="SettingsPagePoinsDropdownTextBlock" FontSize="18" Foreground="{StaticResource LimeGreen}" Margin="15,0,15,-10"/>
                 <ComboBox x:Uid="SettingsPagePointsComboBox" 
                           Style="{StaticResource TSDropdownStyle}"
                           x:Name="SettingsPagePointsComboBox"

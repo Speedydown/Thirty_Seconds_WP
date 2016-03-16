@@ -42,6 +42,8 @@ namespace _30_Seconds_Windows.ViewModels.Settings
 
             if (WordPacksChanged)
             {
+                WordHandler.instance.DeleteAllWords();
+                GameHandler.instance.SetAllGamesToFinished();
                 WordPackHandler.instance.SaveWordPacks(WordPacks);
                 SettingsHandler.instance.Update(true);
             }

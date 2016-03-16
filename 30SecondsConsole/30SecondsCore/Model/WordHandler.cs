@@ -105,5 +105,10 @@ namespace _30SecondsCore.Model
 
             return GetObjectsByFilters(Filters, 0, OrderBy.ASC, NameField).Cast<Word>().ToArray();
         }
+
+        public void DeleteWord(Word word)
+        {
+            DeleteObject(word);
+        }
     }
 }

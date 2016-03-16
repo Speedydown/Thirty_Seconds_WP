@@ -108,7 +108,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                     CurrentGame.CurrentTeamID = this.CurrentTeam.InternalID;
                 }
 
-                GameHandler.instance.SaveCurrentGame();
+                GameHandler.instance.SaveGame(CurrentGame);
             }
         }
 

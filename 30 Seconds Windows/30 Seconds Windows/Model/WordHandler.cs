@@ -25,6 +25,11 @@ namespace _30_Seconds_Windows.Model
             Randomizer = new Random();
         }
 
+        public bool DatabaseHasWords()
+        {
+            return GetItems<Word>().Take(5).Count() == 5;
+        }
+
         public async Task<Word[]> Get5Words(int CurrentPlayerID)
         {
             List<Word> words = GetItems<Word>()
@@ -34,7 +39,7 @@ namespace _30_Seconds_Windows.Model
             if (words.Count == 0)
             {
                 //Check if table has words
-                if (GetItems<Word>().Take(5).Count() == 5)
+                if (DatabaseHasWords())
                 {
                     ResetAllWords();
                     return await Get5Words(CurrentPlayerID);
@@ -42,7 +47,6 @@ namespace _30_Seconds_Windows.Model
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("Database empty, could not retrieve words");
-                    //TODO dialoog;
                     return null;
                 }
             }
@@ -96,11 +100,16 @@ namespace _30_Seconds_Windows.Model
             SaveItems(words);
         }
 
+        public void DeleteAllWords()
+        {
+            ClearTable<Word>();
+        }
+
         public async Task Update()
         {
             try
             {
-                ClearTable<Word>();
+                DeleteAllWords();
 
                 foreach (WordPack wp in WordPackHandler.instance.GetEnabledWordPacks())
                 {

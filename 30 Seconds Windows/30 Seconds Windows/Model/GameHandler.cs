@@ -71,11 +71,11 @@ namespace _30_Seconds_Windows.Model
             }
         }
 
-        public bool SaveCurrentGame()
+        public bool SaveGame(Game Game)
         {
             try
             {
-                SaveItem(GetCurrentGame());
+                SaveItem(Game);
                 return true;
             }
             catch (Exception e)

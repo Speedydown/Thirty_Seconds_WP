@@ -64,34 +64,54 @@ namespace _30_Seconds_Windows.Model
                     CurrentSettings.WordLastUpdated = DateTime.MinValue;
                 }
 
+                if ( WordPackHandler.instance.GetWordPacks().Count() == 0)
+                {
+                    CurrentSettings.WordPackLastUpdated = DateTime.MinValue;
+                    CurrentSettings.SettingsLastUpdated = DateTime.MinValue;
+                    CurrentSettings.WordLastUpdated = DateTime.MinValue;
+                }
+
                 if (CurrentSettings.SettingsLastUpdated < DateTime.Now.AddDays(-7))
                 {
                     List<Task> UpdateTasks = new List<Task>();
 
                     CurrentSettings.SettingsLastUpdated = DateTime.Now;
-                    Settings settingsFromServer = JsonConvert.DeserializeObject<Settings>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/getupdatesettings"));
 
-                    if (settingsFromServer.WordPackLastUpdated > CurrentSettings.WordPackLastUpdated)
+                    Settings settingsFromServer = null;
+
+                    try
                     {
-                        CurrentSettings.WordPackLastUpdated = DateTime.Now;
-                        await WordPackHandler.instance.Update();
+                        settingsFromServer = JsonConvert.DeserializeObject<Settings>(await HTTPGetUtil.GetDataAsStringFromURL(Constants.ServerAddress + "ThirtySeconds/getupdatesettings"));
+                    }
+                    catch
+                    {
+
                     }
 
-                    if (settingsFromServer.WordLastUpdated > CurrentSettings.WordLastUpdated)
+                    if (settingsFromServer != null)
                     {
-                        CurrentSettings.WordLastUpdated = DateTime.Now;
-                        UpdateTasks.Add(Task.Run(() => WordHandler.instance.Update()));
+                        if (settingsFromServer.WordPackLastUpdated > CurrentSettings.WordPackLastUpdated)
+                        {
+                            CurrentSettings.WordPackLastUpdated = DateTime.Now;
+                            await WordPackHandler.instance.Update();
+                        }
+
+                        if (settingsFromServer.WordLastUpdated > CurrentSettings.WordLastUpdated)
+                        {
+                            CurrentSettings.WordLastUpdated = DateTime.Now;
+                            UpdateTasks.Add(Task.Run(() => WordHandler.instance.Update())); 
+                        }
+
+                        if (settingsFromServer.CategoryLastUpdated > CurrentSettings.CategoryLastUpdated)
+                        {
+                            CurrentSettings.CategoryLastUpdated = DateTime.Now;
+                            UpdateTasks.Add(Task.Run(() => CategoryHandler.instance.Update()));
+                        }
+
+                        SaveSettings();
+
+                        Task.WaitAll(UpdateTasks.ToArray());
                     }
-
-                    if (settingsFromServer.CategoryLastUpdated > CurrentSettings.CategoryLastUpdated)
-                    {
-                        CurrentSettings.CategoryLastUpdated = DateTime.Now;
-                        UpdateTasks.Add(Task.Run(() => CategoryHandler.instance.Update()));
-                    }
-
-                    SaveSettings();
-
-                    Task.WaitAll(UpdateTasks.ToArray());
                 }
             });
         }

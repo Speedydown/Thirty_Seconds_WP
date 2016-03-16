@@ -51,15 +51,15 @@ namespace _30_Seconds_Windows.ViewModels
 
         public void NewGameButton()
         {
-            if (SettingsHandler.instance.UpdateTask != null && !SettingsHandler.instance.UpdateTask.IsCompleted)
-            {
-                (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
-            }
-            else
+            if (SettingsHandler.instance.UpdateTask == null || (SettingsHandler.instance.UpdateTask.IsCompleted && WordHandler.instance.DatabaseHasWords()))
             {
                 GameHandler.instance.StartNewGame();
 
                 (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
+            }
+            else
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
             }
         }
 

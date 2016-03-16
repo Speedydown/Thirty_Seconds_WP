@@ -47,7 +47,7 @@
             </TextBlock>
         </Grid>
         
-        <TextBlock Text="6" Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-200,0,0" Foreground="{StaticResource LimeGreen}" FontSize="{Binding AnimationFontSize}"/>
+        <TextBlock Text="6" Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-50, -200,-50,0" Foreground="{StaticResource LimeGreen}" FontSize="{Binding AnimationFontSize}"/>
         <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
             <SymbolIcon Symbol="Favorite" Foreground="{StaticResource LimeGreen}"/>
             <SymbolIcon Symbol="Favorite" Foreground="{StaticResource LimeGreen}"/>

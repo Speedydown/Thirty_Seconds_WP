@@ -135,6 +135,9 @@
     <Compile Include="Pages\GameSetup\TeamsPage.xaml.cs">
       <DependentUpon>TeamsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Game\EndGamePage.xaml.cs">
+      <DependentUpon>EndGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Game\NextPlayerPage.xaml.cs">
       <DependentUpon>NextPlayerPage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
     <Compile Include="ViewModels\GameSetup\PlayerPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\PlayersPageViewModel.cs" />
     <Compile Include="ViewModels\GameSetup\TeamsPageViewModel.cs" />
+    <Compile Include="ViewModels\Game\EndGamePageViewModel.cs" />
     <Compile Include="ViewModels\Game\GameViewModel.cs" />
     <Compile Include="ViewModels\Game\NextPlayerPageViewModel.cs" />
     <Compile Include="ViewModels\Game\PlayerReadyPageViewModel.cs" />
@@ -189,6 +193,7 @@
     <Content Include="Assets\Images\Beer2.png" />
     <Content Include="Assets\Images\Beer3.png" />
     <Content Include="Assets\Images\HourGlass30.png" />
+    <Content Include="Assets\Images\Cup.png" />
     <Content Include="Assets\Images\vs.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
@@ -258,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\GameSetup\TeamsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Game\EndGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
