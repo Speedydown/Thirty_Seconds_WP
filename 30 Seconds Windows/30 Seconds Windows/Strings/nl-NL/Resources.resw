@@ -353,4 +353,31 @@ De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-to
   <data name="VictoryAnimationPageVictorTextBlock.Text" xml:space="preserve">
     <value>Winnaar:</value>
   </data>
+  <data name="RulesPageText1.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen namen op de kaart noemen. Woorden als de, het en een zijn wel toegestaan.</value>
+  </data>
+  <data name="RulesPageText2.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen namen die van de kaart zijn afgeleid noemen.</value>
+  </data>
+  <data name="RulesPageText3.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen klinkt als of rijmt op tactieken toepassen.</value>
+  </data>
+  <data name="RulesPageText4.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag niet verwijzen naar letters van het alfabet.</value>
+  </data>
+  <data name="RulesPageText5.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag niet naar voorwerpen wijzen.</value>
+  </data>
+  <data name="RulesPageText6.Text" xml:space="preserve">
+    <value>Neuriën, zingen en gebaren zijn wel toegestaan.</value>
+  </data>
+  <data name="RulesPageText7.Text" xml:space="preserve">
+    <value>Jouw team verdient een extra punt wanneer alle woorden geraden zijn.</value>
+  </data>
+  <data name="RulesPageText8.Text" xml:space="preserve">
+    <value>Na een halve minuut is de tijd om, en mag er niks meer gezegd of geraden worden.</value>
+  </data>
+  <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Spelregels</value>
+  </data>
 </root>

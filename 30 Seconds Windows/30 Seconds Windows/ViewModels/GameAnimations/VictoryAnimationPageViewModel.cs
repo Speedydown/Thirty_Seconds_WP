@@ -6,8 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.IO;
 
 namespace _30_Seconds_Windows.ViewModels.GameAnimations
 {
@@ -21,7 +26,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         private VictoryAnimationPageViewModel()
             : base()
         {
-
         }
 
         public async Task Load()
@@ -36,6 +40,18 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             Timer.Start();
 
             NotifyPropertyChanged("WinningTeam");
+
+            Task t = Task.Run(async () =>
+            {
+                await LoadFileTask;
+                VictoryStream.Position = 0;
+
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    MediaPlayer.SetSource(VictoryStream.AsRandomAccessStream(), VictoryFile.ContentType);
+                    MediaPlayer.Play();
+                });
+            });
         }
 
         public override void NavigatedFrom()
@@ -47,9 +63,8 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
 
         void Timer_Tick(object sender, object e)
         {
-            if (DateTime.Now.Subtract(StartTime).TotalMilliseconds > 2500)
+            if (DateTime.Now.Subtract(StartTime).TotalMilliseconds > 3000)
             {
-                //TODO play sound
                 Timer.Tick -= Timer_Tick;
                 Timer.Stop();
                 (Window.Current.Content as Frame).Navigate(typeof(EndGamePage));

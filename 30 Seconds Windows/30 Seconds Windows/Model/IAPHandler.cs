@@ -18,16 +18,23 @@ namespace _30_Seconds_Windows.Model
 
         private IAPHandler()
         {
+            try
+            {
 #if DEBUG
-            licenseInformation = CurrentAppSimulator.LicenseInformation;
+                licenseInformation = CurrentAppSimulator.LicenseInformation;
 #else
             licenseInformation = CurrentApp.LicenseInformation;
 #endif
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public bool HasFeature(string FeatureName)
         {
-            return licenseInformation.ProductLicenses[FeatureName].IsActive;
+            return licenseInformation != null ? licenseInformation.ProductLicenses[FeatureName].IsActive : false;
         }
 
         public async Task<bool> BuyProduct(string FeatureName)

@@ -44,8 +44,6 @@ namespace _30_Seconds_Windows
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            bool FirstTime = false;
-
             if (SettingsHandler.instance.CurrentSettings.SettingsLastUpdated == DateTime.MinValue)
             {
                 string DefaultLanguage = Windows.Globalization.ApplicationLanguages.Languages[0];
@@ -59,7 +57,6 @@ namespace _30_Seconds_Windows
                     SettingsHandler.instance.CurrentSettings.CurrentLanguageID = 2;
                 }
             }
-
 
             //Get CLientID
             ClientIDTask = Task.Run(async () => await ClientIDHandler.instance.PostAppStats(ClientIDHandler.AppName._30Seconds));

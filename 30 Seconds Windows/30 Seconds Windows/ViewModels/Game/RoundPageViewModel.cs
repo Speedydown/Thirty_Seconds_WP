@@ -4,9 +4,14 @@ using _30_Seconds_Windows.Pages.GameAnimations;
 using _30_Seconds_Windows.ViewModels.GameAnimations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -23,11 +28,13 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public bool RoundFinishedAnimationVisible { get; private set; }
         public bool EndOfRoundVisible { get; private set; }
         public int HourglassAngle { get; private set; }
+        public bool AdVisible { get; set; }
 
         private DateTime? TimeStarted = null;
         private bool RoundFinished = false;
         private bool WarningSoundPlayed = false;
         private bool HourGlassAnimationReversed = false;
+        private Task<Word[]> GetNewWordsTask = null;
 
         private RoundPageViewModel()
             : base()
@@ -35,14 +42,22 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         }
 
-        public async Task Load()
+        public void Get5NewWords()
         {
-            IsLoading = true;
-            NavigatedTo();
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
             CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
-            CurrentWords = await WordHandler.instance.Get5Words(CurrentPlayer.InternalID);
+            GetNewWordsTask = WordHandler.instance.Get5Words(CurrentPlayer.InternalID);
+        }
+
+        public async Task Load()
+        {
+            IsLoading = true;
+            AdVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
+            StopwatchStream.Position = 0;
+            AlarmStream.Position = 0;
+            NavigatedTo();
+            CurrentWords = await GetNewWordsTask;
             IsLoading = false;
             NotifyPropertyChanged("CurrentWords");
             NotifyPropertyChanged("CurrentGame");
@@ -72,20 +87,38 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             int SecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalSeconds;
 
-            if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 20)
+            if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 26)
             {
                 WarningSoundPlayed = true;
-                //TODO:  Play warning sound
+
+                Task.Run(async () =>
+                {
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            MediaPlayer.SetSource(StopwatchStream.AsRandomAccessStream(), StopwatchFile.ContentType);
+                            MediaPlayer.Play();
+                        });
+                });
             }
             else if (!RoundFinished && SecondsElapsed > 29)
             {
+                MediaPlayer.Stop();
                 RoundFinished = true;
                 RoundFinishedAnimationVisible = true;
                 NotifyPropertyChanged("RoundFinishedAnimationVisible");
-                //TODO: Play end of round sound
+
+                Task.Run(async () =>
+                {
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        MediaPlayer.SetSource(AlarmStream.AsRandomAccessStream(), AlarmFile.ContentType);
+                        MediaPlayer.Play();
+                    });
+                });
             }
             else if (RoundFinished && SecondsElapsed > 32)
             {
+                MediaPlayer.Stop();
                 EndOfRoundVisible = true;
                 NotifyPropertyChanged("EndOfRoundVisible");
                 RoundFinishedAnimationVisible = false;
@@ -119,19 +152,13 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 w.NumberOfTimesCorrect++;
             }
 
-            WordHandler.instance.SaveWords(CurrentWords);
-
             int WordsCorrect = CurrentWords.Count(w => w.CurrentGameCorrect);
 
             CurrentPlayer.QuestionsCorrect += WordsCorrect;
             CurrentPlayer.PointsThisGame += WordsCorrect == 5 ? WordsCorrect + 1 : WordsCorrect;
             CurrentPlayer.QuestionsCorrectThisGame += WordsCorrect;
 
-            PlayerHandler.instance.SavePlayer(CurrentPlayer);
-
             CurrentTeam.Points += WordsCorrect == 5 ? WordsCorrect + 1 : WordsCorrect;
-
-            TeamHandler.instance.SaveTeam(CurrentTeam);
 
             if (CheckWinCondition())
             {
@@ -140,7 +167,10 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 Task FinishGameTask = Task.Run(() =>
                 {
                     CurrentGame.Finished = true;
+                    Task t4 = Task.Run(() =>
+                {
                     GameHandler.instance.SaveGame(CurrentGame);
+                });
 
                     foreach (Player p in WinningTeam.Players)
                     {
@@ -170,6 +200,14 @@ namespace _30_Seconds_Windows.ViewModels.Game
             }
 
             await ClearBackstack(0);
+
+
+            Task SaveTask = Task.Run(() =>
+            {
+                WordHandler.instance.SaveWords(CurrentWords);
+                PlayerHandler.instance.SavePlayer(CurrentPlayer);
+                TeamHandler.instance.SaveTeam(CurrentTeam);
+            });
         }
 
         private bool CheckWinCondition()

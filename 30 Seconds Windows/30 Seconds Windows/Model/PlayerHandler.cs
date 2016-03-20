@@ -53,7 +53,10 @@ namespace _30_Seconds_Windows.Model
                 p.LastRound = null;
             }
 
-            SavePlayers(Players);
+            Task.Run(() =>
+                {
+                    SavePlayers(Players);
+                });
         }
 
         public bool SavePlayer(Player player)

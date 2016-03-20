@@ -76,7 +76,10 @@ namespace _30_Seconds_Windows.Model
                     t.Points = 0;
                 }
 
-                SaveItems(MatchingTeams);
+                Task.Run(() =>
+                {
+                    SaveItems(MatchingTeams);
+                });
 
                 return true;
             }

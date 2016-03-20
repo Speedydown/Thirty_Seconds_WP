@@ -15,7 +15,8 @@ namespace _30_Seconds_Windows.Model
 
         private List<Game> Games = null;
 
-        private GameHandler() : base()
+        private GameHandler()
+            : base()
         {
             CreateItemTable<Game>();
             Games = GetItems<Game>().ToList();
@@ -114,7 +115,10 @@ namespace _30_Seconds_Windows.Model
                     g.Finished = true;
                 }
 
-                SaveItems(Games);
+                Task.Run(() =>
+                    {
+                        SaveItems(Games);
+                    });
             }
             catch (Exception e)
             {

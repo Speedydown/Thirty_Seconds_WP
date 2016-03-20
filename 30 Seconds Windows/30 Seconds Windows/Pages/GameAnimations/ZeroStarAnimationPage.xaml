@@ -9,7 +9,7 @@
     Background="{StaticResource Background}">
 
     <Grid x:Name="LayoutRoot">
-        <TextBlock Text="0" Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin=".6,.7" Margin="0,-200,0,0" Foreground="{StaticResource LimeGreen}" FontSize="500">
+        <TextBlock Text="0" Style="{StaticResource BaseTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin=".6,.7" Margin="0,-200,0,0" Foreground="{StaticResource LimeGreen}" FontSize="400">
             <TextBlock.RenderTransform>
                 <RotateTransform x:Name="AnimatedRotateTransform" Angle="{Binding AnimationAngle}" />
             </TextBlock.RenderTransform>

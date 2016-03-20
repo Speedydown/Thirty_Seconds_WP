@@ -5,8 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.IO;
 
 namespace _30_Seconds_Windows.ViewModels.GameAnimations
 {
@@ -17,7 +22,8 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         private DateTime? TimeStarted = null;
         public int AnimationAngle { get; set; }
 
-        private ZeroStarAnimationPageViewModel() : base()
+        private ZeroStarAnimationPageViewModel()
+            : base()
         {
 
         }
@@ -33,6 +39,18 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             Timer.Tick += Timer_Tick; ;
             Timer.Start();
+
+            Task t = Task.Run(async () =>
+            {
+                await LoadFileTask;
+
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    AwwStream.Position = 0;
+                    MediaPlayer.SetSource(AwwStream.AsRandomAccessStream(), AwwFile.ContentType);
+                    MediaPlayer.Play();
+                });
+            });
         }
 
         public override void NavigatedFrom()
@@ -55,11 +73,11 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
 
             NotifyPropertyChanged("AnimationAngle");
 
-            if (MilliSecondsElapsed > 1250)
+            if (MilliSecondsElapsed > 3120)
             {
-                //TODO play sound
                 Timer.Tick -= Timer_Tick;
                 Timer.Stop();
+                MediaPlayer.Stop();
                 (Window.Current.Content as Frame).Navigate(typeof(NextPlayerPage));
 
                 Task t = ClearBackstack(0);

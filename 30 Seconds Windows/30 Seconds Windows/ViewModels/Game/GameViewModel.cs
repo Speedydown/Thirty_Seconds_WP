@@ -3,10 +3,13 @@ using _30_Seconds_Windows.Pages;
 using BaseLogic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Phone.UI.Input;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,12 +18,42 @@ namespace _30_Seconds_Windows.ViewModels.Game
 {
     public abstract class GameViewModel : ViewModel
     {
+        protected MediaElement MediaPlayer = new MediaElement();
         protected DispatcherTimer Timer = new DispatcherTimer();
+
+        //SoundFiles
+        protected static Task LoadFileTask = null;
+        protected static StorageFile StopwatchFile = null;
+        protected static StorageFile AlarmFile = null;
+        protected static StorageFile CheerFile = null;
+        protected static StorageFile AwwFile = null;
+        protected static StorageFile VictoryFile = null;
+
+        protected static MemoryStream StopwatchStream = new MemoryStream();
+        protected static MemoryStream AlarmStream = new MemoryStream();
+        protected static MemoryStream CheerStream = new MemoryStream();
+        protected static MemoryStream AwwStream = new MemoryStream();
+        protected static MemoryStream VictoryStream = new MemoryStream();
 
         protected GameViewModel()
             : base()
         {
-            
+            if (StopwatchFile == null || AlarmFile == null)
+                LoadFileTask = Task.Run(async () =>
+            {
+                StorageFolder folder = await (await Package.Current.InstalledLocation.GetFolderAsync("Assets")).GetFolderAsync("Sounds");
+                StopwatchFile = await folder.GetFileAsync("Stopwatch.wav");
+                AlarmFile = await folder.GetFileAsync("Alarm.wav");
+                CheerFile = await folder.GetFileAsync("Cheer.wav");
+                AwwFile = await folder.GetFileAsync("Aww.wav");
+                VictoryFile = await folder.GetFileAsync("Victory.wav");
+
+                (await StopwatchFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(StopwatchStream);
+                (await AlarmFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AlarmStream);
+                (await CheerFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(CheerStream);
+                (await AwwFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AwwStream);
+                (await VictoryFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(VictoryStream);
+            });
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -36,7 +69,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
-        
+
         public virtual void NavigatedFrom()
         {
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;

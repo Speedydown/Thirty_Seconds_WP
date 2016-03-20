@@ -18,7 +18,8 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public Team CurrentTeam { get; private set; }
         public Player CurrentPlayer { get; private set; }
 
-        private PlayerReadyPageViewModel() : base()
+        private PlayerReadyPageViewModel()
+            : base()
         {
 
         }
@@ -40,14 +41,16 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task StartRoundButton()
         {
+            RoundPageViewModel.instance.Get5NewWords();
             CurrentPlayer.LastRound = DateTime.Now;
             CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
-
-            PlayerHandler.instance.SavePlayer(CurrentPlayer);
-
             CurrentTeam.Round++;
 
-            TeamHandler.instance.SaveTeam(CurrentTeam);
+            Task t = Task.Run(() =>
+            {
+                PlayerHandler.instance.SavePlayer(CurrentPlayer);
+                TeamHandler.instance.SaveTeam(CurrentTeam);
+            });
 
             (Window.Current.Content as Frame).Navigate(typeof(RoundPage));
             await ClearBackstack(0);

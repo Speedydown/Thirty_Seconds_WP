@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:wp8="using:Microsoft.AdMediator.WindowsPhone81"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="LayoutRoot">
@@ -42,7 +43,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Background="{StaticResource LimeGreen}" Visibility="{Binding CurrentGameCorrect, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2">
-                                        
+
                                     </Grid>
                                     <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" Visibility="{Binding CurrentGameCorrect, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" TextAlignment="Left" FontSize="25" Margin="15,5" Foreground="Black" Text="{Binding Name}" />
                                     <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" Visibility="{Binding CurrentGameCorrect, Converter={StaticResource BooleanToVisibilityConverter}}" TextAlignment="Left" FontSize="25" Margin="15,5" Foreground="White" Text="{Binding Name}" />
@@ -53,6 +54,16 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <wp8:AdMediatorControl
+                    Visibility="{Binding AdVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    x:Name="AdMediator_Ad1"
+                    Id="AdMediator-Id-D1FDFDA7-EABB-474C-940C-ECA7FBCFF143"
+                          Margin="0,15"
+                      HorizontalAlignment="Center" 
+                      Height="50" 
+                              Background="{StaticResource Background}"
+                      VerticalAlignment="Top" 
+                      Width="320"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Margin="0,10" Visibility="{Binding RoundFinishedAnimationVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Image Source="ms-appx:///Assets/Images/HourGlass30.png" Margin="100,15" RenderTransformOrigin=".5,.5" >

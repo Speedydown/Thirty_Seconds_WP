@@ -93,18 +93,26 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 }
                 else
                 {
-                    //Get Next Team based on team index
-                    Team CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
-                    int TeamIndex = CurrentGame.Teams.IndexOf(CurrentTeam);
-
-                    TeamIndex++;
-
-                    if (TeamIndex + 1 > CurrentGame.Teams.Count)
+                    if (CurrentGame.Teams.Count(t => t.Round < CurrentGame.Teams.Max(te => te.Round)) > 0)
                     {
-                        TeamIndex = TeamIndex - CurrentGame.Teams.Count;
+                        this.CurrentTeam = CurrentGame.Teams.OrderBy(t => t.Round).First();
+                    }
+                    else
+                    {
+                        //Get Next Team based on team index
+                        Team CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
+                        int TeamIndex = CurrentGame.Teams.IndexOf(CurrentTeam);
+
+                        TeamIndex++;
+
+                        if (TeamIndex + 1 > CurrentGame.Teams.Count)
+                        {
+                            TeamIndex = TeamIndex - CurrentGame.Teams.Count;
+                        }
+
+                        this.CurrentTeam = CurrentGame.Teams[TeamIndex];
                     }
 
-                    this.CurrentTeam = CurrentGame.Teams[TeamIndex];
                     CurrentGame.CurrentTeamID = this.CurrentTeam.InternalID;
                 }
 
