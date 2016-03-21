@@ -211,7 +211,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         }
 
         private bool CheckWinCondition()
-        {
+        { 
             Team LeadTeam = CurrentGame.Teams.OrderByDescending(t => t.Points).First();
 
             if (LeadTeam.Points >= SettingsHandler.instance.CurrentSettings.RequiredPoints)

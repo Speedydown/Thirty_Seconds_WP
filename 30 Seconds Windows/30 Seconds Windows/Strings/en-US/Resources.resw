@@ -118,190 +118,190 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MainPageCurrentGameButtonTextBlock.Text" xml:space="preserve">
-    <value>Huidig spel</value>
+    <value>Current game</value>
   </data>
   <data name="MainPageNewGameButtonTextBlock.Text" xml:space="preserve">
-    <value>Nieuw spel</value>
+    <value>New game</value>
   </data>
   <data name="MainPageRulesButtonTextBlock.Text" xml:space="preserve">
-    <value>Regels</value>
+    <value>Rules</value>
   </data>
   <data name="MainPageTitleTextBlock.Text" xml:space="preserve">
     <value>30 Seconds!</value>
   </data>
   <data name="TeamsPageAddTeamButtonTextBlock.Text" xml:space="preserve">
-    <value>Voeg nieuw team toe</value>
+    <value>Add new team</value>
   </data>
   <data name="TeamsPageTeamsHeader.Text" xml:space="preserve">
-    <value>Teams in dit spel</value>
+    <value>Teams in this game</value>
   </data>
   <data name="TeamsPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Nieuw spel</value>
+    <value>New game</value>
   </data>
   <data name="Text_Players" xml:space="preserve">
-    <value>spelers</value>
+    <value>Players</value>
   </data>
   <data name="TeamsPagePreviousTeamsHeader.Text" xml:space="preserve">
-    <value>Alle Teams</value>
+    <value>All teams</value>
   </data>
   <data name="TeamsPageNoTeamsInGameTextBlock.Text" xml:space="preserve">
-    <value>Geen teams toegevoegd</value>
+    <value>No teams added</value>
   </data>
   <data name="TeamsPageStartGameButtonTextBlock.Text" xml:space="preserve">
-    <value>Start spel</value>
+    <value>Start game</value>
   </data>
   <data name="PlayersPageAddPlayerButtonTextBlock.Text" xml:space="preserve">
-    <value>Voeg nieuwe speler toe</value>
+    <value>Add new player</value>
   </data>
   <data name="PlayersPageEditTeamNameTextbox.PlaceholderText" xml:space="preserve">
-    <value>Teamnaam</value>
+    <value>Team name</value>
   </data>
   <data name="PlayersPageNoPlayersInTeamTextBlock.Text" xml:space="preserve">
-    <value>Geen spelers toegevoegd</value>
+    <value>No players!</value>
   </data>
   <data name="PlayersPagePreviousPlayersHeader.Text" xml:space="preserve">
-    <value>Alle Spelers</value>
+    <value>All players</value>
   </data>
   <data name="PlayersPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Team bewerken</value>
+    <value>Edit team</value>
   </data>
   <data name="text_Cancel" xml:space="preserve">
-    <value>Annuleren</value>
+    <value>Cancel</value>
   </data>
   <data name="text_Delete" xml:space="preserve">
-    <value>Verwijderen</value>
+    <value>Delete</value>
   </data>
   <data name="text_DeletePlayerQuestion_Body" xml:space="preserve">
-    <value>Wil je de speler "{0}" verwijderen?</value>
+    <value>Do you want to remove the player "{0}"?</value>
   </data>
   <data name="text_DeletePlayerQuestion_Title" xml:space="preserve">
-    <value>Speler verwijderen?</value>
+    <value>Delete player?</value>
   </data>
   <data name="text_DeleteTeamQuestion_Body" xml:space="preserve">
-    <value>Wil je het team "{0}" verwijderen?</value>
+    <value>Do you want to remove the team "{0}"?</value>
   </data>
   <data name="text_DeleteTeamQuestion_Title" xml:space="preserve">
-    <value>Team verwijderen?</value>
+    <value>Remove team?</value>
   </data>
   <data name="text_TimesPlayed" xml:space="preserve">
-    <value>Spellen gespeeld</value>
+    <value>Games played</value>
   </data>
   <data name="PlayerPageEditPlayerNameTextbox.PlaceholderText" xml:space="preserve">
-    <value>Spelernaam</value>
+    <value>Player name</value>
   </data>
   <data name="PlayerPageTeamStatsHeader.Text" xml:space="preserve">
-    <value>Statistieken</value>
+    <value>Statistics</value>
   </data>
   <data name="PlayerPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Speler bewerken</value>
+    <value>Edit player</value>
   </data>
   <data name="PlayersPageDeletePlayerHintTextBlock.Text" xml:space="preserve">
-    <value>Tip: Speler verwijderen? Hou de knop langer vast</value>
+    <value>Tip: Delete player? Hold the button</value>
   </data>
   <data name="PlayersPageTeamMembersHeader.Text" xml:space="preserve">
-    <value>Teamleden</value>
+    <value>Team members</value>
   </data>
   <data name="TeamsPageDeleteTeamHintTextBlock.Text" xml:space="preserve">
-    <value>Tip: houd een team vast om dit team te verwijderen</value>
+    <value>Tip: hold a team to remove from the game</value>
   </data>
   <data name="text_QuestionsAnswered" xml:space="preserve">
-    <value>Woorden beantwoord</value>
+    <value>Played words</value>
   </data>
   <data name="text_QuestionsCorrect" xml:space="preserve">
-    <value>Woorden goed beantwoord</value>
+    <value>Correct words</value>
   </data>
   <data name="text_TimesWon" xml:space="preserve">
-    <value>Spellen gewonnen</value>
+    <value>Games won</value>
   </data>
   <data name="SplashPageLoadingText.Text" xml:space="preserve">
-    <value>Bezig met het ophalen van nieuwe woorden...</value>
+    <value>Busy retrieving new words...</value>
   </data>
   <data name="NextPlayerPageNextRoundPivotHeader.Text" xml:space="preserve">
-    <value>Volgende ronde</value>
+    <value>Next round</value>
   </data>
   <data name="NextPlayerPagePassPhoneToText" xml:space="preserve">
-    <value>Geef mij door aan {0}</value>
+    <value>Give me to {0}</value>
   </data>
   <data name="NextPlayerPageScorePivotHeader.Text" xml:space="preserve">
-    <value>Huidige stand</value>
+    <value>Current standings</value>
   </data>
   <data name="NextPlayerPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Volgende speler</value>
+    <value>Next player</value>
   </data>
   <data name="VersusIntroPageTeamHeader.Text" xml:space="preserve">
     <value>Teams</value>
   </data>
   <data name="NextPlayerPageContinueButtonTextBlock.Text" xml:space="preserve">
-    <value>Doorgaan</value>
+    <value>Continue</value>
   </data>
   <data name="NextPlayerPageRoundTextBox.Text" xml:space="preserve">
-    <value>Ronde:</value>
+    <value>Round:</value>
   </data>
   <data name="NextPlayerPageScoreTextBox.Text" xml:space="preserve">
-    <value>Score:</value>
+    <value>Points:</value>
   </data>
   <data name="CancelGame_Header" xml:space="preserve">
-    <value>Stoppen met het spel</value>
+    <value>Cancel game</value>
   </data>
   <data name="CancelGame_Text" xml:space="preserve">
-    <value>Weet je zeker dat je terug wil naar het hoofdmenu?</value>
+    <value>You are cancelling the game. Are you sure?</value>
   </data>
   <data name="NextPlayerPageQuestionsCorrectTextBox.Text" xml:space="preserve">
-    <value>Goede antwoorden</value>
+    <value>Correct answers</value>
   </data>
   <data name="PlayerReadyPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Volgende ronde</value>
+    <value>Next round</value>
   </data>
   <data name="text_MainMenu" xml:space="preserve">
-    <value>Hoofdmenu</value>
+    <value>Main menu</value>
   </data>
   <data name="PlayerReadyPageStartButtonTextBlock.Text" xml:space="preserve">
-    <value>Start</value>
+    <value>Play</value>
   </data>
   <data name="RoundPageNextRoundButtonTextBlock.Text" xml:space="preserve">
-    <value>Volgende ronde</value>
+    <value>Next round</value>
   </data>
   <data name="MainPagePrivacyPolicyButton.Label" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
   <data name="MainPageSettingsButton.Label" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Settings</value>
   </data>
   <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Settings</value>
   </data>
   <data name="RoundPageFillInAnswersTextBlock.Text" xml:space="preserve">
-    <value>Vul de juiste antwoorden in:</value>
+    <value>Fill in the correct answers:</value>
   </data>
   <data name="RoundPageTimeUpTextBlock.Text" xml:space="preserve">
-    <value>De tijd is op!</value>
+    <value>Out of time!</value>
   </data>
   <data name="SettingsPageWordPacksButtonTextBlock.Text" xml:space="preserve">
-    <value>Woordpakketten</value>
+    <value>Word packs</value>
   </data>
   <data name="SettingsPageLanguageComboBox.PlaceholderText" xml:space="preserve">
     <value />
   </data>
   <data name="SettingsPageRemoveAdsButtonTextBlock.Text" xml:space="preserve">
-    <value>Verwijder advertenties</value>
+    <value>Remove ads</value>
   </data>
   <data name="SettingsPagePointsComboBox.PlaceholderText" xml:space="preserve">
     <value />
   </data>
   <data name="SettingsWordPackspageAvailablePacksTextBlock.Text" xml:space="preserve">
-    <value>Beschikbare pakketten</value>
+    <value>Available packs</value>
   </data>
   <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
-    <value>Woordpakketten</value>
+    <value>Word packs</value>
   </data>
   <data name="NoWordsHeader" xml:space="preserve">
-    <value>Geen woorden</value>
+    <value>No words</value>
   </data>
   <data name="NoWordsText" xml:space="preserve">
-    <value>Er konden geen woorden worden gedownload. Controleer de internet verbinding en probeer het opnieuw.</value>
+    <value>Words could not be retrieved. Please check your internet connection and try again.</value>
   </data>
   <data name="PlayerReadyPageHeaderTextBlock.Text" xml:space="preserve">
-    <value>Klaar om te spelen?</value>
+    <value>Ready to play?</value>
   </data>
   <data name="PrivacyPolicyHeader.Text" xml:space="preserve">
     <value>Privacy policy</value>
@@ -336,22 +336,22 @@ De gebruiker neemt verantwoordelijkheid voor de Persoonsgegevens van derden die 
 De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-tools, waarbij organisatieprocedures en werkwijzen worden gevolgd die nauw aansluiten op de aangegeven doelen. Naast de Verantwoordelijke voor de verwerking van de Gegevens kunnen de gegevens in bepaalde gevallen ook toegankelijk zijn voor bepaalde met de verwerking belaste personen die zijn betrokken bij de exploitatie van de site (beheer, verkoop, marketing, juridisch, systeembeheer) of door de Eigenaar als Gegevensverwerkers aangestelde externe partijen (zoals externe technische serviceproviders, mailprogramma's, hostingproviders, IT-bedrijven, communicatiebureaus). De bijgewerkte lijst van deze partijen kan te allen tijde bij de Verantwoordelijke voor de verwerking van de Gegevens worden aangevraagd.</value>
   </data>
   <data name="SettingsPageLanguageeComboBoxHeader.Text" xml:space="preserve">
-    <value>Taal</value>
+    <value>Language</value>
   </data>
   <data name="SettingsPagePoinsDropdownTextBlock.Text" xml:space="preserve">
-    <value>Benodigde punten</value>
+    <value>Points needed</value>
   </data>
   <data name="test_Retry" xml:space="preserve">
-    <value>Opnieuw</value>
+    <value>Try again</value>
   </data>
   <data name="VictoryAnimiationPageHeaderTextBlock.Text" xml:space="preserve">
-    <value>Einde spel</value>
+    <value>End of game</value>
   </data>
   <data name="EndGamePageHeaderTextBlock.Text" xml:space="preserve">
-    <value>Eind scores</value>
+    <value>Final scores</value>
   </data>
   <data name="VictoryAnimationPageVictorTextBlock.Text" xml:space="preserve">
-    <value>Winnaar:</value>
+    <value>Champions</value>
   </data>
   <data name="RulesPageText1.Text" xml:space="preserve">
     <value>De speler die de woorden omschrijft mag geen namen op de kaart noemen. Woorden als de, het en een zijn wel toegestaan.</value>
@@ -378,6 +378,6 @@ De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-to
     <value>Na een halve minuut is de tijd om, en mag er niks meer gezegd of geraden worden.</value>
   </data>
   <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
-    <value>Spelregels</value>
+    <value>Rules</value>
   </data>
 </root>

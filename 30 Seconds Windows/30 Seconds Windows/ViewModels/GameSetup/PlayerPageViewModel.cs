@@ -40,7 +40,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 CurrentPlayer.Name = "Player" + CurrentPlayer.InternalID;
             }
 
-            PlayerHandler.instance.SavePlayer(CurrentPlayer);
+            Task.Run(() =>
+                {
+                    PlayerHandler.instance.SavePlayer(CurrentPlayer);
+                });
         }
     }
 }

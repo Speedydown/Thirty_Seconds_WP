@@ -14,6 +14,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.IO;
 using Windows.Storage;
+using Windows.UI.ViewManagement;
 
 namespace _30_Seconds_Windows.ViewModels.GameAnimations
 {
@@ -33,6 +34,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         public async Task Load()
         {
             IsLoading = true;
+           // await StatusBar.GetForCurrentView().HideAsync();
             NavigatedTo();
             TimeStarted = DateTime.Now;
             AnimationFontSize = 300;
@@ -57,6 +59,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
 
         public override void NavigatedFrom()
         {
+           // StatusBar.GetForCurrentView().ShowAsync();
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
             Timer.Stop();

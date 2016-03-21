@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -39,7 +40,8 @@ namespace _30_Seconds_Windows.ViewModels
         public async Task LoadData()
         {
             IsLoading = true;
-            await StatusBar.GetForCurrentView().HideAsync();
+            await StatusBar.GetForCurrentView().ShowAsync();
+            StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
             HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
             IsLoading = false;
         }

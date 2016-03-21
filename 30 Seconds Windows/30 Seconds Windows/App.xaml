@@ -187,10 +187,10 @@
         <!--TextblockStyle-->
         <Style x:Key="ButtonTextBlockStyle" x:Name="ButtonTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0,-11,0,0"/>       
+            <Setter Property="Margin" Value="0,-8,0,0"/>       
         </Style>
 
         <Style x:Key="PageSubHeaderTextBlockStyle" x:Name="PageSubHeaderTextBlockStyle" TargetType="TextBlock">
@@ -209,6 +209,14 @@
         <SolidColorBrush x:Key="TextBoxDisabledBorderThemeBrush" Color="{StaticResource DisabledColor}" />
         <SolidColorBrush x:Key="TextBoxDisabledForegroundThemeBrush" Color="{StaticResource DisabledColor}" />
         <SolidColorBrush x:Key="TextBoxDisabledPlaceHolderTextThemeBrush" Color="{StaticResource DisabledColor}"/>
+
+        <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="57.5"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="LineHeight" Value="57.5"/>
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
 
 
         <!--Pivot-->

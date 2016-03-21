@@ -125,6 +125,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             IsLoading = true;
             NavigatedTo();
             AnimationReversed = false;
+            await StatusBar.GetForCurrentView().HideAsync();
             StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
 
             AnimationMargin = new Thickness(0, -600, -600, 0);
@@ -136,7 +137,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             });
 
 
-            await StatusBar.GetForCurrentView().HideAsync();
+            //await StatusBar.GetForCurrentView().HideAsync();
             CurrentGame = Model.GameHandler.instance.GetCurrentGame();
             NotifyPropertyChanged("CurrentGame");
 

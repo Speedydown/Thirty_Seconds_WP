@@ -48,7 +48,7 @@ namespace _30_Seconds_Windows
             {
                 string DefaultLanguage = Windows.Globalization.ApplicationLanguages.Languages[0];
 
-                if (DefaultLanguage == "nl-NL")
+                if (DefaultLanguage == "nl-NL" || DefaultLanguage == "nl-BE")
                 {
                     SettingsHandler.instance.CurrentSettings.CurrentLanguageID = 1;
                 }

@@ -116,7 +116,7 @@
             <TextBlock x:Uid="NextPlayerPageTitleTextBlock" Style="{ThemeResource TitleTextBlockStyle}"/>
         </StackPanel>
 
-        <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Background="{StaticResource Background}"><!--Margin="0,27,0,0"-->
             <Pivot x:Name="NextRoundPivot" Style="{StaticResource TSPivotStyle}" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToOppositeVisibilityConverter}}" SelectionChanged="NextRoundPivot_SelectionChanged">
                 <PivotItem ContentTemplate="{StaticResource NextRoundTemplate}" Foreground="{StaticResource LimeGreen}">
                     <PivotItem.Header>

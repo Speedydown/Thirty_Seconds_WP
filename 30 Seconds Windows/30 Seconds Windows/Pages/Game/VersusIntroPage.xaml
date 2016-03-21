@@ -15,7 +15,7 @@
                 <Grid Margin="15,0" VerticalAlignment="Top">
                     <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                         <Grid>
-                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
+                            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,5,15,3" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
                         </Grid>
                     </Border>
                     <Image VerticalAlignment="Bottom" Margin="-210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer1.png" Height="150" Canvas.ZIndex="1"/>
@@ -25,7 +25,7 @@
                 <Grid Margin="15,0" VerticalAlignment="Bottom">
                     <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                         <Grid>
-                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
+                            <TextBlock TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,5,15,3" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
                         </Grid>
                     </Border>
                     <Image VerticalAlignment="Bottom" Margin="210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer3.png" Height="150" Canvas.ZIndex="1"/>
@@ -45,7 +45,7 @@
                 <Grid Grid.Row="0" Margin="15,0" VerticalAlignment="Bottom">
                     <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                         <Grid>
-                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
+                            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,5,15,4" Foreground="{StaticResource Background}" Text="{Binding Team1.Name}" />
                         </Grid>
                     </Border>
                     <Image VerticalAlignment="Bottom" Margin="-210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer1.png" Height="150" Canvas.ZIndex="1"/>
@@ -55,7 +55,7 @@
                 <Grid Grid.Row="2" Margin="15,0" VerticalAlignment="Bottom">
                     <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                         <Grid>
-                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
+                            <TextBlock TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,5,15,0" Foreground="{StaticResource Background}" Text="{Binding Team2.Name}" />
                         </Grid>
                     </Border>
                     <Image VerticalAlignment="Bottom" Margin="210,-80,0, -24" Source="ms-appx:///Assets/Images/Beer3.png" Height="150" Canvas.ZIndex="1"/>
@@ -64,7 +64,7 @@
                 <Grid Grid.Row="4" Margin="15,0" VerticalAlignment="Bottom">
                     <Border  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                         <Grid>
-                            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Team3.Name}" />
+                            <TextBlock TextAlignment="Center" FontWeight="Bold" FontSize="25" Margin="15,5,15,0" Foreground="{StaticResource Background}" Text="{Binding Team3.Name}" />
                         </Grid>
                     </Border>
                     <Image VerticalAlignment="Bottom" Margin="0,-80,0, -24" Source="ms-appx:///Assets/Images/Beer2.png" Height="150" Canvas.ZIndex="1"/>
@@ -86,7 +86,7 @@
                         <DataTemplate>
                             <Border Margin="15,5"  Background="{StaticResource Orange}" CornerRadius="30,30,30,30" BorderBrush="{StaticResource Background}" BorderThickness="3" >
                                 <Grid>
-                                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,4" Foreground="{StaticResource Background}" Text="{Binding Name}" />
+                                    <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="25" Margin="15,0,15,0" Foreground="{StaticResource Background}" Text="{Binding Name}" />
                                 </Grid>
                             </Border>
                         </DataTemplate>

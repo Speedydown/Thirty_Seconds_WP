@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -40,6 +41,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public async Task Load()
         {
             IsLoading = true;
+            await StatusBar.GetForCurrentView().ShowAsync();
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             IsLoading = false;
         }

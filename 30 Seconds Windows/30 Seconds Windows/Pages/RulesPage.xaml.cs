@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -44,6 +45,7 @@ namespace _30_Seconds_Windows.Pages
 
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

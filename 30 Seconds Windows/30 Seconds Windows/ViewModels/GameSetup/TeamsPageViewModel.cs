@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -135,9 +136,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 p.GameID = CurrentGame.InternalID;
             }
 
-            PlayerHandler.instance.SavePlayers(team.Players.ToArray());
-
-            TeamHandler.instance.SaveTeam(team);
+            Task.Run(() =>
+            {
+                PlayerHandler.instance.SavePlayers(team.Players.ToArray());
+                TeamHandler.instance.SaveTeam(team);
+            });
         }
 
         public void AddNewTeamToGameButton()
@@ -153,13 +156,19 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             };
 
             CurrentGame.Teams.Add(NewTeam);
-            TeamHandler.instance.SaveTeam(NewTeam);
+            Task.Run(() =>
+            {
+                TeamHandler.instance.SaveTeam(NewTeam);
+            });
         }
 
         public async Task StartGameButton()
         {
             CurrentGame.TimeStarted = DateTime.Now;
-            GameHandler.instance.SaveGame(CurrentGame);
+            Task task = Task.Run(() =>
+            {
+                GameHandler.instance.SaveGame(CurrentGame);
+            });
 
             List<Player> playersToSave = new List<Player>();
 
@@ -173,7 +182,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             }
 
             (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
-            PlayerHandler.instance.SavePlayers(playersToSave.ToArray());
+            task = Task.Run(() =>
+            {
+                PlayerHandler.instance.SavePlayers(playersToSave.ToArray());
+            });
         }
 
         public async Task DeleteTeamButton(Team TeamToDelete)

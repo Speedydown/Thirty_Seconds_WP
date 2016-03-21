@@ -99,7 +99,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 GamesPlayed = 0,
             };
 
-            PlayerHandler.instance.SavePlayer(NewPlayer);
+            Task.Run(() =>
+                {
+                    PlayerHandler.instance.SavePlayer(NewPlayer);
+                });
 
             CurrentTeam.Players.Add(NewPlayer);
         }
@@ -117,7 +120,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 
             ExistingPlayer.TeamID = CurrentTeam.InternalID;
             ExistingPlayer.GameID = GameHandler.instance.GetCurrentGame().InternalID;
-            PlayerHandler.instance.SavePlayer(ExistingPlayer);
+            Task.Run(() =>
+                {
+                    PlayerHandler.instance.SavePlayer(ExistingPlayer);
+                });
         }
 
         public async Task DeletePlayerButton(Player PlayerToDelete)
@@ -172,7 +178,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 CurrentTeam.Name = "Team" + CurrentTeam.InternalID;
             }
 
-            TeamHandler.instance.SaveTeam(CurrentTeam);
+            Task.Run(() =>
+                {
+                    TeamHandler.instance.SaveTeam(CurrentTeam);
+                });
         }
     }
 }
