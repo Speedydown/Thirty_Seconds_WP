@@ -5,9 +5,6 @@ using _30_Seconds_Windows.Pages.GameSetup;
 using _30_Seconds_Windows.Pages.Settings;
 using BaseLogic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -40,7 +37,6 @@ namespace _30_Seconds_Windows.ViewModels
         public async Task LoadData()
         {
             IsLoading = true;
-            await StatusBar.GetForCurrentView().ShowAsync();
             StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
             HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
             IsLoading = false;

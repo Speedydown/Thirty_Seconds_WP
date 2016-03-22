@@ -41,7 +41,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public async Task Load()
         {
             IsLoading = true;
-            await StatusBar.GetForCurrentView().ShowAsync();
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             IsLoading = false;
         }

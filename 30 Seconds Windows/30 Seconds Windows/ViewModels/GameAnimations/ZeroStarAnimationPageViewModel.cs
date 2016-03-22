@@ -32,7 +32,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         public async Task Load()
         {
             IsLoading = true;
-          //  await StatusBar.GetForCurrentView().HideAsync();
             NavigatedTo();
             TimeStarted = DateTime.Now;
             AnimationAngle = 0;
@@ -58,7 +57,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         public override void NavigatedFrom()
         {
             base.NavigatedFrom();
-          //  StatusBar.GetForCurrentView().ShowAsync();
             Timer.Tick -= Timer_Tick;
             Timer.Stop();
         }
