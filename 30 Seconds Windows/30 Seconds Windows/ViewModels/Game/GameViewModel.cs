@@ -35,25 +35,32 @@ namespace _30_Seconds_Windows.ViewModels.Game
         protected static MemoryStream AwwStream = new MemoryStream();
         protected static MemoryStream VictoryStream = new MemoryStream();
 
+        private object locker = new object();
+
         protected GameViewModel()
             : base()
         {
-            if (StopwatchFile == null || AlarmFile == null)
-                LoadFileTask = Task.Run(async () =>
+            lock (locker)
             {
-                StorageFolder folder = await (await Package.Current.InstalledLocation.GetFolderAsync("Assets")).GetFolderAsync("Sounds");
-                StopwatchFile = await folder.GetFileAsync("Stopwatch.wav");
-                AlarmFile = await folder.GetFileAsync("Alarm.wav");
-                CheerFile = await folder.GetFileAsync("Cheer.wav");
-                AwwFile = await folder.GetFileAsync("Aww.wav");
-                VictoryFile = await folder.GetFileAsync("Victory.wav");
+                if (StopwatchFile == null || AlarmFile == null)
 
-                (await StopwatchFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(StopwatchStream);
-                (await AlarmFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AlarmStream);
-                (await CheerFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(CheerStream);
-                (await AwwFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AwwStream);
-                (await VictoryFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(VictoryStream);
-            });
+                    LoadFileTask = Task.Run(async () =>
+                {
+                    StorageFolder folder = await (await Package.Current.InstalledLocation.GetFolderAsync("Assets")).GetFolderAsync("Sounds");
+                    StopwatchFile = await folder.GetFileAsync("Stopwatch.wav");
+                    AlarmFile = await folder.GetFileAsync("Alarm.wav");
+                    CheerFile = await folder.GetFileAsync("Cheer.wav");
+                    AwwFile = await folder.GetFileAsync("Aww.wav");
+                    VictoryFile = await folder.GetFileAsync("Victory.wav");
+
+                    (await StopwatchFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(StopwatchStream);
+                    (await AlarmFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AlarmStream);
+                    (await CheerFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(CheerStream);
+                    (await AwwFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(AwwStream);
+                    (await VictoryFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(VictoryStream);
+
+                });
+            }
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
