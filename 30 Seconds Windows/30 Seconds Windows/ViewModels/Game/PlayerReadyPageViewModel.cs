@@ -29,10 +29,15 @@ namespace _30_Seconds_Windows.ViewModels.Game
             IsLoading = true;
             NavigatedTo();
 
+            Task t = Task.Run(() =>
+            {
+                RoundPageViewModel.instance.Get5NewWords();
+            });
 
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
             CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
+
             NotifyPropertyChanged("CurrentPlayer");
             NotifyPropertyChanged("CurrentTeam");
 
@@ -41,7 +46,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task StartRoundButton()
         {
-            RoundPageViewModel.instance.Get5NewWords();
             CurrentPlayer.LastRound = DateTime.Now;
             CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
             CurrentTeam.Round++;
