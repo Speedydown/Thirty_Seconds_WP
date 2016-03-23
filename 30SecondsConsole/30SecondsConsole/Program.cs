@@ -14,8 +14,9 @@ namespace _30SecondsConsole
         {
             AppConfig.Instance.EnableLogging = false;
 
-
-            ReadCSV();
+            WordPack wp = WordPackHandler.instance.GetObjectByID(3) as WordPack;
+            
+            ReadCSV(3);
 
             var Words = WordHandler.instance.GetWordsByWordPack(3);
 
@@ -28,13 +29,12 @@ namespace _30SecondsConsole
             Console.ReadLine();
         }
 
-        public static void ReadCSV()
+        public static void ReadCSV(int WordPackID)
         {
-            int WordPackID = 3;
-
             for (int i = 0; i < 30; i++)
             {
-                List<string> Words = CSVReader.ReadCSV("Database 30 seconds All Languages.csv", i);
+                
+                List<string> Words = CSVReader.ReadCSV("Database 30 seconds.csv", i);
 
                 string CategoryName = Words.FirstOrDefault();
 

@@ -19,7 +19,7 @@ namespace _30SecondsConsole
 
                 while ((line = sr.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(',');
+                    string[] parts = line.Split(';');
 
                     try
                     {
