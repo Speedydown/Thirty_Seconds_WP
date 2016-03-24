@@ -1,3 +1,0 @@
-﻿1: Engels toevoegen als taal
-2: Vragen om reviews
-3: testen

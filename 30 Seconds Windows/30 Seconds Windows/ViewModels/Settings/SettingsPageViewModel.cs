@@ -1,4 +1,5 @@
 ﻿using _30_Seconds_Windows.Model;
+using _30_Seconds_Windows.Model.Utils;
 using _30_Seconds_Windows.Pages.Settings;
 using BaseLogic;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -90,7 +92,25 @@ namespace _30_Seconds_Windows.ViewModels.Settings
         {
             if (!IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName))
             {
+                RemoveAdsButtonVisible = false;
+                IsLoading = true;
                 RemoveAdsButtonVisible = !(await IAPHandler.instance.BuyProduct(IAPHandler.RemoveAdsFeatureName));
+
+                if (!RemoveAdsButtonVisible)
+                {
+                    ////Create warning dialog:
+                    var messageDialog = new MessageDialog(Utils.ResourceLoader.GetString("Purchase_completed_Text"), Utils.ResourceLoader.GetString("Purchase_completed_Header"));
+
+                    messageDialog.Commands.Add(
+                        new UICommand(
+                            Utils.ResourceLoader.GetString("text_ok"),
+                            null,
+                            0));
+
+                    IUICommand Command = await messageDialog.ShowAsync();
+                }
+
+                IsLoading = false;
             }
         }
 

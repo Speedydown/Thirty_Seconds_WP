@@ -71,6 +71,7 @@
                         x:Name="SettingsPageRemoveAdsButton"
                         Template="{StaticResource LimeGreenButton}"
                         Style="{StaticResource PrimaryActionButtonStyle}"
+                        IsEnabled="{Binding RemoveAdsButtonVisible}"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"

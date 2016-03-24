@@ -357,28 +357,28 @@ modification.
     <value>Champions</value>
   </data>
   <data name="RulesPageText1.Text" xml:space="preserve">
-    <value>De speler die de woorden omschrijft mag geen namen op de kaart noemen. Woorden als de, het en een zijn wel toegestaan.</value>
+    <value>The player that describes the words can not mention any names on the card. Words like "a" or "the" are permitted.</value>
   </data>
   <data name="RulesPageText2.Text" xml:space="preserve">
-    <value>De speler die de woorden omschrijft mag geen namen die van de kaart zijn afgeleid noemen.</value>
+    <value>It is not allowed to describe words that are similar to the words on the card.</value>
   </data>
   <data name="RulesPageText3.Text" xml:space="preserve">
-    <value>De speler die de woorden omschrijft mag geen klinkt als of rijmt op tactieken toepassen.</value>
+    <value>The player that describes the words can not describe the word with "sounds like" or "rhymes with"</value>
   </data>
   <data name="RulesPageText4.Text" xml:space="preserve">
-    <value>De speler die de woorden omschrijft mag niet verwijzen naar letters van het alfabet.</value>
+    <value>The player that describes the words can not refer to the letters of the alphabet.</value>
   </data>
   <data name="RulesPageText5.Text" xml:space="preserve">
-    <value>De speler die de woorden omschrijft mag niet naar voorwerpen wijzen.</value>
+    <value>the player that describes the words can not point to objects.</value>
   </data>
   <data name="RulesPageText6.Text" xml:space="preserve">
-    <value>Neuriën, zingen en gebaren zijn wel toegestaan.</value>
+    <value>Humming, singing and gestures are allowed.</value>
   </data>
   <data name="RulesPageText7.Text" xml:space="preserve">
-    <value>Jouw team verdient een extra punt wanneer alle woorden geraden zijn.</value>
+    <value>Your team earns an extra point when all words are guessed.</value>
   </data>
   <data name="RulesPageText8.Text" xml:space="preserve">
-    <value>Na een halve minuut is de tijd om, en mag er niks meer gezegd of geraden worden.</value>
+    <value>After 30 seconds the time is up and words can no longer be guessed.</value>
   </data>
   <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
     <value>Rules</value>
@@ -391,5 +391,14 @@ modification.
   </data>
   <data name="Text_Review" xml:space="preserve">
     <value>Review</value>
+  </data>
+  <data name="Purchase_completed_Header" xml:space="preserve">
+    <value>Purchase completed</value>
+  </data>
+  <data name="Purchase_completed_Text" xml:space="preserve">
+    <value>Thank you for supporting us!</value>
+  </data>
+  <data name="text_ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

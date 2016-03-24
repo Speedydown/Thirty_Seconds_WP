@@ -389,4 +389,13 @@ De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-to
   <data name="Text_Review" xml:space="preserve">
     <value>Review</value>
   </data>
+  <data name="Purchase_completed_Header" xml:space="preserve">
+    <value>Aankoop voltooid</value>
+  </data>
+  <data name="Purchase_completed_Text" xml:space="preserve">
+    <value>Bedankt voor je aankoop.</value>
+  </data>
+  <data name="text_ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>
