@@ -99,10 +99,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 GamesPlayed = 0,
             };
 
-            Task.Run(() =>
-                {
-                    PlayerHandler.instance.SavePlayer(NewPlayer);
-                });
+            PlayerHandler.instance.SavePlayer(NewPlayer);
 
             CurrentTeam.Players.Add(NewPlayer);
         }

@@ -383,4 +383,13 @@ modification.
   <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="ReviewPopupBody" xml:space="preserve">
+    <value>We offer 30000 MilliSeconds for free and we would appreciate a positve review in the Windows Store.</value>
+  </data>
+  <data name="ReviewPopupTitle" xml:space="preserve">
+    <value>Thank you</value>
+  </data>
+  <data name="Text_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
 </root>

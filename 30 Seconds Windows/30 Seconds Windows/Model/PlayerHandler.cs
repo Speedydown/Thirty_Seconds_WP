@@ -68,7 +68,10 @@ namespace _30_Seconds_Windows.Model
                     this.Players.Add(player);
                 }
 
-                SaveItem(player);
+                Task.Run(() =>
+                {
+                    SaveItem(player);
+                });
 
                 return true;
             }

@@ -113,6 +113,8 @@ namespace _30_Seconds_Windows.Model
                         Task.WaitAll(UpdateTasks.ToArray());
                     }
                 }
+
+                Task UpdateRatings = Task.Run(() => RatingHandler.AddArticleCount());
             });
         }
 

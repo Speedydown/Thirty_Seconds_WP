@@ -57,8 +57,8 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             get
             {
-                return CurrentGame != null && 
-                    CurrentGame.Teams.Count > 1 && 
+                return CurrentGame != null &&
+                    CurrentGame.Teams.Count > 1 &&
                     CurrentGame.Teams.Where(t => t.Players.Count > 1).Count() > 1 &&
                     CurrentGame.Teams.Where(t => t.Players.Count < 2).Count() == 0;
             }
@@ -147,19 +147,16 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             int TeamCount = TeamHandler.instance.GetTeamsFromDatabase().Count > 0 ? (TeamHandler.instance.GetTeamsFromDatabase().Max(t => t.InternalID) + 1) : 1;
 
-            Team NewTeam = new Team() 
-            { 
-                GameID = CurrentGame.InternalID, 
-                Players = new ObservableCollection<Player>(), 
+            Team NewTeam = new Team()
+            {
+                GameID = CurrentGame.InternalID,
+                Players = new ObservableCollection<Player>(),
                 Points = 0,
                 Name = "Team" + TeamCount
             };
 
             CurrentGame.Teams.Add(NewTeam);
-            Task.Run(() =>
-            {
-                TeamHandler.instance.SaveTeam(NewTeam);
-            });
+            TeamHandler.instance.SaveTeam(NewTeam);
         }
 
         public async Task StartGameButton()

@@ -380,4 +380,13 @@ De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-to
   <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
     <value>Spelregels</value>
   </data>
+  <data name="ReviewPopupBody" xml:space="preserve">
+    <value>Wij bieden 30000 MilliSeconds kostenloos aan en we zouden het op prijs stellen als u de 30000 MilliSeconds app een positieve review geeft in de Windows store.</value>
+  </data>
+  <data name="ReviewPopupTitle" xml:space="preserve">
+    <value>Bedankt</value>
+  </data>
+  <data name="Text_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
 </root>

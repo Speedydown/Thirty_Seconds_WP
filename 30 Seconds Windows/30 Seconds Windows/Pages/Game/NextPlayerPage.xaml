@@ -60,11 +60,11 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="25" Margin="15,0" Foreground="{StaticResource Background}" Text="{Binding Name}" />
-                                    <TextBlock x:Uid="NextPlayerPageRoundTextBox" Grid.Row="1" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="15,0" Foreground="{StaticResource Background}" />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="0,0,0,0" Foreground="{StaticResource Background}" Text="{Binding Round}" />
-                                    <TextBlock x:Uid="NextPlayerPageScoreTextBox" Grid.Row="1" Grid.Column="2" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="15,0" Foreground="{StaticResource Background}" />
-                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="0,0,15,0" Foreground="{StaticResource Background}" Text="{Binding Points}" />
+                                    <TextBlock Grid.ColumnSpan="4" FontWeight="Bold" TextAlignment="Left" FontSize="25" Margin="15,5,15,0" Foreground="{StaticResource Background}" Text="{Binding Name}" />
+                                    <TextBlock x:Uid="NextPlayerPageRoundTextBox" Grid.Row="1" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="15,5" Foreground="{StaticResource Background}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="0,5" Foreground="{StaticResource Background}" Text="{Binding Round}" />
+                                    <TextBlock x:Uid="NextPlayerPageScoreTextBox" Grid.Row="1" Grid.Column="2" Style="{StaticResource HeaderTextBlockStyle}" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="15,5" Foreground="{StaticResource Background}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="3" FontWeight="Bold" TextAlignment="Left" FontSize="20" Margin="0,5,15,5" Foreground="{StaticResource Background}" Text="{Binding Points}" />
                                 </Grid>
                                 <ListView IsHitTestVisible="False" VerticalAlignment="Center" ItemsSource="{Binding Players}" SelectionMode="None">
                                     <ListView.ItemContainerStyle>
@@ -86,11 +86,11 @@
                                                         <ColumnDefinition Width="Auto"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.ColumnSpan="4" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Left" FontSize="22" Margin="15,0" Foreground="Black" Text="{Binding Name}" />
-                                                    <TextBlock x:Uid="NextPlayerPageQuestionsCorrectTextBox" Grid.Row="1" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Left" FontSize="17" Margin="15,0" Foreground="Black" />
-                                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Left" FontSize="17" Margin="0,0,0,0" Foreground="Black" Text="{Binding QuestionsCorrectThisGame}" />
-                                                    <TextBlock x:Uid="NextPlayerPageScoreTextBox" Grid.Row="1" Grid.Column="2" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Left" FontSize="17" Margin="15,0" Foreground="Black" />
-                                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource HeaderTextBlockStyle}" TextAlignment="Left" FontSize="17" Margin="0,0,15,0" Foreground="Black" Text="{Binding PointsThisGame}" />
+                                                    <TextBlock Grid.ColumnSpan="4" TextAlignment="Left" FontSize="22" Margin="15,5,15,0" Foreground="Black" Text="{Binding Name}" />
+                                                    <TextBlock x:Uid="NextPlayerPageQuestionsCorrectTextBox" Grid.Row="1" TextAlignment="Left" FontSize="17" Margin="15,5" Foreground="Black" />
+                                                    <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Left" FontSize="17" Margin="0,5" Foreground="Black" Text="{Binding QuestionsCorrectThisGame}" />
+                                                    <TextBlock x:Uid="NextPlayerPageScoreTextBox" Grid.Row="1" Grid.Column="2" TextAlignment="Left" FontSize="17" Margin="15,5" Foreground="Black" />
+                                                    <TextBlock Grid.Row="1" Grid.Column="3" TextAlignment="Left" FontSize="17" Margin="0,5,15,5" Foreground="Black" Text="{Binding PointsThisGame}" />
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>

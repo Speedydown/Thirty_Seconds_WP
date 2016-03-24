@@ -98,6 +98,7 @@
     <Compile Include="Model\LanguageHandler.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayerHandler.cs" />
+    <Compile Include="Model\RatingHandler.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\SettingsHandler.cs" />
     <Compile Include="Model\Team.cs" />

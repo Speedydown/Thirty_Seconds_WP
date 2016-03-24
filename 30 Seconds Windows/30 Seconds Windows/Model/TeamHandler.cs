@@ -47,12 +47,15 @@ namespace _30_Seconds_Windows.Model
         {
             try
             {
-                if (!this.Teams.Contains(team))
+                if (!Teams.Contains(team))
                 {
-                    this.Teams.Add(team);
+                    Teams.Add(team);
                 }
 
-                SaveItem(team);
+                Task.Run(() =>
+                {
+                    SaveItem(team);
+                });
 
                 return true;
             }
