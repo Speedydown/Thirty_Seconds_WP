@@ -95,7 +95,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 {
                     if (CurrentGame.Teams.Count(t => t.Round < CurrentGame.Teams.Max(te => te.Round)) > 0)
                     {
-                        this.CurrentTeam = CurrentGame.Teams.OrderBy(t => t.Round).First();
+                        CurrentTeam = CurrentGame.Teams.OrderBy(t => t.Round).First();
                     }
                     else
                     {
@@ -116,7 +116,10 @@ namespace _30_Seconds_Windows.ViewModels.Game
                     CurrentGame.CurrentTeamID = this.CurrentTeam.InternalID;
                 }
 
-                GameHandler.instance.SaveGame(CurrentGame);
+                Task.Run(() =>
+                {
+                    GameHandler.instance.SaveGame(CurrentGame);
+                });               
             }
         }
 
@@ -150,7 +153,10 @@ namespace _30_Seconds_Windows.ViewModels.Game
             }
 
             NotifyPropertyChanged("PassTroughText");
-            TeamHandler.instance.SaveTeam(CurrentTeam);
+            Task.Run(() =>
+            {
+                TeamHandler.instance.SaveTeam(CurrentTeam);
+            });
         }
 
         public async Task ContinueButton()

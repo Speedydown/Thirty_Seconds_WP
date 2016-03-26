@@ -236,8 +236,9 @@ namespace _30_Seconds_Windows.ViewModels.Game
             await ClearBackstack(0);
 
 
-            Task SaveTask = Task.Run(() =>
+            Task SaveTask = Task.Run(async () =>
             {
+                await Task.Delay(100);
                 WordHandler.instance.SaveWords(CurrentWords);
                 PlayerHandler.instance.SavePlayer(CurrentPlayer);
                 TeamHandler.instance.SaveTeam(CurrentTeam);

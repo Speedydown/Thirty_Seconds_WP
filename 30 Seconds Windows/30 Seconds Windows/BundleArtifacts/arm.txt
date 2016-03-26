@@ -1,4 +1,4 @@
-MainPackage=C:\Users\Teake\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.326.1649.12_Bundle\30 Seconds Windows_2016.326.1649.12_ARM.appx
-SymbolPackage=C:\Users\Teake\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\AppPackages\30 Seconds Windows_2016.326.1649.12_Test\30 Seconds Windows_2016.326.1649.12_ARM.appxsym
-ResourcePack=C:\Users\Teake\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.326.1649.12_Bundle\30 Seconds Windows_2016.326.1649.12_language-nl.appx
-ResourcePack=C:\Users\Teake\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.326.1649.12_Bundle\30 Seconds Windows_2016.326.1649.12_scale-100.appx
+MainPackage=C:\Users\speed\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.327.20.13_ARM.appx
+SymbolPackage=C:\Users\speed\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\AppPackages\30 Seconds Windows_2016.327.20.13_Test\30 Seconds Windows_2016.327.20.13_ARM.appxsym
+ResourcePack=C:\Users\speed\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.327.20.13_language-nl.appx
+ResourcePack=C:\Users\speed\Documents\GitHub\Thirty_Seconds_WP\30 Seconds Windows\30 Seconds Windows\bin\ARM\Release\30 Seconds Windows_2016.327.20.13_scale-100.appx
