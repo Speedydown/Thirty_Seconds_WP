@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -46,8 +47,9 @@ namespace _30_Seconds_Windows.Pages.Game
 
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            RoundPageViewModel.instance.CurrentWords = null;
             DataContext = RoundPageViewModel.instance;
-            await RoundPageViewModel.instance.Load();
+            await RoundPageViewModel.instance.Load(); 
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

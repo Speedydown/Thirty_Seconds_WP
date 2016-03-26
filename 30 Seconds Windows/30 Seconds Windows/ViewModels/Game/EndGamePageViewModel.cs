@@ -51,5 +51,10 @@ namespace _30_Seconds_Windows.ViewModels.Game
             (Window.Current.Content as Frame).Navigate(typeof(MainPage));
 
         }
+        
+        public void EndGamePageContinueButton_Pressed()
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+        }
     }
 }

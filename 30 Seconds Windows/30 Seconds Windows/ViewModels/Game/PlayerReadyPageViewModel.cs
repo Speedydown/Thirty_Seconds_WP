@@ -39,11 +39,8 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-
                     NotifyPropertyChanged("CurrentPlayer");
                     NotifyPropertyChanged("CurrentTeam");
-
-                    IsLoading = false;
                 });
 
                 
@@ -51,6 +48,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             RoundPageViewModel.instance.Get5NewWords();
             await t;
+            IsLoading = false;
         }
 
         public async Task StartRoundButton()

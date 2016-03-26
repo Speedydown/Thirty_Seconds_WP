@@ -2,6 +2,7 @@
 using _30_Seconds_Windows.Pages.Game;
 using _30_Seconds_Windows.Pages.GameAnimations;
 using _30_Seconds_Windows.ViewModels.GameAnimations;
+using BaseLogic.ExceptionHandler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
     {
         public static readonly RoundPageViewModel instance = new RoundPageViewModel();
 
-        public Word[] CurrentWords { get; private set; }
+        private Word[] _CurrentWords;
+
+        public Word[] CurrentWords
+        {
+            get { return _CurrentWords; }
+            set
+            {
+                _CurrentWords = value;
+                NotifyPropertyChanged("CurrentWords");
+            }
+        }
         public Model.Game CurrentGame { get; private set; }
         public Team CurrentTeam { get; private set; }
         public Player CurrentPlayer { get; private set; }
@@ -52,23 +63,39 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task Load()
         {
+            CurrentWords = null;
             IsLoading = true;
-            AdVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
+            Task AdsTask = Task.Run(() =>
+                {
+                    AdVisible = false;
+                    NotifyPropertyChanged("AdVisible");
+                    AdVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
+                    NotifyPropertyChanged("AdVisible");
+                });
             StopwatchStream.Position = 0;
             AlarmStream.Position = 0;
             NavigatedTo();
             CurrentWords = await GetNewWordsTask;
             IsLoading = false;
-            NotifyPropertyChanged("CurrentWords");
             NotifyPropertyChanged("CurrentGame");
             NotifyPropertyChanged("CurrentTeam");
             NotifyPropertyChanged("CurrentPlayer");
 
             TimeStarted = DateTime.Now;
 
-            Timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            Timer.Tick += Timer_Tick;
-            Timer.Start();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    try
+                    {
+                        Timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        Timer.Tick += Timer_Tick;
+                        Timer.Start();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                });
         }
 
         public override void NavigatedFrom()
@@ -85,64 +112,71 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         private void Timer_Tick(object sender, object e)
         {
-            int SecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalSeconds;
-
-            if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 26)
+            try
             {
-                WarningSoundPlayed = true;
+                int SecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalSeconds;
 
-                Task.Run(async () =>
+                if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 26)
                 {
-                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    WarningSoundPlayed = true;
+
+                    Task.Run(async () =>
+                    {
+                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                MediaPlayer.SetSource(StopwatchStream.AsRandomAccessStream(), StopwatchFile.ContentType);
+                                MediaPlayer.Play();
+                            });
+                    });
+                }
+                else if (!RoundFinished && SecondsElapsed > 29)
+                {
+                    MediaPlayer.Stop();
+                    RoundFinished = true;
+                    RoundFinishedAnimationVisible = true;
+                    NotifyPropertyChanged("RoundFinishedAnimationVisible");
+
+                    Task.Run(async () =>
+                    {
+                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
-                            MediaPlayer.SetSource(StopwatchStream.AsRandomAccessStream(), StopwatchFile.ContentType);
+                            MediaPlayer.SetSource(AlarmStream.AsRandomAccessStream(), AlarmFile.ContentType);
                             MediaPlayer.Play();
                         });
-                });
-            }
-            else if (!RoundFinished && SecondsElapsed > 29)
-            {
-                MediaPlayer.Stop();
-                RoundFinished = true;
-                RoundFinishedAnimationVisible = true;
-                NotifyPropertyChanged("RoundFinishedAnimationVisible");
-
-                Task.Run(async () =>
-                {
-                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        MediaPlayer.SetSource(AlarmStream.AsRandomAccessStream(), AlarmFile.ContentType);
-                        MediaPlayer.Play();
                     });
-                });
-            }
-            else if (RoundFinished && SecondsElapsed > 32)
-            {
-                MediaPlayer.Stop();
-                EndOfRoundVisible = true;
-                NotifyPropertyChanged("EndOfRoundVisible");
-                RoundFinishedAnimationVisible = false;
-                NotifyPropertyChanged("RoundFinishedAnimationVisible");
-                Timer.Tick -= Timer_Tick;
-                Timer.Stop();
-            }
-
-            //Animate hourglass
-            if (RoundFinishedAnimationVisible)
-            {
-                HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 11 : HourglassAngle - 11;
-
-                if (HourglassAngle < -25)
-                {
-                    HourGlassAnimationReversed = true;
                 }
-                else if (HourglassAngle > 25)
+                else if (RoundFinished && SecondsElapsed > 32)
                 {
-                    HourGlassAnimationReversed = false;
+                    MediaPlayer.Stop();
+                    EndOfRoundVisible = true;
+                    NotifyPropertyChanged("EndOfRoundVisible");
+                    RoundFinishedAnimationVisible = false;
+                    NotifyPropertyChanged("RoundFinishedAnimationVisible");
+                    Timer.Tick -= Timer_Tick;
+                    Timer.Stop();
                 }
-            }
 
-            NotifyPropertyChanged("HourglassAngle");
+                //Animate hourglass
+                if (RoundFinishedAnimationVisible)
+                {
+                    HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 11 : HourglassAngle - 11;
+
+                    if (HourglassAngle < -25)
+                    {
+                        HourGlassAnimationReversed = true;
+                    }
+                    else if (HourglassAngle > 25)
+                    {
+                        HourGlassAnimationReversed = false;
+                    }
+                }
+
+                NotifyPropertyChanged("HourglassAngle");
+            }
+            catch (Exception ex)
+            {
+                Task PostExTask = ExceptionHandler.instance.PostException(new AppException(ex), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+            }
         }
 
         public async Task NextRoundButton()
@@ -211,7 +245,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         }
 
         private bool CheckWinCondition()
-        { 
+        {
             Team LeadTeam = CurrentGame.Teams.OrderByDescending(t => t.Points).First();
 
             if (LeadTeam.Points >= SettingsHandler.instance.CurrentSettings.RequiredPoints)

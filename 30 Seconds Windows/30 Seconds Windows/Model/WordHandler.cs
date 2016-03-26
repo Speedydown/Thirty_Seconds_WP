@@ -53,7 +53,12 @@ namespace _30_Seconds_Windows.Model
             else if (words.Count < 10)
             {
                 Task t = Task.Run(() => ResetAllWords());
-                return await Get5Words(CurrentPlayerID);
+
+                if (words.Count < 5)
+                {
+                    await t;
+                    return await Get5Words(CurrentPlayerID);
+                }
             }
 
             List<Word> CurrentWords = new List<Word>();
@@ -90,7 +95,7 @@ namespace _30_Seconds_Windows.Model
 
         private void ResetAllWords()
         {
-            var words = GetItems<Word>();
+            var words = GetItems<Word>().ToArray();
 
             foreach (Word w in words)
             {

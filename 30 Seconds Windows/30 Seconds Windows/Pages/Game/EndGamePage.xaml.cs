@@ -80,5 +80,12 @@ namespace _30_Seconds_Windows.Pages.Game
         }
 
         #endregion
+
+        private void EndGamePageContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+            EndGamePageViewModel.instance.EndGamePageContinueButton_Pressed();
+        }
+
+
     }
 }

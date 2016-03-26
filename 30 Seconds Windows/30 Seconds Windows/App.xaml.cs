@@ -39,6 +39,11 @@ namespace _30_Seconds_Windows
 
         async void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            if (e.Exception is System.Runtime.InteropServices.COMException)
+            {
+                e.Handled = true;
+            }
+
             await ExceptionHandler.instance.PostException(new AppException(e.Exception), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
         }
 

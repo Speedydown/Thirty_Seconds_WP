@@ -43,7 +43,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             lock (locker)
             {
                 if (StopwatchFile == null || AlarmFile == null)
-
+                {
                     LoadFileTask = Task.Run(async () =>
                 {
                     StorageFolder folder = await (await Package.Current.InstalledLocation.GetFolderAsync("Assets")).GetFolderAsync("Sounds");
@@ -60,6 +60,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                     (await VictoryFile.OpenAsync(FileAccessMode.Read)).AsStream().CopyTo(VictoryStream);
 
                 });
+                }
             }
         }
 
