@@ -12,13 +12,19 @@ namespace _30SecondsConsole
     {
         static void Main(string[] args)
         {
+           // var WordPacks = WordPackHandler.instance.GetWordPacks().OrderBy(wp => wp.LanguageID).ThenBy(wp => wp.ID);
+
+         //   var WordPack = new WordPack(0, "Zomer", 1, true, DateTime.Now, false, false);
+
+            int WordPackID = 7;
+       //     WordPackID = WordPack.ID;
             AppConfig.Instance.EnableLogging = false;
 
-            WordPack wp = WordPackHandler.instance.GetObjectByID(3) as WordPack;
+            WordPack wordPack = WordPackHandler.instance.GetObjectByID(WordPackID) as WordPack;
             
-            ReadCSV(3);
+            ReadCSV(WordPackID);
 
-            var Words = WordHandler.instance.GetWordsByWordPack(3);
+            var Words = WordHandler.instance.GetWordsByWordPack(WordPackID);
 
             foreach (Word w in Words)
             {
@@ -33,8 +39,8 @@ namespace _30SecondsConsole
         {
             for (int i = 0; i < 30; i++)
             {
-                
-                List<string> Words = CSVReader.ReadCSV("Database 30 seconds.csv", i);
+
+                List<string> Words = CSVReader.ReadCSV("Zomer.csv", i);
 
                 string CategoryName = Words.FirstOrDefault();
 

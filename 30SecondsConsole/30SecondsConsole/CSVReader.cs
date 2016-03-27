@@ -13,13 +13,13 @@ namespace _30SecondsConsole
         {
             List<string> Words = new List<string>();
 
-            using (StreamReader sr = new StreamReader(CSVPath, true))
+            using (StreamReader sr = new StreamReader(CSVPath, Encoding.UTF8))
             {
                 String line;
 
                 while ((line = sr.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(';');
+                    string[] parts = line.Split(',');
 
                     try
                     {

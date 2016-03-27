@@ -41,10 +41,12 @@ namespace _30_Seconds_Windows
         {
             if (e.Exception is System.Runtime.InteropServices.COMException)
             {
-                e.Handled = true;
+                //   e.Handled = true;
             }
-
-            await ExceptionHandler.instance.PostException(new AppException(e.Exception), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+            else
+            {
+                await ExceptionHandler.instance.PostException(new AppException(e.Exception), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+            }
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

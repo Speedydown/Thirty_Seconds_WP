@@ -208,6 +208,7 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="AdMediator.config" />
+    <Content Include="StoreManifest.xml" />
     <None Include="Package.StoreAssociation.xml" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -325,7 +326,7 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.10.2">
+    <SDKReference Include="SQLite.WP81, Version=3.11.1">
       <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
