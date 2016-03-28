@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,7 +20,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 {
     public abstract class GameViewModel : ViewModel
     {
-        protected MediaElement MediaPlayer = new MediaElement();
+        protected MediaElement MediaPlayer = null;
 
         //SoundFiles
         protected static Task LoadFileTask = null;
@@ -39,6 +41,11 @@ namespace _30_Seconds_Windows.ViewModels.Game
         protected GameViewModel()
             : base()
         {
+            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MediaPlayer = new MediaElement();
+            });
+
             lock (locker)
             {
                 if (StopwatchFile == null || AlarmFile == null)

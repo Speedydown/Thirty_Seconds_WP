@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -46,7 +47,7 @@ namespace _30_Seconds_Windows.Pages.Game
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             DataContext = PlayerReadyPageViewModel.instance;
-            await PlayerReadyPageViewModel.instance.Load();
+            await Task.Run(() => PlayerReadyPageViewModel.instance.Load());
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

@@ -115,71 +115,90 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         private void Timer_Tick(object sender, object e)
         {
-            try
+            Task.Run(async () =>
             {
-                int SecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalSeconds;
-
-                if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 26)
+                try
                 {
-                    WarningSoundPlayed = true;
+                    int SecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalSeconds;
 
-                    Task.Run(async () =>
+                    if (!RoundFinished && !WarningSoundPlayed && SecondsElapsed > 26)
                     {
-                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            {
-                                MediaPlayer.SetSource(StopwatchStream.AsRandomAccessStream(), StopwatchFile.ContentType);
-                                MediaPlayer.Play();
-                            });
-                    });
-                }
-                else if (!RoundFinished && SecondsElapsed > 29)
-                {
-                    MediaPlayer.Stop();
-                    RoundFinished = true;
-                    RoundFinishedAnimationVisible = true;
-                    NotifyPropertyChanged("RoundFinishedAnimationVisible");
+                        WarningSoundPlayed = true;
 
-                    Task.Run(async () =>
+                        await PlayFile(StopwatchStream, StopwatchFile);
+                    }
+                    else if (!RoundFinished && SecondsElapsed > 29)
                     {
-                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        await StopMedia();
+
+                        RoundFinished = true;
+                        RoundFinishedAnimationVisible = true;
+                        NotifyPropertyChanged("RoundFinishedAnimationVisible");
+
+                        await PlayFile(AlarmStream, AlarmFile);
+                    }
+                    else if (RoundFinished && SecondsElapsed > 32)
+                    {
+                       
+                        EndOfRoundVisible = true;
+                        NotifyPropertyChanged("EndOfRoundVisible");
+                        RoundFinishedAnimationVisible = false;
+                        NotifyPropertyChanged("RoundFinishedAnimationVisible");
+                        await StopTimer();
+                    }
+
+                    //Animate hourglass
+                    if (RoundFinishedAnimationVisible)
+                    {
+                        HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 11 : HourglassAngle - 11;
+
+                        if (HourglassAngle < -25)
                         {
-                            MediaPlayer.SetSource(AlarmStream.AsRandomAccessStream(), AlarmFile.ContentType);
-                            MediaPlayer.Play();
-                        });
-                    });
-                }
-                else if (RoundFinished && SecondsElapsed > 32)
-                {
-                    MediaPlayer.Stop();
-                    EndOfRoundVisible = true;
-                    NotifyPropertyChanged("EndOfRoundVisible");
-                    RoundFinishedAnimationVisible = false;
-                    NotifyPropertyChanged("RoundFinishedAnimationVisible");
-                    Timer.Tick -= Timer_Tick;
-                    Timer.Stop();
-                }
-
-                //Animate hourglass
-                if (RoundFinishedAnimationVisible)
-                {
-                    HourglassAngle = HourGlassAnimationReversed ? HourglassAngle + 11 : HourglassAngle - 11;
-
-                    if (HourglassAngle < -25)
-                    {
-                        HourGlassAnimationReversed = true;
+                            HourGlassAnimationReversed = true;
+                        }
+                        else if (HourglassAngle > 25)
+                        {
+                            HourGlassAnimationReversed = false;
+                        }
                     }
-                    else if (HourglassAngle > 25)
-                    {
-                        HourGlassAnimationReversed = false;
-                    }
-                }
 
-                NotifyPropertyChanged("HourglassAngle");
-            }
-            catch (Exception ex)
+                    NotifyPropertyChanged("HourglassAngle");
+                }
+                catch (Exception ex)
+                {
+                    Task PostExTask = ExceptionHandler.instance.PostException(new AppException(ex), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+                }
+            });
+        }
+
+        private async Task PlayFile(MemoryStream stream, StorageFile file)
+        {
+            Task MediaPlayerTask = Task.Run(async () =>
             {
-                Task PostExTask = ExceptionHandler.instance.PostException(new AppException(ex), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
-            }
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    MediaPlayer.SetSource(stream.AsRandomAccessStream(), file.ContentType);
+                    MediaPlayer.Play();
+                });
+            });
+        }
+
+        private async Task StopMedia()
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MediaPlayer.Stop();
+            });
+        }
+
+        private async Task StopTimer()
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MediaPlayer.Stop();
+                Timer.Tick -= Timer_Tick;
+                Timer.Stop();
+            });
         }
 
         public async Task NextRoundButton()
