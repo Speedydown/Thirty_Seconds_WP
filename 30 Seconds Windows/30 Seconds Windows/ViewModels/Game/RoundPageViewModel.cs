@@ -76,7 +76,15 @@ namespace _30_Seconds_Windows.ViewModels.Game
             StopwatchStream.Position = 0;
             AlarmStream.Position = 0;
             NavigatedTo();
+            CurrentWords = null;
             CurrentWords = await GetNewWordsTask;
+
+            if (CurrentWords == null)
+            {
+                Get5NewWords();
+                CurrentWords = await GetNewWordsTask;
+            }
+
             IsLoading = false;
             NotifyPropertyChanged("CurrentGame");
             NotifyPropertyChanged("CurrentTeam");
