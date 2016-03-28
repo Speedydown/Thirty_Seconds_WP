@@ -77,7 +77,12 @@ namespace _30_Seconds_Windows.ViewModels.Game
             AlarmStream.Position = 0;
             NavigatedTo();
             CurrentWords = null;
-            CurrentWords = await GetNewWordsTask;
+
+            if (GetNewWordsTask != null)
+            {
+                CurrentWords = await GetNewWordsTask;
+                GetNewWordsTask = null;
+            }
 
             if (CurrentWords == null)
             {
