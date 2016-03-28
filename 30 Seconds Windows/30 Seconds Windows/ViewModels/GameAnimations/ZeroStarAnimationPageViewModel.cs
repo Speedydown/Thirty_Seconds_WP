@@ -20,6 +20,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
     {
         public static readonly ZeroStarAnimationPageViewModel instance = new ZeroStarAnimationPageViewModel();
 
+        private DispatcherTimer Timer = null;
         private DateTime? TimeStarted = null;
         public int AnimationAngle { get; set; }
 
@@ -37,8 +38,9 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             AnimationAngle = 0;
             IsLoading = false;
 
+            Timer = new DispatcherTimer();
             Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            Timer.Tick += Timer_Tick; ;
+            Timer.Tick += Timer_Tick;
             Timer.Start();
 
             Task t = Task.Run(async () =>
@@ -59,6 +61,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
             Timer.Stop();
+            Timer = null;
         }
 
         void Timer_Tick(object sender, object e)
@@ -75,9 +78,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             NotifyPropertyChanged("AnimationAngle");
 
             if (MilliSecondsElapsed > 3120)
-            {
-                Timer.Tick -= Timer_Tick;
-                Timer.Stop();
+            {;
                 MediaPlayer.Stop();
                 (Window.Current.Content as Frame).Navigate(typeof(NextPlayerPage));
 

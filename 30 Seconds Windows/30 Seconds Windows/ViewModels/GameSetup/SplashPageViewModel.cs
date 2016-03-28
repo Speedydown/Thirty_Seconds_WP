@@ -21,6 +21,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 {
     public class SplashPageViewModel : ViewModel
     {
+
         public static readonly SplashPageViewModel instance = new SplashPageViewModel();
 
         private SplashPageViewModel()

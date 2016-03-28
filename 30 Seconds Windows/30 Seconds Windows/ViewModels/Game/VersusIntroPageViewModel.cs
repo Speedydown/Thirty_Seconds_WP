@@ -19,6 +19,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
     {
         public static readonly VersusIntroPageViewModel instance = new VersusIntroPageViewModel();
 
+        private DispatcherTimer Timer = null;
         private bool AnimationReversed = false;
 
         public Model.Game CurrentGame { get; private set; }
@@ -130,12 +131,13 @@ namespace _30_Seconds_Windows.ViewModels.Game
             AnimationMargin = new Thickness(0, -600, -600, 0);
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                Timer = new DispatcherTimer();
                 Timer.Tick += DispatcherTimer_Tick;
                 Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
                 Timer.Start();
             });
 
-            CurrentGame = Model.GameHandler.instance.GetCurrentGame();
+            CurrentGame = GameHandler.instance.GetCurrentGame();
             NotifyPropertyChanged("CurrentGame");
 
             TwoPlayer = CurrentGame.Teams.Count == 2;
@@ -155,6 +157,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 {
                     Timer.Tick -= DispatcherTimer_Tick;
                     Timer.Stop();
+                    Timer = null;
                     AnimationMargin = new Thickness(0, 0, 0, 0);
                     Task t = NavigateToGame();
                 }

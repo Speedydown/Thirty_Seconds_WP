@@ -19,7 +19,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
     public abstract class GameViewModel : ViewModel
     {
         protected MediaElement MediaPlayer = new MediaElement();
-        protected DispatcherTimer Timer = new DispatcherTimer();
 
         //SoundFiles
         protected static Task LoadFileTask = null;

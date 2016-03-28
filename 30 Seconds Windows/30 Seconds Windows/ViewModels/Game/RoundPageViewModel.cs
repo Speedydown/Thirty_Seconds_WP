@@ -22,6 +22,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
     {
         public static readonly RoundPageViewModel instance = new RoundPageViewModel();
 
+        private DispatcherTimer Timer = null;
         private Word[] _CurrentWords;
 
         public Word[] CurrentWords
@@ -87,6 +88,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 {
                     try
                     {
+                        Timer = new DispatcherTimer();
                         Timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
                         Timer.Tick += Timer_Tick;
                         Timer.Start();
@@ -108,6 +110,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
             Timer.Stop();
+            Timer = null;
         }
 
         private void Timer_Tick(object sender, object e)
@@ -238,7 +241,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             Task SaveTask = Task.Run(async () =>
             {
-                await Task.Delay(100);
+                await Task.Delay(750);
                 WordHandler.instance.SaveWords(CurrentWords);
                 PlayerHandler.instance.SavePlayer(CurrentPlayer);
                 TeamHandler.instance.SaveTeam(CurrentTeam);
