@@ -20,6 +20,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 {
     public abstract class GameViewModel : ViewModel
     {
+        protected static DispatcherTimer Timer = null;
         protected MediaElement MediaPlayer = null;
 
         //SoundFiles
@@ -41,7 +42,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         protected GameViewModel()
             : base()
         {
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+           CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 MediaPlayer = new MediaElement();
             });

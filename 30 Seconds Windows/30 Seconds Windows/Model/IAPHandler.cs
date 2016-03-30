@@ -16,6 +16,22 @@ namespace _30_Seconds_Windows.Model
 
         public LicenseInformation licenseInformation { get; private set; }
 
+        private bool? _HasRemoveAds;
+        public bool HasRemoveAds
+        {
+            get
+            {
+                if (_HasRemoveAds == null)
+                {
+                    _HasRemoveAds = HasFeature(RemoveAdsFeatureName);
+
+                }
+
+                return _HasRemoveAds.Value;
+            }
+        }
+
+
         private IAPHandler()
         {
             try
@@ -51,6 +67,9 @@ namespace _30_Seconds_Windows.Model
 #else
                 PurchaseResults Result =  await CurrentApp.RequestProductPurchaseAsync(FeatureName);
 #endif
+
+                //Reset status;
+                _HasRemoveAds = null;
 
                 //Check the license state to determine if the in-app purchase was successful.
                 return Result.Status == ProductPurchaseStatus.Succeeded || Result.Status == ProductPurchaseStatus.AlreadyPurchased;

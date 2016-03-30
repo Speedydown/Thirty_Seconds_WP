@@ -129,6 +129,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
 
             AnimationMargin = new Thickness(0, -600, -600, 0);
+
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Timer = new DispatcherTimer();

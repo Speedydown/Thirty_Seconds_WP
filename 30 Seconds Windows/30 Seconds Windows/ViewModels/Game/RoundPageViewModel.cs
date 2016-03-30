@@ -22,7 +22,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
     {
         public static readonly RoundPageViewModel instance = new RoundPageViewModel();
 
-        private DispatcherTimer Timer = null;
         private Word[] _CurrentWords;
 
         public Word[] CurrentWords
@@ -79,11 +78,9 @@ namespace _30_Seconds_Windows.ViewModels.Game
             NotifyPropertyChanged("CurrentGame");
             NotifyPropertyChanged("CurrentTeam");
             NotifyPropertyChanged("CurrentPlayer");
-            Task AdsTask = Task.Run(() =>
-                {
-                    AdVisible = false;
-                    AdVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
-                });
+
+            AdVisible = !IAPHandler.instance.HasRemoveAds;
+
             StopwatchStream.Position = 0;
             AlarmStream.Position = 0;
             NavigatedTo();
@@ -100,22 +97,21 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             TimeStarted = DateTime.Now;
 
-            await Task.Delay(25000);
-
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (Timer == null)
                 {
-                    try
+                    Timer = new DispatcherTimer()
                     {
-                        Timer = new DispatcherTimer();
-                        Timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                        Timer.Tick += Timer_Tick;
-                        Timer.Start();
-                    }
-                    catch (Exception)
-                    {
+                        Interval = new TimeSpan(0, 0, 0, 0, 100)
+                    };
 
-                    }
-                });
+                    Timer.Start();
+                }
+
+                Timer.Tick += Timer_Tick;
+            });
+            
         }
 
         public override void NavigatedFrom()
@@ -126,8 +122,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             HourGlassAnimationReversed = false;
             HourglassAngle = 0;
             base.NavigatedFrom();
-            StopTimer();
-            Timer = null;
+            Task Stop = StopTimer();
         }
 
         private void Timer_Tick(object sender, object e)
@@ -217,7 +212,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 if (Timer != null)
                 {
                     Timer.Tick -= Timer_Tick;
-                    Timer.Stop();
                 }
             });
         }

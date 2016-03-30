@@ -15,7 +15,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
     {
         public static readonly VictoryAnimationPageViewModel instance = new VictoryAnimationPageViewModel();
 
-        private DispatcherTimer Timer = null;
         public Team WinningTeam { get; set; }
         public DateTime StartTime { get; set; }
 
@@ -31,10 +30,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             NavigatedTo();
             IsLoading = false;
 
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 0, 0, 250);
             Timer.Tick += Timer_Tick;
-            Timer.Start();
 
             NotifyPropertyChanged("WinningTeam");
 
@@ -55,8 +51,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         {
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
-            Timer.Stop();
-            Timer = null;
         }
 
         void Timer_Tick(object sender, object e)

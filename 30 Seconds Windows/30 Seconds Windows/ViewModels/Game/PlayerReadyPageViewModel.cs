@@ -32,22 +32,18 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             IsLoading = true;
 
-            loadTask = Task.Run(async () =>
+            NavigatedTo();
+            CurrentGame = GameHandler.instance.GetCurrentGame();
+            CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
+            CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
+            NotifyPropertyChanged("CurrentPlayer");
+            NotifyPropertyChanged("CurrentTeam");
+
+            loadTask = Task.Run(() =>
             {
-                NavigatedTo();
-
-                Task t = Task.Run(() =>
-                {
-                    CurrentGame = GameHandler.instance.GetCurrentGame();
-                    CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
-                    CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
-                    NotifyPropertyChanged("CurrentPlayer");
-                    NotifyPropertyChanged("CurrentTeam");
-                });
-
                 RoundPageViewModel.instance.Get5NewWords();
-                await t;
             });
+
             IsLoading = false;
         }
 
