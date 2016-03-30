@@ -20,6 +20,8 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public Team CurrentTeam { get; private set; }
         public Player CurrentPlayer { get; private set; }
 
+        private Task loadTask = null;
+
         private PlayerReadyPageViewModel()
             : base()
         {
@@ -29,24 +31,36 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public async Task Load()
         {
             IsLoading = true;
-            NavigatedTo();
 
-            Task t = Task.Run(() =>
+            loadTask = Task.Run(async () =>
             {
-                CurrentGame = GameHandler.instance.GetCurrentGame();
-                CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
-                CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
-                NotifyPropertyChanged("CurrentPlayer");
-                NotifyPropertyChanged("CurrentTeam");
-            });
+                NavigatedTo();
 
-            RoundPageViewModel.instance.Get5NewWords();
-            await t;
+                Task t = Task.Run(() =>
+                {
+                    CurrentGame = GameHandler.instance.GetCurrentGame();
+                    CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
+                    CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
+                    NotifyPropertyChanged("CurrentPlayer");
+                    NotifyPropertyChanged("CurrentTeam");
+                });
+
+                RoundPageViewModel.instance.Get5NewWords();
+                await t;
+            });
             IsLoading = false;
         }
 
         public async Task StartRoundButton()
         {
+            if (loadTask == null)
+            {
+                return;
+            }
+
+            await loadTask;
+            loadTask = null;
+
             CurrentPlayer.LastRound = DateTime.Now;
             CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
             CurrentTeam.Round++;

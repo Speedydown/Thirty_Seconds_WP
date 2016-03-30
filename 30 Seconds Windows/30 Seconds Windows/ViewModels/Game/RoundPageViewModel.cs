@@ -40,7 +40,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public bool RoundFinishedAnimationVisible { get; private set; }
         public bool EndOfRoundVisible { get; private set; }
         public int HourglassAngle { get; private set; }
-        public bool AdVisible { get; set; }
+
+        private bool _AdVisible;
+        public bool AdVisible
+        {
+            get { return _AdVisible; }
+            set
+            {
+                _AdVisible = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         private DateTime? TimeStarted = null;
         private bool RoundFinished = false;
@@ -66,36 +76,31 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             CurrentWords = null;
             IsLoading = true;
+            NotifyPropertyChanged("CurrentGame");
+            NotifyPropertyChanged("CurrentTeam");
+            NotifyPropertyChanged("CurrentPlayer");
             Task AdsTask = Task.Run(() =>
                 {
                     AdVisible = false;
-                    NotifyPropertyChanged("AdVisible");
                     AdVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
-                    NotifyPropertyChanged("AdVisible");
                 });
             StopwatchStream.Position = 0;
             AlarmStream.Position = 0;
             NavigatedTo();
             CurrentWords = null;
 
-            if (GetNewWordsTask != null)
-            {
-                CurrentWords = await GetNewWordsTask;
-                GetNewWordsTask = null;
-            }
-
             if (CurrentWords == null)
             {
                 Get5NewWords();
-                CurrentWords = await GetNewWordsTask;
             }
 
+            CurrentWords = await GetNewWordsTask;
+            GetNewWordsTask = null;
             IsLoading = false;
-            NotifyPropertyChanged("CurrentGame");
-            NotifyPropertyChanged("CurrentTeam");
-            NotifyPropertyChanged("CurrentPlayer");
 
             TimeStarted = DateTime.Now;
+
+            await Task.Delay(25000);
 
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -121,8 +126,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             HourGlassAnimationReversed = false;
             HourglassAngle = 0;
             base.NavigatedFrom();
-            Timer.Tick -= Timer_Tick;
-            Timer.Stop();
+            StopTimer();
             Timer = null;
         }
 
@@ -143,7 +147,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                     else if (!RoundFinished && SecondsElapsed > 29)
                     {
                         await StopMedia();
-
+                        AdVisible = false;
                         RoundFinished = true;
                         RoundFinishedAnimationVisible = true;
                         NotifyPropertyChanged("RoundFinishedAnimationVisible");
@@ -152,7 +156,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                     }
                     else if (RoundFinished && SecondsElapsed > 32)
                     {
-                       
+
                         EndOfRoundVisible = true;
                         NotifyPropertyChanged("EndOfRoundVisible");
                         RoundFinishedAnimationVisible = false;
@@ -209,8 +213,12 @@ namespace _30_Seconds_Windows.ViewModels.Game
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 MediaPlayer.Stop();
-                Timer.Tick -= Timer_Tick;
-                Timer.Stop();
+
+                if (Timer != null)
+                {
+                    Timer.Tick -= Timer_Tick;
+                    Timer.Stop();
+                }
             });
         }
 
