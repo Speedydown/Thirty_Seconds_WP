@@ -32,19 +32,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             IsLoading = true;
 
-            NavigatedTo();
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
             CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
             NotifyPropertyChanged("CurrentPlayer");
             NotifyPropertyChanged("CurrentTeam");
 
-            loadTask = Task.Run(() =>
-            {
-                RoundPageViewModel.instance.Get5NewWords();
-            });
-
+            loadTask = RoundPageViewModel.instance.Get5NewWords();
+            NavigatedTo();
+ 
             IsLoading = false;
+
         }
 
         public async Task StartRoundButton()
@@ -54,21 +52,24 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 return;
             }
 
-            await loadTask;
+            if (RoundPageViewModel.instance.GetNewWordsTask == null)
+            {
+                 await loadTask;
+            }
             loadTask = null;
-
-            CurrentPlayer.LastRound = DateTime.Now;
-            CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
-            CurrentTeam.Round++;
+            
+            (Window.Current.Content as Frame).Navigate(typeof(RoundPage));
+            await ClearBackstack(0);
 
             Task t = Task.Run(() =>
             {
+                CurrentPlayer.LastRound = DateTime.Now;
+                CurrentPlayer.QuestionsAnswered = CurrentPlayer.QuestionsAnswered + 5;
+                CurrentTeam.Round++;
+
                 PlayerHandler.instance.SavePlayer(CurrentPlayer);
                 TeamHandler.instance.SaveTeam(CurrentTeam);
             });
-
-            (Window.Current.Content as Frame).Navigate(typeof(RoundPage));
-            await ClearBackstack(0);
         }
     }
 }

@@ -15,7 +15,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
     {
         public static readonly FiveStarAnimationPageViewModel instance = new FiveStarAnimationPageViewModel();
 
-        private DispatcherTimer Timer = null;
         private DateTime? TimeStarted = null;
         public Word[] PlayedWords { get; set; }
         public double AnimationFontSize { get; set; }
@@ -33,10 +32,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             AnimationFontSize = 300;
             IsLoading = false;
 
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             Timer.Tick += Timer_Tick;
-            Timer.Start();
 
             Task t = Task.Run(async () =>
             {
@@ -55,15 +51,13 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         {
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
-            Timer.Stop();
-            Timer = null;
         }
 
         void Timer_Tick(object sender, object e)
         {
             int MilliSecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalMilliseconds;
 
-            AnimationFontSize += 10;
+            AnimationFontSize += 15;
 
             NotifyPropertyChanged("AnimationFontSize");
 

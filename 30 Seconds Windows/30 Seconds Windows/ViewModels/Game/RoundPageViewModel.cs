@@ -55,7 +55,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
         private bool RoundFinished = false;
         private bool WarningSoundPlayed = false;
         private bool HourGlassAnimationReversed = false;
-        private Task<Word[]> GetNewWordsTask = null;
+        public Task<Word[]> GetNewWordsTask = null;
 
         private RoundPageViewModel()
             : base()
@@ -63,7 +63,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         }
 
-        public void Get5NewWords()
+        public async Task Get5NewWords()
         {
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
@@ -88,7 +88,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             if (CurrentWords == null)
             {
-                Get5NewWords();
+                await Get5NewWords();
             }
 
             CurrentWords = await GetNewWordsTask;
@@ -97,21 +97,22 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             TimeStarted = DateTime.Now;
 
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            if (Timer == null)
             {
-                if (Timer == null)
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Timer = new DispatcherTimer()
-                    {
-                        Interval = new TimeSpan(0, 0, 0, 0, 100)
-                    };
 
-                    Timer.Start();
-                }
+                Timer = new DispatcherTimer()
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, 100)
+                };
 
-                Timer.Tick += Timer_Tick;
-            });
-            
+                Timer.Start();
+                });
+            }
+
+            Timer.Tick += Timer_Tick;
+
         }
 
         public override void NavigatedFrom()
@@ -172,9 +173,9 @@ namespace _30_Seconds_Windows.ViewModels.Game
                         {
                             HourGlassAnimationReversed = false;
                         }
-                    }
 
-                    NotifyPropertyChanged("HourglassAngle");
+                        NotifyPropertyChanged("HourglassAngle");
+                    }
                 }
                 catch (Exception ex)
                 {

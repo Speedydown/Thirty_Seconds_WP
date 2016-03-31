@@ -20,7 +20,6 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
     {
         public static readonly ZeroStarAnimationPageViewModel instance = new ZeroStarAnimationPageViewModel();
 
-        private DispatcherTimer Timer = null;
         private DateTime? TimeStarted = null;
         public int AnimationAngle { get; set; }
 
@@ -38,10 +37,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             AnimationAngle = 0;
             IsLoading = false;
 
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             Timer.Tick += Timer_Tick;
-            Timer.Start();
 
             Task t = Task.Run(async () =>
             {
@@ -60,15 +56,13 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         {
             base.NavigatedFrom();
             Timer.Tick -= Timer_Tick;
-            Timer.Stop();
-            Timer = null;
         }
 
         void Timer_Tick(object sender, object e)
         {
             int MilliSecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalMilliseconds;
 
-            AnimationAngle += 15;
+            AnimationAngle += 20;
 
             if (AnimationAngle > 360)
             {

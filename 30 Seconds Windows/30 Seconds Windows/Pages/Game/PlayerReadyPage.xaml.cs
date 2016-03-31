@@ -47,7 +47,7 @@ namespace _30_Seconds_Windows.Pages.Game
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             DataContext = PlayerReadyPageViewModel.instance;
-            await Task.Run(() => PlayerReadyPageViewModel.instance.Load());
+            await PlayerReadyPageViewModel.instance.Load();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

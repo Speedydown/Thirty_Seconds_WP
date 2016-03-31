@@ -130,13 +130,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             AnimationMargin = new Thickness(0, -600, -600, 0);
 
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            if (Timer == null)
             {
-                Timer = new DispatcherTimer();
-                Timer.Tick += DispatcherTimer_Tick;
-                Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-                Timer.Start();
-            });
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Timer = new DispatcherTimer();
+                    Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+                    Timer.Start();
+                });
+            }
+
+            Timer.Tick += DispatcherTimer_Tick;
 
             CurrentGame = GameHandler.instance.GetCurrentGame();
             NotifyPropertyChanged("CurrentGame");
@@ -157,8 +161,6 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 if (currentMargin <= 0)
                 {
                     Timer.Tick -= DispatcherTimer_Tick;
-                    Timer.Stop();
-                    Timer = null;
                     AnimationMargin = new Thickness(0, 0, 0, 0);
                     Task t = NavigateToGame();
                 }
