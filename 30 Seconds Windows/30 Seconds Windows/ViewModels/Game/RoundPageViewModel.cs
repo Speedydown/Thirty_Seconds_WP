@@ -68,6 +68,8 @@ namespace _30_Seconds_Windows.ViewModels.Game
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
             CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
+            NotifyPropertyChanged("CurrentTeam");
+            NotifyPropertyChanged("CurrentPlayer");
             GetNewWordsTask = WordHandler.instance.Get5Words(CurrentPlayer.InternalID);
         }
 
@@ -75,55 +77,62 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             CurrentWords = null;
             IsLoading = true;
-            NotifyPropertyChanged("CurrentGame");
-            NotifyPropertyChanged("CurrentTeam");
-            NotifyPropertyChanged("CurrentPlayer");
 
-            AdVisible = !IAPHandler.instance.HasRemoveAds;
-
-            StopwatchStream.Position = 0;
-            AlarmStream.Position = 0;
             NavigatedTo();
             CurrentWords = null;
 
-            if (CurrentWords == null)
+            if (GetNewWordsTask == null)
             {
                 await Get5NewWords();
             }
 
             CurrentWords = await GetNewWordsTask;
-            GetNewWordsTask = null;
+           
             IsLoading = false;
 
-            TimeStarted = DateTime.Now;
-
-            if (Timer == null)
+            await Task.Run(async() =>
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
+                TimeStarted = DateTime.Now;
 
-                Timer = new DispatcherTimer()
+                if (Timer == null)
                 {
-                    Interval = new TimeSpan(0, 0, 0, 0, 100)
-                };
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
 
-                Timer.Start();
-                });
-            }
+                        Timer = new DispatcherTimer()
+                        {
+                            Interval = new TimeSpan(0, 0, 0, 0, 100)
+                        };
+
+                        Timer.Start();
+                    });
+                }
+
+            
+
+                AdVisible = !IAPHandler.instance.HasRemoveAds;
+
+                GetNewWordsTask = null;
+            });
 
             Timer.Tick += Timer_Tick;
-
         }
 
         public override void NavigatedFrom()
         {
-            RoundFinished = false;
-            EndOfRoundVisible = false;
-            WarningSoundPlayed = false;
-            HourGlassAnimationReversed = false;
-            HourglassAngle = 0;
             base.NavigatedFrom();
             Task Stop = StopTimer();
+
+            Task.Run(() =>
+            {
+                RoundFinished = false;
+                EndOfRoundVisible = false;
+                WarningSoundPlayed = false;
+                HourGlassAnimationReversed = false;
+                HourglassAngle = 0;
+                StopwatchStream.Position = 0;
+                AlarmStream.Position = 0;
+            });
         }
 
         private void Timer_Tick(object sender, object e)

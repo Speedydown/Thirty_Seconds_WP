@@ -32,15 +32,15 @@ namespace _30_Seconds_Windows.ViewModels.Game
         {
             IsLoading = true;
 
+            loadTask = Task.Run(() => RoundPageViewModel.instance.Get5NewWords());
             CurrentGame = GameHandler.instance.GetCurrentGame();
             CurrentTeam = TeamHandler.instance.GetTeamByID(CurrentGame.CurrentTeamID.Value);
             CurrentPlayer = PlayerHandler.instance.GetPlayerByID(CurrentTeam.CurrentPlayerID.Value);
             NotifyPropertyChanged("CurrentPlayer");
             NotifyPropertyChanged("CurrentTeam");
 
-            loadTask = RoundPageViewModel.instance.Get5NewWords();
             NavigatedTo();
- 
+
             IsLoading = false;
 
         }
@@ -54,10 +54,10 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             if (RoundPageViewModel.instance.GetNewWordsTask == null)
             {
-                 await loadTask;
+                await loadTask;
             }
             loadTask = null;
-            
+
             (Window.Current.Content as Frame).Navigate(typeof(RoundPage));
             await ClearBackstack(0);
 
