@@ -78,6 +78,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             CurrentGame = GameHandler.instance.GetCurrentGame();
             GetNextTeam();
             GetNextPlayer();
+            Task t = Task.Run(() => RoundPageViewModel.instance.Get5NewWords());
             IsLoading = false;
         }
 
