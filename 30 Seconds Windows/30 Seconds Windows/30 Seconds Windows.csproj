@@ -223,16 +223,6 @@
     <PRIResource Include="Strings\nl-NL\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Speedydown.nl-API\BaseLogic\BaseLogic.csproj">
-      <Project>{ee050c83-148e-4402-b25c-bc667d855965}</Project>
-      <Name>BaseLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Speedydown.nl-API\XamlControlLibrary\XamlControlLibrary.csproj">
-      <Project>{09f3efe7-ac3c-4189-90f1-c7bf9e01af96}</Project>
-      <Name>XamlControlLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -326,9 +316,15 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.11.1">
+    <SDKReference Include="SQLite.WP81, Version=3.10.2">
       <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\win10apps.nl\BaseLogic\BaseLogic.csproj">
+      <Project>{ee050c83-148e-4402-b25c-bc667d855965}</Project>
+      <Name>BaseLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
