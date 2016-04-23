@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MainPageCurrentGameButtonTextBlock.Text" xml:space="preserve">
+    <value>Huidig spel</value>
+  </data>
+  <data name="MainPageNewGameButtonTextBlock.Text" xml:space="preserve">
+    <value>Nieuw spel</value>
+  </data>
+  <data name="MainPageRulesButtonTextBlock.Text" xml:space="preserve">
+    <value>Regels</value>
+  </data>
+  <data name="MainPageTitleTextBlock.Text" xml:space="preserve">
+    <value>30 Seconds!</value>
+  </data>
+  <data name="TeamsPageAddTeamButtonTextBlock.Text" xml:space="preserve">
+    <value>Voeg nieuw team toe</value>
+  </data>
+  <data name="TeamsPageTeamsHeader.Text" xml:space="preserve">
+    <value>Teams in dit spel</value>
+  </data>
+  <data name="TeamsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Nieuw spel</value>
+  </data>
+  <data name="Text_Players" xml:space="preserve">
+    <value>spelers</value>
+  </data>
+  <data name="TeamsPagePreviousTeamsHeader.Text" xml:space="preserve">
+    <value>Alle Teams</value>
+  </data>
+  <data name="TeamsPageNoTeamsInGameTextBlock.Text" xml:space="preserve">
+    <value>Geen teams toegevoegd</value>
+  </data>
+  <data name="TeamsPageStartGameButtonTextBlock.Text" xml:space="preserve">
+    <value>Start spel</value>
+  </data>
+  <data name="PlayersPageAddPlayerButtonTextBlock.Text" xml:space="preserve">
+    <value>Voeg nieuwe speler toe</value>
+  </data>
+  <data name="PlayersPageEditTeamNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Teamnaam</value>
+  </data>
+  <data name="PlayersPageNoPlayersInTeamTextBlock.Text" xml:space="preserve">
+    <value>Geen spelers toegevoegd</value>
+  </data>
+  <data name="PlayersPagePreviousPlayersHeader.Text" xml:space="preserve">
+    <value>Alle Spelers</value>
+  </data>
+  <data name="PlayersPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Team bewerken</value>
+  </data>
+  <data name="text_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="text_Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="text_DeletePlayerQuestion_Body" xml:space="preserve">
+    <value>Wil je de speler "{0}" verwijderen?</value>
+  </data>
+  <data name="text_DeletePlayerQuestion_Title" xml:space="preserve">
+    <value>Speler verwijderen?</value>
+  </data>
+  <data name="text_DeleteTeamQuestion_Body" xml:space="preserve">
+    <value>Wil je het team "{0}" verwijderen?</value>
+  </data>
+  <data name="text_DeleteTeamQuestion_Title" xml:space="preserve">
+    <value>Team verwijderen?</value>
+  </data>
+  <data name="text_TimesPlayed" xml:space="preserve">
+    <value>Spellen gespeeld</value>
+  </data>
+  <data name="PlayerPageEditPlayerNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Spelernaam</value>
+  </data>
+  <data name="PlayerPageTeamStatsHeader.Text" xml:space="preserve">
+    <value>Statistieken</value>
+  </data>
+  <data name="PlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Speler bewerken</value>
+  </data>
+  <data name="PlayersPageDeletePlayerHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: Speler verwijderen? Hou de knop langer vast</value>
+  </data>
+  <data name="PlayersPageTeamMembersHeader.Text" xml:space="preserve">
+    <value>Teamleden</value>
+  </data>
+  <data name="TeamsPageDeleteTeamHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: houd een team vast om dit team te verwijderen</value>
+  </data>
+  <data name="text_QuestionsAnswered" xml:space="preserve">
+    <value>Woorden beantwoord</value>
+  </data>
+  <data name="text_QuestionsCorrect" xml:space="preserve">
+    <value>Woorden goed beantwoord</value>
+  </data>
+  <data name="text_TimesWon" xml:space="preserve">
+    <value>Spellen gewonnen</value>
+  </data>
+  <data name="SplashPageLoadingText.Text" xml:space="preserve">
+    <value>Bezig met het ophalen van nieuwe woorden...</value>
+  </data>
+  <data name="NextPlayerPageNextRoundPivotHeader.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="NextPlayerPagePassPhoneToText" xml:space="preserve">
+    <value>Geef mij door aan {0}</value>
+  </data>
+  <data name="NextPlayerPageScorePivotHeader.Text" xml:space="preserve">
+    <value>Huidige stand</value>
+  </data>
+  <data name="NextPlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Volgende speler</value>
+  </data>
+  <data name="VersusIntroPageTeamHeader.Text" xml:space="preserve">
+    <value>Teams</value>
+  </data>
+  <data name="NextPlayerPageContinueButtonTextBlock.Text" xml:space="preserve">
+    <value>Doorgaan</value>
+  </data>
+  <data name="NextPlayerPageRoundTextBox.Text" xml:space="preserve">
+    <value>Ronde:</value>
+  </data>
+  <data name="NextPlayerPageScoreTextBox.Text" xml:space="preserve">
+    <value>Score:</value>
+  </data>
+  <data name="CancelGame_Header" xml:space="preserve">
+    <value>Stoppen met het spel</value>
+  </data>
+  <data name="CancelGame_Text" xml:space="preserve">
+    <value>Weet je zeker dat je terug wil naar het hoofdmenu?</value>
+  </data>
+  <data name="NextPlayerPageQuestionsCorrectTextBox.Text" xml:space="preserve">
+    <value>Goede antwoorden</value>
+  </data>
+  <data name="PlayerReadyPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="text_MainMenu" xml:space="preserve">
+    <value>Hoofdmenu</value>
+  </data>
+  <data name="PlayerReadyPageStartButtonTextBlock.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="RoundPageNextRoundButtonTextBlock.Text" xml:space="preserve">
+    <value>Volgende ronde</value>
+  </data>
+  <data name="MainPagePrivacyPolicyButton.Label" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="MainPageSettingsButton.Label" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="RoundPageFillInAnswersTextBlock.Text" xml:space="preserve">
+    <value>Vul de juiste antwoorden in:</value>
+  </data>
+  <data name="RoundPageTimeUpTextBlock.Text" xml:space="preserve">
+    <value>De tijd is op!</value>
+  </data>
+  <data name="SettingsPageWordPacksButtonTextBlock.Text" xml:space="preserve">
+    <value>Woordpakketten</value>
+  </data>
+  <data name="SettingsPageLanguageComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPageRemoveAdsButtonTextBlock.Text" xml:space="preserve">
+    <value>Verwijder advertenties</value>
+  </data>
+  <data name="SettingsPagePointsComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsWordPackspageAvailablePacksTextBlock.Text" xml:space="preserve">
+    <value>Beschikbare pakketten</value>
+  </data>
+  <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
+    <value>Woordpakketten</value>
+  </data>
+  <data name="NoWordsHeader" xml:space="preserve">
+    <value>Geen woorden</value>
+  </data>
+  <data name="NoWordsText" xml:space="preserve">
+    <value>Er konden geen woorden worden gedownload. Controleer de internet verbinding en probeer het opnieuw.</value>
+  </data>
+  <data name="PlayerReadyPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Klaar om te spelen?</value>
+  </data>
+  <data name="PrivacyPolicyHeader.Text" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyPolicySubHeader.Text" xml:space="preserve">
+    <value>Privacybeleid van 30000 Milliseconds</value>
+  </data>
+  <data name="PrivacyPolicyText1.Text" xml:space="preserve">
+    <value>Neem contact op met de Eigenaar om informatie te ontvangen over welke Persoonsgegevens, voor welke doelen en met welke partijen worden gedeeld.</value>
+  </data>
+  <data name="PrivacyPolicyText2.Text" xml:space="preserve">
+    <value>Soorten verzamelde Gegevens</value>
+  </data>
+  <data name="PrivacyPolicyText3.Text" xml:space="preserve">
+    <value>De eigenaar verstrekt geen lijst van types persoonsgegevens die worden verzameld.
+
+Overige verzamelde Persoonsgegevens kunnen in andere bepalingen van dit privacybeleid of in een specifieke uitleg in samenhang met de verzameling van de gegevens worden beschreven.
+De Persoonsgegevens kunnen door de Gebruiker zelf worden aangeleverd of automatisch worden verzameld door het gebruik van deze Applicatie.
+
+Gebruik van cookies - of andere tracking tools - door deze Applicatie of door de eigenaren van de diensten van derden die worden gebruikt door deze Applicatie, dienen, tenzij anderszins wordt aangegeven, om Gebruikers te identificeren en hun voorkeuren op te slaan, met uitsluitend als doel de door de Gebruiker gevraagde dienst te verlenen.
+
+Door het niet verstrekken van bepaalde Persoonsgegevens kan deze Applicatie de diensten mogelijk niet verlenen.
+
+De gebruiker neemt verantwoordelijkheid voor de Persoonsgegevens van derden die worden gepubliceerd of gedeeld door middel van deze Applicatie en verklaart het recht te hebben om deze te publiceren of uit te zenden, waarmee de Verantwoordelijke voor de verwerking van de Gegevens van alle aansprakelijkheid wordt ontheven.</value>
+  </data>
+  <data name="PrivacyPolicyText4.Text" xml:space="preserve">
+    <value>Wijze en plaats van de Gegevensverwerking</value>
+  </data>
+  <data name="PrivacyPolicyText5.Text" xml:space="preserve">
+    <value>De Verantwoordelijke voor de verwerking van de Gegevens verwerkt de Gegevens van de Gebruikers op een correcte wijze en neemt passende beveiligingsmaatregelen om onbevoegde toegang tot, bekendmaking, wijziging of vernietiging van de Gegevens zonder toestemming te voorkomen.
+
+De verwerking van de Gegevens vindt plaats met gebruik van computers en/of IT-tools, waarbij organisatieprocedures en werkwijzen worden gevolgd die nauw aansluiten op de aangegeven doelen. Naast de Verantwoordelijke voor de verwerking van de Gegevens kunnen de gegevens in bepaalde gevallen ook toegankelijk zijn voor bepaalde met de verwerking belaste personen die zijn betrokken bij de exploitatie van de site (beheer, verkoop, marketing, juridisch, systeembeheer) of door de Eigenaar als Gegevensverwerkers aangestelde externe partijen (zoals externe technische serviceproviders, mailprogramma's, hostingproviders, IT-bedrijven, communicatiebureaus). De bijgewerkte lijst van deze partijen kan te allen tijde bij de Verantwoordelijke voor de verwerking van de Gegevens worden aangevraagd.</value>
+  </data>
+  <data name="SettingsPageLanguageeComboBoxHeader.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="SettingsPagePoinsDropdownTextBlock.Text" xml:space="preserve">
+    <value>Benodigde punten</value>
+  </data>
+  <data name="test_Retry" xml:space="preserve">
+    <value>Opnieuw</value>
+  </data>
+  <data name="VictoryAnimiationPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Einde spel</value>
+  </data>
+  <data name="EndGamePageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Eind scores</value>
+  </data>
+  <data name="VictoryAnimationPageVictorTextBlock.Text" xml:space="preserve">
+    <value>Winnaar:</value>
+  </data>
+  <data name="RulesPageText1.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen namen op de kaart noemen. Woorden als de, het en een zijn wel toegestaan.</value>
+  </data>
+  <data name="RulesPageText2.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen namen die van de kaart zijn afgeleid noemen.</value>
+  </data>
+  <data name="RulesPageText3.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag geen klinkt als of rijmt op tactieken toepassen.</value>
+  </data>
+  <data name="RulesPageText4.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag niet verwijzen naar letters van het alfabet.</value>
+  </data>
+  <data name="RulesPageText5.Text" xml:space="preserve">
+    <value>De speler die de woorden omschrijft mag niet naar voorwerpen wijzen.</value>
+  </data>
+  <data name="RulesPageText6.Text" xml:space="preserve">
+    <value>Neuriën, zingen en gebaren zijn wel toegestaan.</value>
+  </data>
+  <data name="RulesPageText7.Text" xml:space="preserve">
+    <value>Jouw team verdient een extra punt wanneer alle woorden geraden zijn.</value>
+  </data>
+  <data name="RulesPageText8.Text" xml:space="preserve">
+    <value>Na een halve minuut is de tijd om, en mag er niks meer gezegd of geraden worden.</value>
+  </data>
+  <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Spelregels</value>
+  </data>
+  <data name="ReviewPopupBody" xml:space="preserve">
+    <value>Wij bieden 30000 MilliSeconds kostenloos aan en we zouden het op prijs stellen als u de 30000 MilliSeconds app een positieve review geeft in de Windows store.</value>
+  </data>
+  <data name="ReviewPopupTitle" xml:space="preserve">
+    <value>Bedankt</value>
+  </data>
+  <data name="Text_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Purchase_completed_Header" xml:space="preserve">
+    <value>Aankoop voltooid</value>
+  </data>
+  <data name="Purchase_completed_Text" xml:space="preserve">
+    <value>Bedankt voor je aankoop.</value>
+  </data>
+  <data name="text_ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+</root>

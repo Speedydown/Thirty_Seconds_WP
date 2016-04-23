@@ -54,7 +54,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <!--<wp8:AdMediatorControl
+                <wp8:AdMediatorControl
                     Visibility="{Binding AdVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                     x:Name="AdMediator_Ad1"
                     Id="AdMediator-Id-D1FDFDA7-EABB-474C-940C-ECA7FBCFF143"
@@ -63,7 +63,7 @@
                       Height="50" 
                               Background="{StaticResource Background}"
                       VerticalAlignment="Top" 
-                      Width="320"/>-->
+                      Width="320"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Margin="0,10" Visibility="{Binding RoundFinishedAnimationVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Image Source="ms-appx:///Assets/Images/HourGlass30.png" Margin="100,15" RenderTransformOrigin=".5,.5" >

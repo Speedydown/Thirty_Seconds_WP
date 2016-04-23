@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MainPageCurrentGameButtonTextBlock.Text" xml:space="preserve">
+    <value>Current game</value>
+  </data>
+  <data name="MainPageNewGameButtonTextBlock.Text" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="MainPageRulesButtonTextBlock.Text" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="MainPageTitleTextBlock.Text" xml:space="preserve">
+    <value>30 Seconds!</value>
+  </data>
+  <data name="TeamsPageAddTeamButtonTextBlock.Text" xml:space="preserve">
+    <value>Add new team</value>
+  </data>
+  <data name="TeamsPageTeamsHeader.Text" xml:space="preserve">
+    <value>Teams in this game</value>
+  </data>
+  <data name="TeamsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="Text_Players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="TeamsPagePreviousTeamsHeader.Text" xml:space="preserve">
+    <value>All teams</value>
+  </data>
+  <data name="TeamsPageNoTeamsInGameTextBlock.Text" xml:space="preserve">
+    <value>No teams added</value>
+  </data>
+  <data name="TeamsPageStartGameButtonTextBlock.Text" xml:space="preserve">
+    <value>Start game</value>
+  </data>
+  <data name="PlayersPageAddPlayerButtonTextBlock.Text" xml:space="preserve">
+    <value>Add new player</value>
+  </data>
+  <data name="PlayersPageEditTeamNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Team name</value>
+  </data>
+  <data name="PlayersPageNoPlayersInTeamTextBlock.Text" xml:space="preserve">
+    <value>No players!</value>
+  </data>
+  <data name="PlayersPagePreviousPlayersHeader.Text" xml:space="preserve">
+    <value>All players</value>
+  </data>
+  <data name="PlayersPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Edit team</value>
+  </data>
+  <data name="text_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="text_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="text_DeletePlayerQuestion_Body" xml:space="preserve">
+    <value>Do you want to remove the player "{0}"?</value>
+  </data>
+  <data name="text_DeletePlayerQuestion_Title" xml:space="preserve">
+    <value>Delete player?</value>
+  </data>
+  <data name="text_DeleteTeamQuestion_Body" xml:space="preserve">
+    <value>Do you want to remove the team "{0}"?</value>
+  </data>
+  <data name="text_DeleteTeamQuestion_Title" xml:space="preserve">
+    <value>Remove team?</value>
+  </data>
+  <data name="text_TimesPlayed" xml:space="preserve">
+    <value>Games played</value>
+  </data>
+  <data name="PlayerPageEditPlayerNameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Player name</value>
+  </data>
+  <data name="PlayerPageTeamStatsHeader.Text" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="PlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Edit player</value>
+  </data>
+  <data name="PlayersPageDeletePlayerHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: Delete player? Hold the button</value>
+  </data>
+  <data name="PlayersPageTeamMembersHeader.Text" xml:space="preserve">
+    <value>Team members</value>
+  </data>
+  <data name="TeamsPageDeleteTeamHintTextBlock.Text" xml:space="preserve">
+    <value>Tip: hold a team to remove from the game</value>
+  </data>
+  <data name="text_QuestionsAnswered" xml:space="preserve">
+    <value>Played words</value>
+  </data>
+  <data name="text_QuestionsCorrect" xml:space="preserve">
+    <value>Correct words</value>
+  </data>
+  <data name="text_TimesWon" xml:space="preserve">
+    <value>Games won</value>
+  </data>
+  <data name="SplashPageLoadingText.Text" xml:space="preserve">
+    <value>Busy retrieving new words...</value>
+  </data>
+  <data name="NextPlayerPageNextRoundPivotHeader.Text" xml:space="preserve">
+    <value>Next round</value>
+  </data>
+  <data name="NextPlayerPagePassPhoneToText" xml:space="preserve">
+    <value>Give me to {0}</value>
+  </data>
+  <data name="NextPlayerPageScorePivotHeader.Text" xml:space="preserve">
+    <value>Current standings</value>
+  </data>
+  <data name="NextPlayerPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Next player</value>
+  </data>
+  <data name="VersusIntroPageTeamHeader.Text" xml:space="preserve">
+    <value>Teams</value>
+  </data>
+  <data name="NextPlayerPageContinueButtonTextBlock.Text" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="NextPlayerPageRoundTextBox.Text" xml:space="preserve">
+    <value>Round:</value>
+  </data>
+  <data name="NextPlayerPageScoreTextBox.Text" xml:space="preserve">
+    <value>Points:</value>
+  </data>
+  <data name="CancelGame_Header" xml:space="preserve">
+    <value>Cancel game</value>
+  </data>
+  <data name="CancelGame_Text" xml:space="preserve">
+    <value>You are cancelling the game. Are you sure?</value>
+  </data>
+  <data name="NextPlayerPageQuestionsCorrectTextBox.Text" xml:space="preserve">
+    <value>Correct answers</value>
+  </data>
+  <data name="PlayerReadyPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Next round</value>
+  </data>
+  <data name="text_MainMenu" xml:space="preserve">
+    <value>Main menu</value>
+  </data>
+  <data name="PlayerReadyPageStartButtonTextBlock.Text" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="RoundPageNextRoundButtonTextBlock.Text" xml:space="preserve">
+    <value>Next round</value>
+  </data>
+  <data name="MainPagePrivacyPolicyButton.Label" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="MainPageSettingsButton.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="RoundPageFillInAnswersTextBlock.Text" xml:space="preserve">
+    <value>Fill in the correct answers:</value>
+  </data>
+  <data name="RoundPageTimeUpTextBlock.Text" xml:space="preserve">
+    <value>Out of time!</value>
+  </data>
+  <data name="SettingsPageWordPacksButtonTextBlock.Text" xml:space="preserve">
+    <value>Word packs</value>
+  </data>
+  <data name="SettingsPageLanguageComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPageRemoveAdsButtonTextBlock.Text" xml:space="preserve">
+    <value>Remove ads</value>
+  </data>
+  <data name="SettingsPagePointsComboBox.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsWordPackspageAvailablePacksTextBlock.Text" xml:space="preserve">
+    <value>Available packs</value>
+  </data>
+  <data name="SettingsWordPackspageTitleTextBlock.Text" xml:space="preserve">
+    <value>Word packs</value>
+  </data>
+  <data name="NoWordsHeader" xml:space="preserve">
+    <value>No words</value>
+  </data>
+  <data name="NoWordsText" xml:space="preserve">
+    <value>Words could not be retrieved. Please check your internet connection and try again.</value>
+  </data>
+  <data name="PlayerReadyPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Ready to play?</value>
+  </data>
+  <data name="PrivacyPolicyHeader.Text" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyPolicySubHeader.Text" xml:space="preserve">
+    <value>30000 Milliseconds</value>
+  </data>
+  <data name="PrivacyPolicyText1.Text" xml:space="preserve">
+    <value>Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.</value>
+  </data>
+  <data name="PrivacyPolicyText2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PrivacyPolicyText3.Text" xml:space="preserve">
+    <value>• Before or at the time of collecting personal information, we will identify the purposes for which information is being collected. 
+
+• We will collect and use of personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law. 
+
+• We will only retain personal information as long as necessary for the fulfillment of those purposes. 
+
+• We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned. 
+
+• Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, 
+complete, and up-to-date. 
+
+• We will protect personal information by reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or 
+modification. 
+
+• We will make readily available to customers information about our policies and practices relating to the management of personal information.</value>
+  </data>
+  <data name="PrivacyPolicyText4.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PrivacyPolicyText5.Text" xml:space="preserve">
+    <value>We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.</value>
+  </data>
+  <data name="SettingsPageLanguageeComboBoxHeader.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SettingsPagePoinsDropdownTextBlock.Text" xml:space="preserve">
+    <value>Points needed</value>
+  </data>
+  <data name="test_Retry" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="VictoryAnimiationPageHeaderTextBlock.Text" xml:space="preserve">
+    <value>End of game</value>
+  </data>
+  <data name="EndGamePageHeaderTextBlock.Text" xml:space="preserve">
+    <value>Final scores</value>
+  </data>
+  <data name="VictoryAnimationPageVictorTextBlock.Text" xml:space="preserve">
+    <value>Champions</value>
+  </data>
+  <data name="RulesPageText1.Text" xml:space="preserve">
+    <value>The player that describes the words can not mention any names on the card. Words like "a" or "the" are permitted.</value>
+  </data>
+  <data name="RulesPageText2.Text" xml:space="preserve">
+    <value>It is not allowed to describe words that are similar to the words on the card.</value>
+  </data>
+  <data name="RulesPageText3.Text" xml:space="preserve">
+    <value>The player that describes the words can not describe the word with "sounds like" or "rhymes with"</value>
+  </data>
+  <data name="RulesPageText4.Text" xml:space="preserve">
+    <value>The player that describes the words can not refer to the letters of the alphabet.</value>
+  </data>
+  <data name="RulesPageText5.Text" xml:space="preserve">
+    <value>the player that describes the words can not point to objects.</value>
+  </data>
+  <data name="RulesPageText6.Text" xml:space="preserve">
+    <value>Humming, singing and gestures are allowed.</value>
+  </data>
+  <data name="RulesPageText7.Text" xml:space="preserve">
+    <value>Your team earns an extra point when all words are guessed.</value>
+  </data>
+  <data name="RulesPageText8.Text" xml:space="preserve">
+    <value>After 30 seconds the time is up and words can no longer be guessed.</value>
+  </data>
+  <data name="RulesPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="ReviewPopupBody" xml:space="preserve">
+    <value>We offer 30000 MilliSeconds for free and we would appreciate a positve review in the Windows Store.</value>
+  </data>
+  <data name="ReviewPopupTitle" xml:space="preserve">
+    <value>Thank you</value>
+  </data>
+  <data name="Text_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Purchase_completed_Header" xml:space="preserve">
+    <value>Purchase completed</value>
+  </data>
+  <data name="Purchase_completed_Text" xml:space="preserve">
+    <value>Thank you for supporting us!</value>
+  </data>
+  <data name="text_ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+</root>
