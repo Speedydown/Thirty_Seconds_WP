@@ -170,12 +170,12 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             Team CurrentTeam = this.CurrentTeam;
 
-            if (CurrentTeam.Name.Length < 3)
+            if (CurrentTeam.Name.Length == 0)
             {
                 CurrentTeam.Name = "Team" + CurrentTeam.InternalID;
             }
 
-            Task.Run(() =>
+            await Task.Run(() =>
                 {
                     TeamHandler.instance.SaveTeam(CurrentTeam);
                 });

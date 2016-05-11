@@ -23,6 +23,7 @@
             <StackPanel Margin="0,-50,0,0" VerticalAlignment="Center">
                 <TextBlock x:Uid="PlayerReadyPageHeaderTextBlock"  Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="22" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
                 <TextBlock Text="{Binding CurrentPlayer.Name}" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="40" TextAlignment="Center" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                <TextBlock Text="{Binding CurrentTeam.Name}" Style="{StaticResource PageSubHeaderTextBlockStyle}" FontSize="22" TextAlignment="Center" TextWrapping="WrapWholeWords"/>
             </StackPanel>
             <Button x:Uid="PlayerReadyPageStartButton"
                         x:Name="PlayerReadyPageStartButton"

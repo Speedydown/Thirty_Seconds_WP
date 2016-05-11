@@ -31,7 +31,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         {
             Player CurrentPlayer = this.CurrentPlayer;
 
-            if (CurrentPlayer.Name.Length < 3)
+            if (CurrentPlayer.Name.Length < 0)
             {
                 CurrentPlayer.Name = "Player" + CurrentPlayer.InternalID;
             }
