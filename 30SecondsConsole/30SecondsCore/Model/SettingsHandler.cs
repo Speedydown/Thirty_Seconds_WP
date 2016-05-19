@@ -50,7 +50,7 @@ namespace _30SecondsCore.Model
         {
             try
             {
-                CurrentSettings.SettingsLastUpdated = DateTime.Now;
+                CurrentSettings.SettingsLastUpdated = TimeConverter.GetDateTime();
                 UpdateObject(CurrentSettings);
                 return true;
             }

@@ -35,7 +35,7 @@ namespace _30SecondsCore.Model
 
             if (ID == 0 && Name.Length > 3)
             {
-                Added = DateTime.Now;
+                Added = TimeConverter.GetDateTime();
                 WordPackHandler.instance.SaveWordPack(this);
             }
         }

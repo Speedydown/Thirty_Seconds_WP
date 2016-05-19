@@ -20,7 +20,7 @@ namespace _30SecondsCore.Model
 
         public bool SaveCategory(Category category)
         {
-            SettingsHandler.instance.CurrentSettings.CategoryLastUpdated = DateTime.Now;
+            SettingsHandler.instance.CurrentSettings.CategoryLastUpdated = TimeConverter.GetDateTime();
             SettingsHandler.instance.SaveSettings();
 
             try

@@ -34,7 +34,7 @@ namespace _30SecondsCore.Model
 
         public bool SaveWordPack(WordPack wordPack)
         {
-            SettingsHandler.instance.CurrentSettings.WordPackLastUpdated = DateTime.Now;
+            SettingsHandler.instance.CurrentSettings.WordPackLastUpdated = TimeConverter.GetDateTime();
             SettingsHandler.instance.SaveSettings();
 
             try

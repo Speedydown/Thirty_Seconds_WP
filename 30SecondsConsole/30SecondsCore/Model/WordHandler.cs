@@ -27,7 +27,7 @@ namespace _30SecondsCore.Model
 
         public bool SaveWord(Word word)
         {
-            SettingsHandler.instance.CurrentSettings.WordLastUpdated = DateTime.Now;
+            SettingsHandler.instance.CurrentSettings.WordLastUpdated = TimeConverter.GetDateTime();
             SettingsHandler.instance.SaveSettings();
 
             try
