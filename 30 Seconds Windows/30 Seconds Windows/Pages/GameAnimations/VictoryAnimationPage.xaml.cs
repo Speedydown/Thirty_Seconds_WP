@@ -46,7 +46,7 @@ namespace _30_Seconds_Windows.Pages.GameAnimations
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             DataContext = VictoryAnimationPageViewModel.instance;
-            await VictoryAnimationPageViewModel.instance.Load();
+            await VictoryAnimationPageViewModel.instance.LoadData();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

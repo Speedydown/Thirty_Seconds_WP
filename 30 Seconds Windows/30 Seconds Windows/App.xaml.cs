@@ -33,7 +33,7 @@ namespace _30_Seconds_Windows
             }
             else
             {
-                await ExceptionHandler.instance.PostException(new AppException(e.Exception), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+                await ExceptionHandler.instance.PostException(new AppException(e.Exception, (int)ClientIDHandler.AppName._30Seconds));
             }
         }
 

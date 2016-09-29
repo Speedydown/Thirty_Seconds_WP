@@ -49,7 +49,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task PostExTask = ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+                Task PostExTask = ExceptionHandler.instance.PostException(new AppException(e, (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 return false;
             }
         }

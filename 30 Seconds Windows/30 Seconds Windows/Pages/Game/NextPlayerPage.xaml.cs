@@ -51,7 +51,7 @@ namespace _30_Seconds_Windows.Pages.Game
         {
             ViewModel = NextPlayerPageViewModel.instance;
             DataContext = ViewModel;
-            await ViewModel.Load();
+            await ViewModel.LoadData();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

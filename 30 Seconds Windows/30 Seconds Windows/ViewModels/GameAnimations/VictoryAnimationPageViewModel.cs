@@ -23,7 +23,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
         {
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             IsLoading = true;
             StartTime = DateTime.Now;
@@ -53,14 +53,22 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             Timer.Tick -= Timer_Tick;
         }
 
-        void Timer_Tick(object sender, object e)
+        async void Timer_Tick(object sender, object e)
         {
             if (DateTime.Now.Subtract(StartTime).TotalMilliseconds > 3000)
             {
-                (Window.Current.Content as Frame).Navigate(typeof(EndGamePage));
-
-                Task t = ClearBackstack(0);
+                await Navigate(typeof(EndGamePage), true);
             }
+        }
+
+        public override void Unload()
+        {
+           
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

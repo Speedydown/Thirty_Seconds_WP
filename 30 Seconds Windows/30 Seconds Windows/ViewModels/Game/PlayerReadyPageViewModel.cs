@@ -28,7 +28,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             IsLoading = true;
 
@@ -46,8 +46,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task StartRoundButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(RoundPage));
-            await ClearBackstack(0);
+           await Navigate(typeof(RoundPage), true);
 
             Task t = Task.Run(() =>
             {
@@ -58,6 +57,16 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 PlayerHandler.instance.SavePlayer(CurrentPlayer);
                 TeamHandler.instance.SaveTeam(CurrentTeam);
             });
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public override async Task Load()
+        {
+            
         }
     }
 }

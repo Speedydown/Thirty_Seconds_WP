@@ -71,7 +71,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             IsLoading = true;
             NavigatedTo();
@@ -120,7 +120,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 Task.Run(() =>
                 {
                     GameHandler.instance.SaveGame(CurrentGame);
-                });               
+                });
             }
         }
 
@@ -162,8 +162,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
         public async Task ContinueButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(PlayerReadyPage));
-            await ClearBackstack(0);
+            await Navigate(typeof(PlayerReadyPage), true);
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

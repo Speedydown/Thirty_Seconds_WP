@@ -35,26 +35,34 @@ namespace _30_Seconds_Windows.ViewModels.Game
         public async Task NavigatedFrom()
         {
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-            await ClearBackstack(0);
+            await ClearBackStack(0);
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
-            IsLoading = true;
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            IsLoading = false;
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+            Navigate(typeof(MainPage));
 
         }
         
-        public void EndGamePageContinueButton_Pressed()
+        public async void EndGamePageContinueButton_Pressed()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+           await Navigate(typeof(MainPage));
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

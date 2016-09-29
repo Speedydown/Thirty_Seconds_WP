@@ -185,9 +185,17 @@ namespace _30_Seconds_Windows.ViewModels.Game
         private async Task NavigateToGame()
         {
             await Task.Delay(750);
-            (Window.Current.Content as Frame).Navigate(typeof(NextPlayerPage));
-            await ClearBackstack(0);
+            await Navigate(typeof(NextPlayerPage), true);
         }
 
+        public override void Unload()
+        {
+            
+        }
+
+        public override async Task Load()
+        {
+            
+        }
     }
 }

@@ -104,10 +104,10 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             CurrentTeam.Players.Add(NewPlayer);
         }
 
-        public void EditPlayerButton(Player player)
+        public async void EditPlayerButton(Player player)
         {
             PlayerPageViewModel.instance.CurrentPlayer = player;
-            (Window.Current.Content as Frame).Navigate(typeof(PlayerPage));
+            await Navigate(typeof(PlayerPage));
         }
 
         public void AddExistingPlayerButton(Player ExistingPlayer)
@@ -179,6 +179,16 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 {
                     TeamHandler.instance.SaveTeam(CurrentTeam);
                 });
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

@@ -116,8 +116,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
 
             if ((int)Command.Id == 0)
             {
-                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
-                await ClearBackstack(0);
+                await Navigate(typeof(MainPage), true);
             }
         }
     }

@@ -24,7 +24,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
 
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             IsLoading = true;
             NavigatedTo();
@@ -34,7 +34,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
 
             Timer.Tick += Timer_Tick;
 
-            Task t = Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 await LoadFileTask;
 
@@ -53,7 +53,7 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             Timer.Tick -= Timer_Tick;
         }
 
-        void Timer_Tick(object sender, object e)
+        async void Timer_Tick(object sender, object e)
         {
             int MilliSecondsElapsed = (int)DateTime.Now.Subtract(TimeStarted.Value).TotalMilliseconds;
 
@@ -64,10 +64,18 @@ namespace _30_Seconds_Windows.ViewModels.GameAnimations
             if (MilliSecondsElapsed > 5500)
             {
                 MediaPlayer.Stop();
-                (Window.Current.Content as Frame).Navigate(typeof(NextPlayerPage));
-
-                Task t = ClearBackstack(0);
+                await Navigate(typeof(NextPlayerPage), true);
             }
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

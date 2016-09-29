@@ -31,49 +31,57 @@ namespace _30_Seconds_Windows.ViewModels
 
         private MainPageViewModel() : base()
         {
-            
+
         }
 
-        public async Task LoadData()
+        public async void CurrentGameButton()
         {
-            IsLoading = true;
-            StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
-            HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
-            IsLoading = false;
+            await Navigate(typeof(VersusIntroPage));
         }
 
-        public void CurrentGameButton()
-        {
-            (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
-        }
-
-        public void NewGameButton()
+        public async void NewGameButton()
         {
             if (SettingsHandler.instance.UpdateTask == null || (SettingsHandler.instance.UpdateTask.IsCompleted && WordHandler.instance.DatabaseHasWords()))
             {
                 GameHandler.instance.StartNewGame();
 
-                (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
+                await Navigate(typeof(TeamsPage));
             }
             else
             {
-                (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
+                await Navigate(typeof(SplashPage));
             }
         }
 
-        public void RulesButton()
+        public async void RulesButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(RulesPage));
+            await Navigate(typeof(RulesPage));
         }
 
-        public void SettingsButton()
+        public async void SettingsButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(SettingsPage));
+            await Navigate(typeof(SettingsPage));
         }
 
-        public void PrivacyPolicyButton()
+        public async void PrivacyPolicyButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(Privacy_Policy));
+            await Navigate(typeof(Privacy_Policy));
+        }
+
+        public async Task LoadData()
+        {
+            StatusBar.GetForCurrentView().ForegroundColor = Colors.White;
+            HasCurrentGame = GameHandler.instance.GetCurrentGame() != null && GameHandler.instance.GetCurrentGame().TimeStarted != DateTime.MinValue;
+        }
+
+        public override void Unload()
+        {
+
+        }
+
+        public async override Task Load()
+        {
+            
         }
     }
 }

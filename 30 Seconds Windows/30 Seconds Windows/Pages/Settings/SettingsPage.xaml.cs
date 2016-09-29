@@ -47,7 +47,7 @@ namespace _30_Seconds_Windows.Pages.Settings
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             DataContext = SettingsPageViewModel.instance;
-            await SettingsPageViewModel.instance.load();
+            await SettingsPageViewModel.instance.LoadData();
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

@@ -46,7 +46,7 @@ namespace _30_Seconds_Windows.Pages.GameAnimations
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             DataContext = FiveStarAnimationPageViewModel.instance;
-            await FiveStarAnimationPageViewModel.instance.Load();
+            await FiveStarAnimationPageViewModel.instance.LoadData();
 
         }
 

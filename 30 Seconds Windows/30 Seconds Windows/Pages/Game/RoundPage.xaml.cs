@@ -49,7 +49,7 @@ namespace _30_Seconds_Windows.Pages.Game
         {
             RoundPageViewModel.instance.CurrentWords = null;
             DataContext = RoundPageViewModel.instance;
-            await RoundPageViewModel.instance.Load(); 
+            await RoundPageViewModel.instance.LoadData(); 
         }
 
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)

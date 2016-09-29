@@ -79,6 +79,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 
         }
 
+        public override void Unload()
+        {
+            
+        }
+
         public async Task LoadData()
         {
             IsLoading = true;
@@ -162,9 +167,9 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
         public async Task StartGameButton()
         {
             CurrentGame.TimeStarted = DateTime.Now;
-            Task task = Task.Run(() =>
+            Task task = Task.Run(async () =>
             {
-                GameHandler.instance.SaveGame(CurrentGame);
+                await GameHandler.instance.SaveGame(CurrentGame);
             });
 
             List<Player> playersToSave = new List<Player>();
@@ -178,7 +183,7 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 }
             }
 
-            (Window.Current.Content as Frame).Navigate(typeof(VersusIntroPage));
+            await Navigate(typeof(VersusIntroPage));
             task = Task.Run(() =>
             {
                 PlayerHandler.instance.SavePlayers(playersToSave.ToArray());
@@ -227,10 +232,15 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             }
         }
 
-        public void EditTeamButton(Team team)
+        public async void EditTeamButton(Team team)
         {
             PlayersPageViewModel.instance.CurrentTeam = team;
-            (Window.Current.Content as Frame).Navigate(typeof(PlayersPage));
+            await Navigate(typeof(PlayersPage));
+        }
+
+        public override async Task Load()
+        {
+            
         }
     }
 }

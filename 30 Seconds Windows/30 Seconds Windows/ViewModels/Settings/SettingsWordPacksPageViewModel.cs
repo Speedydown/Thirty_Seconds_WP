@@ -21,7 +21,7 @@ namespace _30_Seconds_Windows.ViewModels.Settings
 
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             IsLoading = true;
             WordPacksChanged = false;
@@ -47,6 +47,16 @@ namespace _30_Seconds_Windows.ViewModels.Settings
                 WordPackHandler.instance.SaveWordPacks(WordPacks);
                 SettingsHandler.instance.Update(true);
             }
+        }
+
+        public override void Unload()
+        {
+            
+        }
+
+        public override async Task Load()
+        {
+            
         }
     }
 }

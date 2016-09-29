@@ -67,7 +67,7 @@ namespace _30_Seconds_Windows.ViewModels.Settings
 
         }
 
-        public async Task load()
+        public async Task LoadData()
         {
             IsLoading = true;
             RemoveAdsButtonVisible = !IAPHandler.instance.HasFeature(IAPHandler.RemoveAdsFeatureName);
@@ -83,9 +83,9 @@ namespace _30_Seconds_Windows.ViewModels.Settings
             IsLoading = false;
         }
 
-        public void WordPacksButton()
+        public async void WordPacksButton()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(SettingsWordPackspage));
+            await Navigate(typeof(SettingsWordPackspage));
         }
 
         public async Task RemoveAdsButton()
@@ -128,5 +128,14 @@ namespace _30_Seconds_Windows.ViewModels.Settings
             }
         }
 
+        public override void Unload()
+        {
+            
+        }
+
+        public override async Task Load()
+        {
+            
+        }
     }
 }

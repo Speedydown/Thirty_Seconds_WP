@@ -61,7 +61,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e, (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds)));
                 return false;
             }
         }
@@ -112,7 +112,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch (Exception e)
             {
-                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
+                Task ExceptionTask = Task.Run(() => ExceptionHandler.instance.PostException(new AppException(e, (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds)));
                 return false;
             }
         }

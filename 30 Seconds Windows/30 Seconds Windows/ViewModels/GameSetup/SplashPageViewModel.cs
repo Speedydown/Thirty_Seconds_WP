@@ -30,6 +30,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
 
         }
 
+        public override async Task Load()
+        {
+            
+        }
+
         public async Task LoadData()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -55,11 +60,16 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                     }
                     else
                     {
-                        (Window.Current.Content as Frame).Navigate(typeof(TeamsPage));
+                        await Navigate(typeof(TeamsPage));
                         (Window.Current.Content as Frame).BackStack.Remove((Window.Current.Content as Frame).BackStack.Last());
                         IsLoading = false;
                     }
                 });
+        }
+
+        public override void Unload()
+        {
+            
         }
 
         private async Task DisplayErrorDialog()
@@ -93,14 +103,12 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                         SettingsHandler.instance.Update(true);
                     });
 
-                (Window.Current.Content as Frame).Navigate(typeof(SplashPage));
+              await Navigate(typeof(SplashPage), true, 1);
             }
             else
             {
-                (Window.Current.Content as Frame).Navigate(typeof(MainPage));
+                await Navigate(typeof(MainPage), true, 1);
             }
-
-            await ClearBackstack(1);
         }
     }
 }

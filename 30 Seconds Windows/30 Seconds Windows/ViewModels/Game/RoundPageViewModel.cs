@@ -73,7 +73,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
             GetNewWordsTask = WordHandler.instance.Get5Words(CurrentPlayer.InternalID);
         }
 
-        public async Task Load()
+        public async Task LoadData()
         {
             CurrentWords = null;
             IsLoading = true;
@@ -188,7 +188,7 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 }
                 catch (Exception ex)
                 {
-                    Task PostExTask = ExceptionHandler.instance.PostException(new AppException(ex), (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds);
+                    Task PostExTask = ExceptionHandler.instance.PostException(new AppException(ex, (int)BaseLogic.ClientIDHandler.ClientIDHandler.AppName._30Seconds));
                 }
             });
         }
@@ -264,23 +264,23 @@ namespace _30_Seconds_Windows.ViewModels.Game
                 //Current game does not exist in db anymore -> prepare data in viewmodels
                 EndGamePageViewModel.instance.CurrentGame = CurrentGame;
                 VictoryAnimationPageViewModel.instance.WinningTeam = WinningTeam;
-                (Window.Current.Content as Frame).Navigate(typeof(VictoryAnimationPage));
+                await Navigate(typeof(VictoryAnimationPage));
             }
             else if (WordsCorrect == 0)
             {
-                (Window.Current.Content as Frame).Navigate(typeof(ZeroStarAnimationPage));
+               await Navigate(typeof(ZeroStarAnimationPage));
             }
             else if (WordsCorrect == 5)
             {
                 FiveStarAnimationPageViewModel.instance.PlayedWords = CurrentWords;
-                (Window.Current.Content as Frame).Navigate(typeof(FiveStarAnimationPage));
+                await Navigate(typeof(FiveStarAnimationPage));
             }
             else
             {
-                (Window.Current.Content as Frame).Navigate(typeof(NextPlayerPage));
+                await Navigate(typeof(NextPlayerPage));
             }
 
-            await ClearBackstack(0);
+            await ClearBackStack(0);
 
 
             Task SaveTask = Task.Run(async () =>
@@ -311,6 +311,16 @@ namespace _30_Seconds_Windows.ViewModels.Game
             }
 
             return false;
+        }
+
+        public override void Unload()
+        {
+          
+        }
+
+        public override async Task Load()
+        {
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _30_Seconds_Windows.Model.Utils;
 using BaseLogic;
+using BaseLogic.ClientIDHandler;
 using BaseLogic.DataHandler;
 using BaseLogic.ExceptionHandler;
 using BaseLogic.HtmlUtil;
@@ -45,7 +46,7 @@ namespace _30_Seconds_Windows.Model
             }
             catch(Exception e)
             {
-                new AppException(e);
+                await ExceptionHandler.instance.PostException(new AppException(e, (int)ClientIDHandler.AppName._30Seconds));
                 return;
             }
         }

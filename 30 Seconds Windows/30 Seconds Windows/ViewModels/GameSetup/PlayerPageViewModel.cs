@@ -1,6 +1,7 @@
 ﻿using _30_Seconds_Windows.Model;
 using BaseLogic;
 using System.Threading.Tasks;
+using System;
 
 namespace _30_Seconds_Windows.ViewModels.GameSetup
 {
@@ -27,6 +28,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
             IsLoading = false;
         }
 
+        public override void Unload()
+        {
+            
+        }
+
         public void SavePlayer()
         {
             Player CurrentPlayer = this.CurrentPlayer;
@@ -40,6 +46,11 @@ namespace _30_Seconds_Windows.ViewModels.GameSetup
                 {
                     PlayerHandler.instance.SavePlayer(CurrentPlayer);
                 });
+        }
+
+        public override async Task Load()
+        {
+            
         }
     }
 }
